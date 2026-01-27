@@ -6,7 +6,8 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, ogImage = '/og-image.png' } = Astro.props;
+const { title, description, ogImage = '/og-image.svg' } = Astro.props;
+const fullOgImage = `https://make-it-global.vercel.app${ogImage}`;
 ---
 
 <!DOCTYPE html>
@@ -22,14 +23,14 @@ const { title, description, ogImage = '/og-image.png' } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://make-it-global.vercel.app" />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={fullOgImage} />
     <meta property="og:site_name" content="Make It Global" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={fullOgImage} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

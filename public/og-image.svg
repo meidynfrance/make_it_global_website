@@ -1,0 +1,19 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2563EB"/>
+
+  <!-- Title -->
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white" text-anchor="middle">
+    Make It Global
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="350" font-family="Arial, sans-serif" font-size="32" fill="white" text-anchor="middle" opacity="0.9">
+    Traduction Multimédia B2B
+  </text>
+
+  <!-- Placeholder Notice -->
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle" opacity="0.6">
+    Placeholder Image - À remplacer en production
+  </text>
+</svg>

@@ -1,6 +1,6 @@
 # Story 1.1: Initialiser le projet Astro avec TailwindCSS
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -37,8 +37,8 @@ So that the development team can start building the website sections with the ri
   - [x] Exécuter: `npm create astro@latest make_it_global_website -- --template minimal --typescript relaxed`
   - [x] Naviguer dans le projet: `cd make_it_global_website`
   - [x] Ajouter TailwindCSS: `npx astro add tailwind`
-  - [x] Vérifier que `package.json` contient `astro`, `tailwindcss`, et `@astrojs/tailwind`
-  - [x] Vérifier que `astro.config.mjs` inclut l'intégration Tailwind
+  - [x] Vérifier que `package.json` contient `astro`, `tailwindcss`, et `@tailwindcss/vite` (TailwindCSS v4)
+  - [x] Vérifier que `astro.config.mjs` inclut l'intégration Tailwind via `@tailwindcss/vite`
 
 - [x] **Task 2: Créer la structure de dossiers complète** (AC: #2)
   - [x] Créer `src/components/sections/` directory
@@ -81,11 +81,12 @@ Ce projet initialise le **starter template Astro + TailwindCSS** pour un **site 
 - Minimum: v18.20+
 - Recommandé: Latest LTS
 
-**Commande d'Initialisation Exacte:**
+**Commandes d'Initialisation Exactes:**
 ```bash
 npm create astro@latest make_it_global_website -- --template minimal --typescript relaxed
 cd make_it_global_website
 npx astro add tailwind
+git init
 ```
 
 **Paramètres critiques:**
@@ -164,46 +165,43 @@ export default {
 
 ### Global CSS Configuration (src/styles/global.css)
 
+**Note:** TailwindCSS v4 utilise une syntaxe différente de v3. Pas de `@layer` ni `@apply` - utilisation de CSS natif.
+
 **Fichier à créer avec les patterns de base:**
 
 ```css
 /* src/styles/global.css */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Custom Button Patterns */
-@layer components {
-  /* Primary Button - Blue Calendly CTA */
-  .btn-primary {
-    @apply px-6 py-3 bg-primary-600 text-white rounded-lg
-           hover:bg-primary-700 transition-colors duration-200
-           font-semibold text-base
-           focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
-           disabled:opacity-50 disabled:cursor-not-allowed
-           min-h-[44px];
-  }
-
-  /* Secondary Button - Orange WhatsApp CTA */
-  .btn-secondary {
-    @apply px-6 py-3 bg-accent-500 text-white rounded-lg
-           hover:bg-accent-600 transition-colors duration-200
-           font-semibold text-base
-           focus:ring-2 focus:ring-accent-500 focus:ring-offset-2
-           disabled:opacity-50 disabled:cursor-not-allowed
-           min-h-[44px];
-  }
-
-  /* Outline Button */
-  .btn-outline {
-    @apply px-6 py-3 border-2 border-primary-600 text-primary-600
-           rounded-lg hover:bg-primary-50 transition-colors duration-200
-           font-semibold text-base
-           focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
-           min-h-[44px];
-  }
+/* Custom Button Patterns - TailwindCSS v4 compatible */
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563EB;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  min-height: 44px;
+  transition: background-color 200ms;
+  cursor: pointer;
 }
+
+.btn-primary:hover {
+  background-color: #1D4ED8;
+}
+
+.btn-primary:focus {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* (Styles similaires pour .btn-secondary et .btn-outline) */
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
@@ -370,15 +368,14 @@ make_it_global_website/
 ```json
 {
   "dependencies": {
-    "astro": "^4.x",
-    "@astrojs/tailwind": "^5.x",
+    "astro": "^5.x",
+    "@tailwindcss/vite": "^4.x",
     "tailwindcss": "^4.x"
-  },
-  "devDependencies": {
-    "typescript": "^5.x"
   }
 }
 ```
+
+**Note:** TailwindCSS v4 utilise `@tailwindcss/vite` au lieu de `@astrojs/tailwind`. Astro v5 est installé (pas v4).
 
 **Future Integrations (Stories suivantes):**
 - `@astrojs/image`: Optimisation images (Story 1.2)
@@ -449,6 +446,7 @@ make_it_global_website/
 
 ## Change Log
 
+- **2026-01-27 17:13**: Code review fixes applied - Git repository initialized, TailwindCSS v4 syntax corrected, TypeScript config updated to "base" mode, global.css imported in index.astro, .gitkeep files added to empty directories, .DS_Store removed. Build tested and passing.
 - **2026-01-27**: Story implémentée - Projet Astro + TailwindCSS initialisé avec structure complète, design tokens configurés, et fichiers essentiels créés. Tous les tests passés, build validé.
 
 ## Dev Agent Record
@@ -469,22 +467,25 @@ Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 ✅ **Task 1: Projet Astro initialisé avec succès**
 - Node.js v25.4.0 vérifié (> v18.20+)
-- Projet créé avec template minimal et TypeScript relaxed
+- Projet créé avec template minimal et TypeScript base (pas relaxed - ajusté via code review)
 - TailwindCSS v4 ajouté via `@tailwindcss/vite` (nouvelle syntaxe v4)
-- Dependencies installées: astro, tailwindcss, @tailwindcss/vite
+- Dependencies installées: astro v5.16.15, tailwindcss v4.1.18, @tailwindcss/vite
 - Configuration Astro validée avec intégration TailwindCSS
+- Git repository initialisé
 
 ✅ **Task 2: Structure de dossiers complète créée**
 - Tous les dossiers requis créés selon les spécifications
 - Organisation claire: sections (non réutilisables) vs ui (réutilisables)
 - Structure alignée avec l'architecture définie dans les Dev Notes
+- .gitkeep ajoutés pour maintenir dossiers vides dans git
 
 ✅ **Task 3: Design tokens configurés**
 - Palette de couleurs complète (primary/accent/neutral) avec ratios de contraste WCAG AA validés
 - Typographie configurée: Inter (body) et Plus Jakarta Sans (headlines)
-- Classes de boutons personnalisées créées (.btn-primary, .btn-secondary, .btn-outline)
+- Classes de boutons personnalisées créées (.btn-primary, .btn-secondary, .btn-outline) en CSS natif (TailwindCSS v4)
 - Touch targets ≥ 44px respectés pour accessibilité mobile
 - Support `prefers-reduced-motion` implémenté
+- global.css importé dans index.astro pour activer TailwindCSS
 
 ✅ **Task 4: Fichiers essentiels configurés**
 - `.env.example` créé avec documentation des variables futures (GA4, Calendly, WhatsApp)
@@ -492,30 +493,47 @@ Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 - README.md complet avec instructions d'installation, architecture, et design system
 - package.json name corrigé: "make_it_global_website"
 
+✅ **Code Review Fixes (2026-01-27 17:13)**
+- Git repository initialisé (fix: version control manquant)
+- tsconfig.json corrigé: "strict" → "base" (conformité avec spec "relaxed")
+- global.css adapté pour TailwindCSS v4 (CSS natif au lieu de @apply/@layer)
+- index.astro: Import de global.css ajouté + test des classes custom
+- .DS_Store supprimé (pollution macOS)
+- .gitkeep ajoutés dans tous les dossiers vides
+- Documentation corrigée: @astrojs/tailwind → @tailwindcss/vite, Astro v4 → v5
+
 ✅ **Validation finale**
-- Build de production testé et réussi
-- Tests de structure automatisés passés (25/25 tests)
+- Build de production testé et réussi (avec TailwindCSS fonctionnel)
+- CSS généré: 17KB (index.D9ewMWyD.css)
+- Classes custom (.btn-primary, .btn-secondary, .btn-outline) validées
+- Git status: Tous fichiers staged, prêt pour premier commit
 - Prêt pour la prochaine story (1.2: BaseLayout)
 
 ### File List
 
-**Files created/modified:**
+**Files created/modified by dev-story workflow:**
 - `package.json` (modified: name correction)
-- `astro.config.mjs` (created with TailwindCSS integration)
+- `astro.config.mjs` (created with TailwindCSS v4 integration via @tailwindcss/vite)
 - `tailwind.config.mjs` (created with design tokens)
-- `tsconfig.json` (created by Astro CLI)
+- `tsconfig.json` (created by Astro CLI, modified to "base" config during code review)
 - `.gitignore` (created by Astro CLI)
 - `.env.example` (created)
 - `README.md` (modified with project documentation)
-- `src/styles/global.css` (modified with button classes and accessibility)
-- `src/components/sections/` (directory created)
-- `src/components/ui/` (directory created)
-- `src/layouts/` (directory created)
-- `src/utils/` (directory created)
-- `src/assets/images/` (directory created)
+- `src/styles/global.css` (created with TailwindCSS v4 button classes and accessibility)
+- `src/pages/index.astro` (modified: imported global.css + added test buttons during code review)
+- `src/components/sections/.gitkeep` (created during code review)
+- `src/components/ui/.gitkeep` (created during code review)
+- `src/layouts/.gitkeep` (created during code review)
+- `src/utils/.gitkeep` (created during code review)
+- `src/assets/images/.gitkeep` (created during code review)
 
 **Files auto-generated by Astro CLI:**
 - `public/favicon.svg`
-- `src/pages/index.astro`
+- `public/favicon.ico`
+- `src/pages/index.astro` (generated, then modified)
 - `src/env.d.ts`
 - `.vscode/` (directory with extensions.json and launch.json)
+
+**Git repository:**
+- `.git/` (initialized during code review)
+- All project files staged and ready for first commit
