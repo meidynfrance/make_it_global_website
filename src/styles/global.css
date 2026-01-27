@@ -1,9 +1,29 @@
 @import "tailwindcss";
 
+/* CSS Custom Properties - Design Tokens */
+/* Generated from tailwind.config.mjs for use outside Tailwind classes */
+:root {
+  /* Primary Colors */
+  --color-primary-50: #EFF6FF;
+  --color-primary-600: #2563EB;
+  --color-primary-700: #1D4ED8;
+  --color-primary-500: #3B82F6;
+
+  /* Accent Colors */
+  --color-accent-50: #FFF7ED;
+  --color-accent-500: #F97316;
+  --color-accent-600: #EA580C;
+
+  /* Neutral Colors */
+  --color-neutral-900: #0F172A;
+}
+
 /* Custom Button Patterns - TailwindCSS v4 compatible */
+/* Note: TailwindCSS v4 deprecates @apply directive in favor of native CSS */
+/* These classes use CSS custom properties for maintainability */
 .btn-primary {
   padding: 0.75rem 1.5rem;
-  background-color: #2563EB;
+  background-color: var(--color-primary-600);
   color: white;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -14,11 +34,11 @@
 }
 
 .btn-primary:hover {
-  background-color: #1D4ED8;
+  background-color: var(--color-primary-700);
 }
 
 .btn-primary:focus {
-  outline: 2px solid #3B82F6;
+  outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
 }
 
@@ -30,7 +50,7 @@
 /* Secondary Button - Orange WhatsApp CTA */
 .btn-secondary {
   padding: 0.75rem 1.5rem;
-  background-color: #F97316;
+  background-color: var(--color-accent-500);
   color: white;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -41,11 +61,11 @@
 }
 
 .btn-secondary:hover {
-  background-color: #EA580C;
+  background-color: var(--color-accent-600);
 }
 
 .btn-secondary:focus {
-  outline: 2px solid #F97316;
+  outline: 2px solid var(--color-accent-500);
   outline-offset: 2px;
 }
 
@@ -57,8 +77,8 @@
 /* Outline Button */
 .btn-outline {
   padding: 0.75rem 1.5rem;
-  border: 2px solid #2563EB;
-  color: #2563EB;
+  border: 2px solid var(--color-primary-600);
+  color: var(--color-primary-600);
   background-color: transparent;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -69,11 +89,11 @@
 }
 
 .btn-outline:hover {
-  background-color: #EFF6FF;
+  background-color: var(--color-primary-50);
 }
 
 .btn-outline:focus {
-  outline: 2px solid #3B82F6;
+  outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
 }
 

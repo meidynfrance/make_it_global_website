@@ -44,7 +44,7 @@ development_status:
   epic-1: in-progress
   1-1-initialiser-le-projet-astro-avec-tailwindcss: done
   1-2-creer-baselayout-avec-meta-tags-et-structure-html: done
-  1-3-configurer-tailwind-avec-design-tokens: review
+  1-3-configurer-tailwind-avec-design-tokens: done
   1-4-deployer-sur-vercel-avec-landing-page-minimale: backlog
   epic-1-retrospective: optional
 

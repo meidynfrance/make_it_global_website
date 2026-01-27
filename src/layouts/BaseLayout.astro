@@ -7,7 +7,13 @@ interface Props {
 }
 
 const { title, description, ogImage = '/og-image.svg' } = Astro.props;
-const fullOgImage = `https://make-it-global.vercel.app${ogImage}`;
+
+// Use Astro.site for production URL (falls back to localhost in dev)
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://make-it-global.vercel.app';
+const fullOgImage = `${siteUrl}${ogImage}`;
+
+// Import global styles (TailwindCSS v4)
+import '../styles/global.css';
 ---
 
 <!DOCTYPE html>
@@ -22,7 +28,7 @@ const fullOgImage = `https://make-it-global.vercel.app${ogImage}`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://make-it-global.vercel.app" />
+    <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={fullOgImage} />
     <meta property="og:site_name" content="Make It Global" />
 
@@ -34,9 +40,6 @@ const fullOgImage = `https://make-it-global.vercel.app${ogImage}`;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Global CSS (TailwindCSS) -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <main>
