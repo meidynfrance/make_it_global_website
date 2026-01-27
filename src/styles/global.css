@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Custom Button Patterns - TailwindCSS v4 compatible */
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background-color: #2563EB;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  min-height: 44px;
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #1D4ED8;
+}
+
+.btn-primary:focus {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Secondary Button - Orange WhatsApp CTA */
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  background-color: #F97316;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  min-height: 44px;
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #EA580C;
+}
+
+.btn-secondary:focus {
+  outline: 2px solid #F97316;
+  outline-offset: 2px;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Outline Button */
+.btn-outline {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #2563EB;
+  color: #2563EB;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  min-height: 44px;
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: #EFF6FF;
+}
+
+.btn-outline:focus {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

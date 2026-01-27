@@ -1,0 +1,90 @@
+# generated: 2026-01-27
+# project: make_it_global_website
+# project_key: make_it_global_website
+# tracking_system: file-system
+# story_location: /Users/meidy/Dev-project/make_it_global_website/_bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-01-27
+project: make_it_global_website
+project_key: make_it_global_website
+tracking_system: file-system
+story_location: /Users/meidy/Dev-project/make_it_global_website/_bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Site Accessible en Ligne avec Structure de Base
+  epic-1: in-progress
+  1-1-initialiser-le-projet-astro-avec-tailwindcss: review
+  1-2-creer-baselayout-avec-meta-tags-et-structure-html: backlog
+  1-3-configurer-tailwind-avec-design-tokens: backlog
+  1-4-deployer-sur-vercel-avec-landing-page-minimale: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Section Hero avec Proposition de Valeur
+  epic-2: backlog
+  2-1-creer-herosection-avec-proposition-de-valeur-et-ctas: backlog
+  2-2-implementer-la-navigation-responsive-et-laccessibilite-de-base: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Sections Problème/Solution et Processus Clé-en-Main
+  epic-3: backlog
+  3-1-creer-problemsection-probleme-solution: backlog
+  3-2-creer-processsection-processus-cle-en-main: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Section Vidéos de Démonstration (Preuve Visuelle)
+  epic-4: backlog
+  4-1-creer-videosection-avec-exemples-avant-apres: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Section Témoignages et Résultats Chiffrés
+  epic-5: backlog
+  5-1-creer-testimonialssection-avec-temoignages-clients: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Section Contact Multi-Canal (Conversion)
+  epic-6: backlog
+  6-1-creer-contactsection-avec-options-multi-canal: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Analytics et Mesure de Performance
+  epic-7: backlog
+  7-1-integrer-google-analytics-4-dans-baselayout: backlog
+  7-2-implementer-le-tracking-des-evenements-de-conversion: backlog
+  epic-7-retrospective: optional
+
+  # Epic 8: Optimisation Finale et Déploiement Production
+  epic-8: backlog
+  8-1-optimiser-les-images-et-assets: backlog
+  8-2-audit-accessibilite-et-conformite-wcag-aa: backlog
+  8-3-tests-de-performance-et-optimisation-lighthouse: backlog
+  8-4-tests-de-compatibilite-navigateurs-et-configuration-production: backlog
+  epic-8-retrospective: optional

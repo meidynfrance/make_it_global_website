@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm create:*)",
+      "Bash(npx astro add:*)",
+      "Bash(tree:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
