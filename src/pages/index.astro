@@ -1,22 +1,18 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/global.css';
 ---
 
-<html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Make It Global - Traduction Multimédia B2B</title>
-	</head>
-	<body class="p-8">
-		<h1 class="text-4xl font-bold mb-4" style="color: #2563EB;">Make It Global</h1>
-		<div class="flex gap-4">
-			<button class="btn-primary">Test Button Primary</button>
-			<button class="btn-secondary">Test Button Secondary</button>
-			<button class="btn-outline">Test Button Outline</button>
-		</div>
-	</body>
-</html>
+<BaseLayout
+  title="Make It Global - Traduction Multimédia B2B"
+  description="Service de traduction professionnel pour vos vidéos et contenus multimédias B2B. Expertise en sous-titrage, voix-off et doublage pour toucher vos marchés internationaux."
+>
+  <div class="p-8">
+    <h1 class="text-4xl font-bold mb-4" style="color: #2563EB;">Make It Global</h1>
+    <div class="flex gap-4">
+      <button class="btn-primary">Test Button Primary</button>
+      <button class="btn-secondary">Test Button Secondary</button>
+      <button class="btn-outline">Test Button Outline</button>
+    </div>
+  </div>
+</BaseLayout>
