@@ -97,6 +97,76 @@
   outline-offset: 2px;
 }
 
+/* Animation Keyframes - Tailwind v4 requires explicit @keyframes in CSS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.6s ease-out;
+}
+
+/* Tailwind v4 color utilities - using custom properties */
+/* Text colors */
+.text-primary-600 {
+  color: var(--color-primary-600);
+}
+
+.text-neutral-900 {
+  color: var(--color-neutral-900);
+}
+
+.text-neutral-600 {
+  color: var(--color-neutral-600);
+}
+
+.text-neutral-500 {
+  color: var(--color-neutral-500);
+}
+
+/* Background colors for gradients */
+.from-primary-50 {
+  --tw-gradient-from: var(--color-primary-50);
+  --tw-gradient-to: rgb(255 255 255 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   * {
