@@ -1,6 +1,6 @@
 # Story 3.2: Créer ProcessSection (Processus Clé-en-Main)
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -86,11 +86,11 @@ So that je comprends que je n'aurai rien à gérer et que le service est vraimen
   - [x] Valider: Icônes visibles, cohérentes, pas de requêtes HTTP externes
 
 - [x] **Task 7: Micro-interactions optionnelles** (AC: #2, optional)
-  - [x] Fade-in au scroll avec Intersection Observer (optionnel) - Skipped for MVP
-  - [x] Staggered animation: 100ms delay entre chaque étape - Skipped for MVP
-  - [x] Transition smooth pour opacity: 0 → 1 (200-300ms) - Skipped for MVP
+  - [ ] Fade-in au scroll avec Intersection Observer (optionnel) - **DECISION: Skipped for MVP, can be added post-launch**
+  - [ ] Staggered animation: 100ms delay entre chaque étape - **DECISION: Skipped for MVP**
+  - [ ] Transition smooth pour opacity: 0 → 1 (200-300ms) - **DECISION: Skipped for MVP**
   - [x] Respect prefers-reduced-motion (déjà dans global.css)
-  - [x] Valider: Animations légères, pas d'impact performance
+  - [ ] Valider: Animations légères, pas d'impact performance - **N/A (no animations implemented)**
 
 - [x] **Task 8: Tests responsive et cross-browser** (AC: #6, #7)
   - [x] Mobile S (320px): 1 col vertical, numéros badges visibles, icônes lisibles
@@ -1104,6 +1104,32 @@ No debugging issues encountered during implementation.
 - ✅ Focus-visible styles preserved
 - ✅ Build performance maintained (< 500ms)
 
+### Code Review Fixes Applied
+
+**Review Date:** 2026-01-28
+**Reviewer:** Claude Sonnet 4.5 (adversarial code review)
+**Issues Found:** 8 total (1 HIGH, 4 MEDIUM, 3 LOW)
+**Issues Fixed:** 5 (1 HIGH + 4 MEDIUM)
+
+**HIGH Issues Fixed:**
+1. **Issue #7 - Icône Upload incorrecte:** Remplacé cloud-upload icon complexe par document icon simple et clair (w-12 h-12). Plus reconnaissable à petite taille, améliore UX mobile.
+
+**MEDIUM Issues Fixed:**
+2. **Issue #2 - Badge réassurance sans icône:** Ajouté shield-check icon au badge "Vous n'avez rien à gérer" pour renforcer visuellement le message clé-en-main. Changé `<p>` en `<span>` pour sémantique correcte.
+
+3. **Issue #3 - Descriptions pas "zéro friction":** Réécrit les 3 descriptions d'étapes pour focaliser sur "ce que vous N'avez PAS à faire" (AC #4):
+   - Étape 1: "Aucune conversion requise - envoyez tel quel, tout format accepté."
+   - Étape 2: "Aucune relecture à faire - validation par experts natifs incluse."
+   - Étape 3: "Aucune intégration technique - livraison en 48h, prêt à publier."
+
+4. **Issue #6 - Numéros badges sans contexte:** Ajouté `<span class="sr-only">Étape </span>` avant chaque numéro pour accessibilité cognitive et screen readers avec ARIA désactivé.
+
+5. **Issue #8 - Task 7 status incorrect:** Corrigé subtasks marquées [x] mais skipped → changées en [ ] avec note "DECISION: Skipped for MVP". Seule task vraiment done: prefers-reduced-motion.
+
+**LOW Issues Deferred (cosmetic, no functional impact):**
+- Issue #4, #5: Commentaires HTML redondants (peuvent être nettoyés post-MVP)
+- Issue #9: Build warning CSS "file:line" (warning bénin Tailwind, pas d'impact)
+
 ### File List
 
 **Created:**
@@ -1111,6 +1137,7 @@ No debugging issues encountered during implementation.
 
 **Modified:**
 - src/pages/index.astro (added ProcessSection import and usage after ProblemSection)
+- src/components/sections/ProcessSection.astro (code review fixes: icon change, badge icon, descriptions rewrite, badge numbers accessibility)
 
 **Unchanged (No regressions):**
 - src/layouts/BaseLayout.astro (skip links preserved)
