@@ -1,0 +1,241 @@
+---
+/**
+ * VideoEmbed Component
+ *
+ * Reusable video embed component with facade pattern for optimal performance.
+ * Displays a thumbnail with play button overlay, loads iframe only on user click.
+ *
+ * @component
+ * @example
+ * <VideoEmbed
+ *   videoId="dQw4w9WgXcQ"
+ *   platform="youtube"
+ *   title="Exemple traduction Français vers Anglais"
+ * />
+ */
+
+interface Props {
+  /** YouTube or Vimeo video ID */
+  videoId: string;
+  /** Video hosting platform */
+  platform: 'youtube' | 'vimeo';
+  /** Descriptive title for accessibility */
+  title: string;
+  /** Optional custom thumbnail URL */
+  thumbnailUrl?: string;
+  /** Aspect ratio for video container */
+  aspectRatio?: '16/9' | '4/3' | '1/1';
+  /** Optional aria-label override */
+  ariaLabel?: string;
+}
+
+const {
+  videoId,
+  platform,
+  title,
+  thumbnailUrl,
+  aspectRatio = '16/9',
+  ariaLabel
+} = Astro.props;
+
+// Generate thumbnail URL if not provided
+const getThumbnail = (): string => {
+  if (thumbnailUrl) return thumbnailUrl;
+  if (platform === 'youtube') {
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  }
+  // Fallback for Vimeo (placeholder - could be enhanced with Vimeo API)
+  return '/placeholder-video.jpg';
+};
+
+// Generate embed URL with optimal parameters
+const getEmbedUrl = (): string => {
+  if (platform === 'youtube') {
+    return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&cc_load_policy=1`;
+  } else {
+    return `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&byline=0`;
+  }
+};
+
+const thumbnail = getThumbnail();
+const embedUrl = getEmbedUrl();
+---
+
+<div
+  class="video-embed-root"
+  data-video-id={videoId}
+  data-platform={platform}
+  data-embed-url={embedUrl}
+>
+  <!-- Container with aspect ratio -->
+  <div
+    class:list={[
+      'relative w-full overflow-hidden rounded-lg bg-black',
+      {
+        'aspect-video': aspectRatio === '16/9',
+        'aspect-square': aspectRatio === '1/1',
+        'aspect-[4/3]': aspectRatio === '4/3',
+      },
+    ]}
+  >
+    <!-- Façade: Thumbnail + Play Button Overlay -->
+    <button
+      class="video-facade group absolute inset-0 flex items-center justify-center cursor-pointer transition-opacity duration-300 hover:opacity-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500"
+      aria-label={ariaLabel || `Lire la vidéo : ${title}`}
+      type="button"
+    >
+      <!-- Thumbnail Image -->
+      <img
+        src={thumbnail}
+        alt={title}
+        loading="lazy"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+
+      <!-- Play Button Overlay -->
+      <div class="relative z-10 flex items-center justify-center w-20 h-20 rounded-full bg-white/90 transition-all group-hover:bg-white group-hover:scale-110 group-focus-visible:bg-white group-focus-visible:scale-110">
+        <svg
+          class="w-8 h-8 text-black ml-1"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+    </button>
+
+    <!-- Video Iframe (loaded on demand) -->
+    <iframe
+      class="video-iframe hidden absolute inset-0 w-full h-full border-0"
+      data-src={embedUrl}
+      title={title}
+      aria-label={ariaLabel || title}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
+
+<script>
+  interface VideoElement extends HTMLElement {
+    dataset: {
+      videoId: string;
+      platform: 'youtube' | 'vimeo';
+      embedUrl: string;
+    };
+  }
+
+  /**
+   * Initialize video embeds with facade pattern and lazy loading
+   * - Click-to-load: Iframe loads only when user clicks play button
+   * - Preconnect on hover: Reduces latency by 200-300ms
+   * - Intersection Observer: Tracks visibility for optional optimizations
+   */
+  const initializeVideoEmbeds = (): void => {
+    const roots = document.querySelectorAll(
+      '[data-video-id]'
+    ) as NodeListOf<VideoElement>;
+
+    roots.forEach((root) => {
+      const facade = root.querySelector('.video-facade') as HTMLButtonElement;
+      const iframe = root.querySelector('.video-iframe') as HTMLIFrameElement;
+
+      if (!facade || !iframe) return;
+
+      // Load video function
+      const loadVideo = (): void => {
+        const embedUrl = root.dataset.embedUrl;
+        if (embedUrl && !iframe.src) {
+          iframe.src = embedUrl;
+          iframe.classList.remove('hidden');
+          facade.classList.add('opacity-0', 'pointer-events-none');
+
+          // Announce to screen readers that video is loading
+          facade.setAttribute('aria-live', 'polite');
+          facade.setAttribute('aria-label', 'Chargement de la vidéo...');
+        }
+      };
+
+      // Click to load video
+      facade.addEventListener('click', loadVideo);
+
+      // Enter key support for keyboard users
+      facade.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          loadVideo();
+        }
+      });
+
+      // Preconnect on hover (performance optimization)
+      facade.addEventListener(
+        'mouseenter',
+        () => {
+          const host =
+            root.dataset.platform === 'youtube'
+              ? 'https://www.youtube-nocookie.com'
+              : 'https://player.vimeo.com';
+
+          // Check if preconnect already exists
+          const existingLink = document.querySelector<HTMLLinkElement>(
+            `link[href="${host}"]`
+          );
+          if (!existingLink) {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = host;
+            document.head.appendChild(link);
+          }
+        },
+        { once: true }
+      ); // Only run once per video
+
+      // Intersection Observer for visibility tracking
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              // Video is 50%+ visible
+              // Could add preconnect here if not already done on hover
+              observer.unobserve(root);
+            }
+          });
+        },
+        { threshold: [0, 0.5, 1] }
+      );
+
+      observer.observe(root);
+    });
+  };
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeVideoEmbeds);
+  } else {
+    initializeVideoEmbeds();
+  }
+</script>
+
+<style>
+  .video-embed-root {
+    max-width: 100%;
+  }
+
+  /* Remove tap highlight on mobile */
+  .video-facade {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth transition when facade hides */
+  .video-facade {
+    transition: opacity 300ms ease-in-out;
+  }
+
+  /* Ensure play button shadow for visibility */
+  .video-facade svg {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  }
+</style>

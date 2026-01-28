@@ -1,0 +1,109 @@
+---
+/**
+ * VideoSection Component
+ *
+ * Displays 2-3 before/after video examples with lazy loading and facade pattern.
+ * Part of Epic 4: Visual proof section showing translation quality with lip-sync.
+ *
+ * Emotional journey:
+ * - Entry: Post-process reassurance ("OK simple, but what quality?")
+ * - Discovery: Click and watch videos ("Wow, lip-sync is amazing")
+ * - Conviction: See multiple examples ("This is truly professional")
+ * - Exit: Conviction established → Scroll to TestimonialsSection
+ *
+ * @component
+ */
+
+import VideoEmbed from '../ui/VideoEmbed.astro';
+
+/**
+ * Video content configuration
+ * IMPORTANT: Replace placeholder IDs with real video IDs before production
+ */
+const videos = [
+  {
+    id: 'dQw4w9WgXcQ', // PLACEHOLDER: Replace with real French→English video
+    platform: 'youtube' as const,
+    title: 'Exemple traduction Français vers Anglais avec lip-sync professionnel',
+    caption: 'Français → Anglais',
+    description: 'Vidéo professionnelle B2B traduite avec voix naturelle',
+  },
+  {
+    id: 'dQw4w9WgXcQ', // PLACEHOLDER: Replace with real French→Spanish video
+    platform: 'youtube' as const,
+    title: 'Exemple traduction Français vers Espagnol avec doublage naturel',
+    caption: 'Français → Espagnol',
+    description: 'Formation en ligne adaptée pour marché hispanophone',
+  },
+  {
+    id: 'dQw4w9WgXcQ', // PLACEHOLDER: Replace with real French→German video
+    platform: 'youtube' as const,
+    title: 'Exemple traduction Français vers Allemand pour contenu technique',
+    caption: 'Français → Allemand',
+    description: 'Contenu technique traduit pour marché DACH',
+  },
+];
+---
+
+<section
+  id="videos"
+  aria-labelledby="videos-heading"
+  aria-label="Vidéos de démonstration"
+  class="py-16 md:py-24 px-6 md:px-12 bg-neutral-50"
+>
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2
+        id="videos-heading"
+        class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4"
+      >
+        Découvrez la Qualité en Action
+      </h2>
+      <p class="text-lg text-neutral-700 max-w-2xl mx-auto">
+        Voyez par vous-même la qualité de nos traductions vidéo avec lip-sync
+        professionnel et voix naturelles.
+      </p>
+    </div>
+
+    <!-- Videos Grid -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+    >
+      {
+        videos.map((video) => (
+          <div class="video-item">
+            <!-- Video Embed Component -->
+            <VideoEmbed
+              videoId={video.id}
+              platform={video.platform}
+              title={video.title}
+              aspectRatio="16/9"
+            />
+
+            <!-- Caption -->
+            <div class="mt-4 text-center">
+              <p class="text-base md:text-lg font-semibold text-neutral-900">
+                {video.caption}
+              </p>
+              <p class="text-sm text-neutral-600 mt-1">{video.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Optional: CTA après vidéos -->
+    <div class="mt-16 text-center">
+      <p class="text-lg text-neutral-700 mb-6">
+        Impressionné par la qualité ? Discutons de votre projet.
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 transition-colors"
+      >
+        Réserver un appel gratuit
+      </a>
+    </div>
+  </div>
+</section>

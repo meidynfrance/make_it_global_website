@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/sections/HeroSection.astro';
 import ProblemSection from '../components/sections/ProblemSection.astro';
 import ProcessSection from '../components/sections/ProcessSection.astro';
+import VideoSection from '../components/sections/VideoSection.astro';
 ---
 
 <BaseLayout
@@ -20,6 +21,9 @@ import ProcessSection from '../components/sections/ProcessSection.astro';
     <!-- Process Section - Turnkey process visualization -->
     <ProcessSection />
 
-    <!-- Future sections: VideoSection, TestimonialsSection, etc. -->
+    <!-- Video Section - Before/after video examples with lazy loading -->
+    <VideoSection />
+
+    <!-- Future sections: TestimonialsSection, ContactSection, etc. -->
   </main>
 </BaseLayout>
