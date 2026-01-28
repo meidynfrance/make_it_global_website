@@ -51,7 +51,7 @@ development_status:
   # Epic 2: Section Hero avec Proposition de Valeur
   epic-2: in-progress
   2-1-creer-herosection-avec-proposition-de-valeur-et-ctas: done
-  2-2-implementer-la-navigation-responsive-et-laccessibilite-de-base: backlog
+  2-2-implementer-la-navigation-responsive-et-laccessibilite-de-base: review
   epic-2-retrospective: optional
 
   # Epic 3: Sections Problème/Solution et Processus Clé-en-Main

@@ -167,11 +167,88 @@
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+/* Skip Links - sr-only technique with focus enhancement */
+/* WCAG 2.4.1 - Bypass Blocks */
+.skip-link {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary-600);
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.skip-link:focus:hover {
+  background-color: var(--color-primary-700);
+}
+
+/* Focus Visible Styles - WCAG 2.4.7 */
+/* Provides clear focus indicator for keyboard navigation */
+/* Respects :focus-visible to avoid outline on mouse click */
+
+/* Base focus style (all browsers, fallback) */
+:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline on mouse click */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Enhanced focus visible for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.2); /* primary-500 with 20% opacity */
+}
+
+/* Button specific focus (stronger for CTAs) */
+button:focus-visible,
+a[class*="btn"]:focus-visible {
+  outline: 3px solid var(--color-primary-500);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgb(59 130 246 / 0.3);
+}
+
+/* Smooth Scroll Behavior - WCAG 2.3.3 */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Disable all animations for users with motion sensitivity */
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

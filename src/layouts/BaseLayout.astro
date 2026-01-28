@@ -42,8 +42,20 @@ import '../styles/global.css';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
-    <main>
-      <slot />
-    </main>
+    <!-- Skip Links - Hidden by default, visible on keyboard focus -->
+    <nav class="skip-links" aria-label="Navigation rapide">
+      <a href="#main-content" class="skip-link">
+        Passer au contenu principal
+      </a>
+      <a href="#videos" class="skip-link">
+        Voir les exemples vidéos
+      </a>
+      <a href="#contact" class="skip-link">
+        Réserver un appel
+      </a>
+    </nav>
+
+    <!-- Main content wrapper with id for skip link target -->
+    <slot />
   </body>
 </html>
