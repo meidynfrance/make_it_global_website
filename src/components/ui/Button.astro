@@ -18,12 +18,17 @@ const variantClasses = {
 };
 
 const baseClasses = 'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px]';
+
+// Detect external links (http/https) for security attributes
+const isExternal = href.startsWith('http://') || href.startsWith('https://');
 ---
 
 <a
   href={href}
   class={`${baseClasses} ${variantClasses[variant]}`}
   aria-label={ariaLabel}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
 >
   <slot />
 </a>
