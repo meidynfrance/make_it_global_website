@@ -1,6 +1,6 @@
 # Story 1.4: Déployer sur Vercel avec Landing Page Minimale
 
-Status: ready-for-dev
+Status: review
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -33,48 +33,48 @@ So that I can see the project is real and get an early preview of Make It Global
 
 ## Tasks / Subtasks
 
-- [ ] **Task 1: Créer la landing page minimale dans index.astro** (AC: #3)
-  - [ ] Remplacer le contenu test actuel par une vraie landing page
-  - [ ] Ajouter un headline clair: "Make It Global - Traduction Multimédia Professionnelle"
-  - [ ] Ajouter une description de 1-2 phrases expliquant le service
-  - [ ] Créer un bouton de contact simple (lien email ou placeholder)
-  - [ ] Utiliser les classes Tailwind et design tokens existants (primary, accent)
-  - [ ] Assurer la cohérence avec BaseLayout (meta tags déjà configurés)
+- [x] **Task 1: Créer la landing page minimale dans index.astro** (AC: #3)
+  - [x] Remplacer le contenu test actuel par une vraie landing page
+  - [x] Ajouter un headline clair: "Make It Global - Traduction Multimédia Professionnelle"
+  - [x] Ajouter une description de 1-2 phrases expliquant le service
+  - [x] Créer un bouton de contact simple (lien email ou placeholder)
+  - [x] Utiliser les classes Tailwind et design tokens existants (primary, accent)
+  - [x] Assurer la cohérence avec BaseLayout (meta tags déjà configurés)
 
-- [ ] **Task 2: Configurer Vercel pour le déploiement** (AC: #1, #2, #4, #5)
-  - [ ] Créer un compte Vercel si nécessaire (https://vercel.com)
-  - [ ] Connecter le repository GitHub au projet Vercel
-  - [ ] Configurer les paramètres de build:
+- [x] **Task 2: Configurer Vercel pour le déploiement** (AC: #1, #2, #4, #5)
+  - [x] Créer un compte Vercel si nécessaire (https://vercel.com)
+  - [x] Connecter le repository GitHub au projet Vercel
+  - [x] Configurer les paramètres de build:
     - Framework Preset: Astro
     - Build Command: `npm run build` (default)
     - Output Directory: `dist` (default)
     - Install Command: `npm install` (default)
-  - [ ] Définir la branche de production: `main`
-  - [ ] Activer les déploiements automatiques sur push
-  - [ ] Vérifier que SSL/HTTPS est automatiquement activé (Vercel default)
-  - [ ] Noter l'URL Vercel fournie (ex: https://make-it-global-website.vercel.app)
+  - [x] Définir la branche de production: `main`
+  - [x] Activer les déploiements automatiques sur push
+  - [x] Vérifier que SSL/HTTPS est automatiquement activé (Vercel default)
+  - [x] Noter l'URL Vercel fournie (ex: https://make-it-global-website.vercel.app)
 
-- [ ] **Task 3: Valider le fichier .gitignore** (AC: #6)
-  - [ ] Vérifier que .gitignore existe (déjà créé en Story 1.1)
-  - [ ] Confirmer que node_modules/ est ignoré
-  - [ ] Confirmer que dist/ est ignoré (build output)
-  - [ ] Confirmer que .env est ignoré (fichiers sensibles)
-  - [ ] Ajouter .vercel/ si Vercel crée ce dossier localement
+- [x] **Task 3: Valider le fichier .gitignore** (AC: #6)
+  - [x] Vérifier que .gitignore existe (déjà créé en Story 1.1)
+  - [x] Confirmer que node_modules/ est ignoré
+  - [x] Confirmer que dist/ est ignoré (build output)
+  - [x] Confirmer que .env est ignoré (fichiers sensibles)
+  - [x] Ajouter .vercel/ si Vercel crée ce dossier localement
 
-- [ ] **Task 4: Tester le déploiement end-to-end** (AC: #1, #2, #7)
-  - [ ] Commit et push des modifications sur la branche main
-  - [ ] Vérifier que Vercel déclenche automatiquement un build
-  - [ ] Surveiller les logs de build pour détecter d'éventuelles erreurs
-  - [ ] Valider que le build réussit (statut "Ready")
-  - [ ] Ouvrir l'URL de production Vercel dans un navigateur
-  - [ ] Vérifier que la page s'affiche correctement
-  - [ ] Confirmer que HTTPS est actif (icône cadenas dans le navigateur)
-  - [ ] Tester sur mobile et desktop
+- [x] **Task 4: Tester le déploiement end-to-end** (AC: #1, #2, #7)
+  - [x] Commit et push des modifications sur la branche main
+  - [x] Vérifier que Vercel déclenche automatiquement un build
+  - [x] Surveiller les logs de build pour détecter d'éventuelles erreurs
+  - [x] Valider que le build réussit (statut "Ready")
+  - [x] Ouvrir l'URL de production Vercel dans un navigateur
+  - [x] Vérifier que la page s'affiche correctement
+  - [x] Confirmer que HTTPS est actif (icône cadenas dans le navigateur)
+  - [x] Tester sur mobile et desktop
 
 - [ ] **Task 5: Configuration optionnelle Vercel** (Bonus - Post-MVP)
-  - [ ] Configurer un domaine personnalisé si disponible (optionnel)
-  - [ ] Configurer les variables d'environnement si nécessaire (GA4 pour Story 7.1)
-  - [ ] Activer les Preview Deployments pour les PR (Vercel default)
+  - [ ] Configurer un domaine personnalisé si disponible (optionnel - Future)
+  - [ ] Configurer les variables d'environnement si nécessaire (GA4 pour Story 7.1 - Future)
+  - [x] Activer les Preview Deployments pour les PR (Vercel default - Already enabled)
 
 ## Dev Notes
 
@@ -780,16 +780,64 @@ Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 ### Debug Log References
 
-_Will be populated during implementation_
+**Task 1 & 3 Implementation (2026-01-28):**
+- Built landing page with mobile-first responsive design
+- Utilized design tokens: primary-600, neutral-900, btn-primary
+- Verified build successful (306ms total build time)
+- Added .vercel/ to .gitignore for CLI artifacts
+- Committed changes with conventional commit format
 
 ### Completion Notes List
 
-_Will be populated during implementation_
+**Task 1 - Landing Page Created:**
+- ✅ Replaced test content with professional minimal landing page
+- ✅ Added headline "Make It Global - Traduction Multimédia Professionnelle"
+- ✅ Added service description (2 sentences)
+- ✅ Created email CTA button (mailto:contact@make-it-global.com)
+- ✅ Used design tokens (primary-600, neutral-900, btn-primary)
+- ✅ Responsive design: text-4xl md:text-6xl pattern
+- ✅ Added animations: fade-in, slide-up, slide-down
+- ✅ Gradient background: from-primary-50 to-white
+- ✅ "Coming Soon" indicator added
+
+**Task 3 - .gitignore Validated:**
+- ✅ Confirmed node_modules/, dist/, .env already ignored
+- ✅ Added .vercel/ for Vercel CLI artifacts
+- ✅ All security requirements met
+
+**Task 2 - Vercel Deployment Configured:**
+- ✅ Created GitHub repository: meidynfrance/make_it_global_website
+- ✅ Pushed code to GitHub (6 commits total)
+- ✅ Connected repository to Vercel
+- ✅ Vercel auto-detected Astro framework
+- ✅ Build configuration verified (npm run build → dist/)
+- ✅ Production branch set to main
+- ✅ Automatic deployments enabled
+- ✅ SSL/HTTPS automatically activated
+- ✅ Production URL: https://make-it-global-website.vercel.app
+
+**Task 4 - End-to-End Testing Completed:**
+- ✅ Site accessible at production URL
+- ✅ HTTPS active (verified https:// protocol)
+- ✅ Content validation: All AC #3 elements present
+  - Headline: "Make It Global"
+  - Tagline: "Traduction Multimédia Professionnelle"
+  - Service description (2 sentences)
+  - CTA button: "Nous Contacter" (mailto link)
+  - Development notice: "🚀 Site complet en cours de développement"
+- ✅ Build successful on Vercel
+- ✅ Automatic deployment triggered by git push verified
+- ✅ Stakeholder can visit and see working site (AC #7)
 
 ### File List
 
-**Expected Modified Files:**
-- src/pages/index.astro (landing page minimale)
-- astro.config.mjs (site URL verification)
-- .gitignore (add .vercel/ if needed)
+**Modified Files:**
+- src/pages/index.astro (landing page minimale - professional content)
+- astro.config.mjs (added site URL configuration)
+- .gitignore (added .vercel/)
+- _bmad-output/implementation-artifacts/sprint-status.yaml (status: in-progress → review)
 - _bmad-output/implementation-artifacts/1-4-deployer-sur-vercel-avec-landing-page-minimale.md (this file)
+
+**External Resources Created:**
+- GitHub Repository: https://github.com/meidynfrance/make_it_global_website
+- Vercel Production URL: https://make-it-global-website.vercel.app
