@@ -1,6 +1,6 @@
 # Story 3.1: Créer ProblemSection (Problème/Solution)
 
-Status: in-progress
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -1097,4 +1097,12 @@ Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 - **[LOW FIX]** Unified spacing: changed solution points from `gap-3` to `gap-4` for consistency with problem points
 - Build performance after corrections: 356ms (< 500ms target, improved from 370ms)
 - **Status:** 7/9 code review findings fixed (2 LOW issues remain: redundant comments cosmetic only)
-- **Remaining:** Files need to be committed to git (tracked locally but not in version control)
+- Code committed to git: commit 793d07f
+
+**2026-01-28 - Story 3.1 Completed**
+- All acceptance criteria satisfied (AC #1-7)
+- Code review corrections applied and committed
+- Build performance validated: 356ms (< 500ms target)
+- WCAG AA accessibility compliance confirmed
+- Sprint status synchronized: story marked as done
+- Ready for Story 3.2 (ProcessSection)
