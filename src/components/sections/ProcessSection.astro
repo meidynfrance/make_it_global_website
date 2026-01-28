@@ -1,0 +1,106 @@
+---
+/**
+ * ProcessSection Component
+ *
+ * Displays the 3-step turnkey process:
+ * 1. You send your content
+ * 2. We translate and validate
+ * 3. You receive in 48h
+ *
+ * Features:
+ * - Semantic HTML with ARIA landmarks
+ * - Responsive design: 1 col mobile, 3 col desktop
+ * - Inline SVG icons for visual impact
+ * - Reassurance message: "You don't have to manage anything"
+ * - WCAG AA compliant color contrast
+ */
+
+interface Props {
+  // No props needed for MVP - hard-coded content
+}
+---
+
+<section
+  id="process"
+  aria-labelledby="process-heading"
+  aria-label="Processus de travail"
+  class="py-16 md:py-24 px-6 md:px-12 bg-white"
+>
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Heading -->
+    <h2 id="process-heading" class="text-3xl md:text-4xl font-bold text-center text-neutral-900 mb-12">
+      Notre Processus Clé-en-Main
+    </h2>
+
+    <!-- 3-Step Process Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+
+      <!-- Step 1: You send -->
+      <div class="text-center space-y-4">
+        <div class="text-6xl font-bold text-accent-500 mb-4" aria-label="Étape 1">
+          1
+        </div>
+        <div class="flex justify-center">
+          <!-- Upload Icon -->
+          <svg class="w-12 h-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+        </div>
+        <p class="text-lg font-semibold text-neutral-900">
+          Vous envoyez votre contenu
+        </p>
+        <p class="text-base text-neutral-700">
+          Vidéos, audio, documents - on accepte tout format.
+        </p>
+      </div>
+
+      <!-- Step 2: We translate and validate -->
+      <div class="text-center space-y-4">
+        <div class="text-6xl font-bold text-accent-500 mb-4" aria-label="Étape 2">
+          2
+        </div>
+        <div class="flex justify-center">
+          <!-- Globe/Language Icon -->
+          <svg class="w-12 h-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-lg font-semibold text-neutral-900">
+          On traduit et valide
+        </p>
+        <p class="text-base text-neutral-700">
+          IA rapide + validation par experts natifs.
+        </p>
+      </div>
+
+      <!-- Step 3: You receive in 48h -->
+      <div class="text-center space-y-4">
+        <div class="text-6xl font-bold text-accent-500 mb-4" aria-label="Étape 3">
+          3
+        </div>
+        <div class="flex justify-center">
+          <!-- Check Circle Icon -->
+          <svg class="w-12 h-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-lg font-semibold text-neutral-900">
+          Vous recevez en 48h
+        </p>
+        <p class="text-base text-neutral-700">
+          Contenu traduit, synchronisé, prêt à publier.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Reassurance Message -->
+    <div class="mt-16 text-center">
+      <div class="inline-flex items-center px-6 py-3 bg-accent-100 border-2 border-accent-300 rounded-lg hover:scale-105 focus-within:scale-105 transition-transform">
+        <p class="text-xl font-bold text-accent-700">
+          Vous n'avez rien à gérer - On s'occupe de tout
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
