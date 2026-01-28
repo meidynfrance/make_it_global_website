@@ -49,8 +49,8 @@ development_status:
   epic-1-retrospective: optional
 
   # Epic 2: Section Hero avec Proposition de Valeur
-  epic-2: backlog
-  2-1-creer-herosection-avec-proposition-de-valeur-et-ctas: backlog
+  epic-2: in-progress
+  2-1-creer-herosection-avec-proposition-de-valeur-et-ctas: review
   2-2-implementer-la-navigation-responsive-et-laccessibilite-de-base: backlog
   epic-2-retrospective: optional
 

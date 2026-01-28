@@ -1,0 +1,25 @@
+---
+/**
+ * WhatsAppButton Component - Specialized button for WhatsApp click-to-chat
+ * Opens WhatsApp app on mobile or web.whatsapp.com on desktop
+ */
+import Button from './Button.astro';
+import { getWhatsAppLink } from '../../utils/whatsapp';
+
+interface Props {
+  phoneNumber: string;
+  message: string;
+  label?: string;
+}
+
+const { phoneNumber, message, label = 'Discuter sur WhatsApp' } = Astro.props;
+const whatsappUrl = getWhatsAppLink(phoneNumber, message);
+---
+
+<Button
+  variant="secondary"
+  href={whatsappUrl}
+  ariaLabel={label}
+>
+  {label}
+</Button>

@@ -1,0 +1,41 @@
+---
+/**
+ * HeroSection Component - Main hero section with value proposition and dual CTAs
+ * Mobile-first responsive design with accessibility features
+ */
+import Button from '../ui/Button.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+---
+
+<section
+  class="relative w-full bg-gradient-to-b from-primary-50 to-white animate-fade-in"
+  aria-label="Hero"
+>
+  <div class="max-w-4xl mx-auto px-4 py-32 md:py-48 lg:py-64 text-center">
+    <!-- Headline -->
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-neutral-900 leading-tight">
+      Traduisez vos vidéos avec lip-sync professionnel en 48h
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="text-lg md:text-xl text-neutral-700 mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed">
+      Service clé-en-main combinant IA et expertise humaine pour traduire vos vidéos, PDFs et textes. Expansion internationale sans effort.
+    </p>
+
+    <!-- CTAs -->
+    <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+      <Button
+        variant="primary"
+        href="https://calendly.com/make-it-global/30min"
+        ariaLabel="Réserver un appel découverte de 30 minutes"
+      >
+        Réserver mon appel
+      </Button>
+
+      <WhatsAppButton
+        phoneNumber="33612345678"
+        message="Bonjour, je souhaite en savoir plus sur vos services de traduction vidéo avec lip-sync."
+      />
+    </div>
+  </div>
+</section>

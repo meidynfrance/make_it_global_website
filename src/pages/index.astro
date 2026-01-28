@@ -1,40 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
 ---
 
 <BaseLayout
-  title="Make It Global - Traduction Multimédia Professionnelle"
-  description="Service clé-en-main de traduction vidéo avec lip-sync, PDF et textes pour votre expansion internationale. Expertise combinant IA et validation humaine pour une qualité professionnelle."
+  title="Make It Global - Traduction Vidéo avec Lip-Sync Professionnel"
+  description="Service clé-en-main de traduction vidéo, PDF et textes. IA + expertise humaine pour votre expansion internationale."
 >
-  <section class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-primary-50 to-white px-4">
-
-    <!-- Logo ou Headline -->
-    <h1 class="text-4xl md:text-6xl font-bold text-primary-600 text-center mb-6 animate-fade-in">
-      Make It Global
-    </h1>
-
-    <!-- Tagline -->
-    <p class="text-xl md:text-2xl text-neutral-900 text-center font-semibold mb-4 animate-slide-up">
-      Traduction Multimédia Professionnelle
-    </p>
-
-    <!-- Description (1-2 phrases) -->
-    <p class="text-base md:text-lg text-neutral-600 text-center max-w-2xl mb-8 animate-slide-up">
-      Service clé-en-main de traduction vidéo avec lip-sync, PDF et textes pour votre expansion internationale. Expertise combinant IA et validation humaine pour une qualité professionnelle.
-    </p>
-
-    <!-- CTA Simple -->
-    <a
-      href="mailto:contact@make-it-global.com"
-      class="btn-primary animate-fade-in"
-    >
-      Nous Contacter
-    </a>
-
-    <!-- Mention "Coming Soon" -->
-    <p class="mt-12 text-sm text-neutral-500 text-center animate-slide-down">
-      🚀 Site complet en cours de développement
-    </p>
-
-  </section>
+  <HeroSection />
 </BaseLayout>
