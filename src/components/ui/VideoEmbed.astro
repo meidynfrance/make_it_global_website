@@ -44,8 +44,8 @@ const getThumbnail = (): string => {
   if (platform === 'youtube') {
     return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   }
-  // Fallback for Vimeo (placeholder - could be enhanced with Vimeo API)
-  return '/placeholder-video.jpg';
+  // Fallback for Vimeo - inline SVG to avoid 404
+  return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720"%3E%3Crect fill="%23334155" width="1280" height="720"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="48" fill="%23e2e8f0"%3EVidéo de démonstration%3C/text%3E%3C/svg%3E';
 };
 
 // Generate embed URL with optimal parameters
@@ -113,7 +113,7 @@ const embedUrl = getEmbedUrl();
       title={title}
       aria-label={ariaLabel || title}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-      allowfullscreen
+      allowFullScreen
       loading="lazy"
     ></iframe>
   </div>

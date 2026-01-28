@@ -1,6 +1,6 @@
 # Story 4.1: Créer VideoSection avec Exemples Avant/Après
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -1606,3 +1606,11 @@ N/A - Story not yet implemented
 ## Change Log
 
 - **2026-01-28:** Story 4.1 implementation completed - VideoSection with VideoEmbed component, facade pattern, lazy loading, accessibility WCAG AA, responsive design, preconnect headers. Build: 349ms. Ready for review.
+- **2026-01-28:** Code review corrections applied:
+  - Fixed HTML attribute: `allowfullscreen` → `allowFullScreen` (standard HTML5 boolean)
+  - Improved Vimeo fallback: replaced missing `/placeholder-video.jpg` with inline SVG data URI
+  - Enhanced color contrast: VideoSection CTA button `bg-primary-600` → `bg-primary-700` (6.9:1 → 9.1:1 ratio, WCAG AAA ✅)
+  - Updated placeholder comment: clarified that placeholder video IDs are temporary until final demo videos available
+  - Added documentation: README.md section "Modifier les Vidéos de Démonstration" with step-by-step instructions
+  - Note: Placeholder video IDs (dQw4w9WgXcQ) kept temporarily as site has no traffic yet - will be replaced with real before/after translation videos before marketing launch
+  - Build: 329ms (maintained < 600ms target ✅)

@@ -104,6 +104,41 @@ Approche **mobile-first** avec breakpoints Tailwind:
 | Pages | kebab-case.astro | `index.astro` |
 | Images | kebab-case | `hero-background.webp` |
 
+## 🎬 Modifier les Vidéos de Démonstration
+
+Les vidéos de la section "Découvrez la Qualité en Action" sont configurables facilement:
+
+1. **Ouvrir le fichier:**
+   ```bash
+   src/components/sections/VideoSection.astro
+   ```
+
+2. **Modifier les IDs vidéo (lignes 23-45):**
+   ```typescript
+   const videos = [
+     {
+       id: 'VOTRE_VIDEO_ID_YOUTUBE',  // Remplacer par l'ID YouTube réel
+       platform: 'youtube',            // ou 'vimeo'
+       title: 'Titre descriptif',
+       caption: 'Français → Anglais',
+       description: 'Description courte',
+     },
+     // ... autres vidéos
+   ];
+   ```
+
+3. **Trouver l'ID d'une vidéo YouTube:**
+   - URL: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+   - ID: `dQw4w9WgXcQ` (partie après `v=`)
+
+4. **Rebuild et tester:**
+   ```bash
+   npm run build
+   npm run preview
+   ```
+
+**Note:** Les vidéos utilisent le façade pattern (thumbnail + click-to-load) pour optimiser les performances. Aucune iframe n'est chargée avant que l'utilisateur clique sur le bouton play.
+
 ## 📚 Documentation
 
 - [Astro Documentation](https://docs.astro.build)
