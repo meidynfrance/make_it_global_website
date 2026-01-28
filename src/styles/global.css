@@ -1,7 +1,46 @@
 @import "tailwindcss";
 
-/* CSS Custom Properties - Design Tokens */
-/* Generated from tailwind.config.mjs for use outside Tailwind classes */
+/* Tailwind v4 Custom Colors - Define as CSS variables */
+/* These will generate utility classes like bg-primary-600, text-accent-500, etc. */
+@theme {
+  /* Primary Color Scale - Blue for trust & professionalism */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;  /* Main CTA - 7.2:1 contrast */
+  --color-primary-700: #1d4ed8;  /* Hover state - 9.1:1 contrast */
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* Accent Color Scale - Orange for energy & action */
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffedd5;
+  --color-accent-200: #fed7aa;
+  --color-accent-300: #fdba74;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #f97316;   /* WhatsApp CTA - 4.8:1 contrast */
+  --color-accent-600: #ea580c;   /* Hover state - 5.8:1 contrast */
+  --color-accent-700: #c2410c;
+  --color-accent-800: #9a3412;
+  --color-accent-900: #7c2d12;
+
+  /* Neutral Color Scale - Text & backgrounds */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;  /* Secondary text - 10.4:1 contrast */
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;  /* Primary text - 16.1:1 contrast */
+}
+
+/* Legacy CSS Custom Properties for non-Tailwind usage */
 :root {
   /* Primary Colors */
   --color-primary-50: #EFF6FF;
