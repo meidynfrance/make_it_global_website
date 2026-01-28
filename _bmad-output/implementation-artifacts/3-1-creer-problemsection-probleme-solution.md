@@ -1,6 +1,6 @@
 # Story 3.1: Créer ProblemSection (Problème/Solution)
 
-Status: review
+Status: in-progress
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -1000,17 +1000,26 @@ Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 #### Implementation Summary (2026-01-28)
 
-**Story 3.1 - ProblemSection Implementation Completed**
+**Story 3.1 - ProblemSection Implementation + Code Review Corrections**
 
 **What Was Implemented:**
 - ✅ Created `src/components/sections/ProblemSection.astro` with semantic HTML structure
 - ✅ Implemented 2-column responsive layout: Problème (left) | Solution (right)
 - ✅ Added 4 problem points with inline SVG icons (clock, puzzle, robot, money)
 - ✅ Added 3 solution points with inline SVG icons (zap, user-check, calendar-check)
-- ✅ Highlighted "🤖 IA + 👨‍💼 Validation Humaine" badge with accent colors and hover effect
+- ✅ Highlighted "IA + Validation Humaine" badge with accent colors, hover and focus effects
 - ✅ Integrated ProblemSection into `index.astro` after HeroSection in `<main>`
-- ✅ Validated build performance: 370ms (< 500ms target)
+- ✅ Validated build performance: 356ms (< 500ms target)
 - ✅ All acceptance criteria satisfied (AC #1-7)
+
+**Code Review Corrections Applied (2026-01-28):**
+- ✅ Fixed semantic HTML: Replaced 7 `<h4>` with `<p class="font-semibold">` (WCAG 2.4.10)
+- ✅ Added `aria-label="Problème et solution"` for explicit ARIA landmark
+- ✅ Added `focusable="false"` to all 7 inline SVG icons (cross-browser keyboard nav)
+- ✅ Added `focus-within:scale-105` to badge for keyboard accessibility parity
+- ✅ Isolated emojis with `aria-hidden` to prevent screen reader pollution
+- ✅ Corrected contrast documentation: accent-700/accent-100 = 5.52:1 (WCAG AA compliant)
+- ✅ Unified spacing: gap-4 consistent across all points
 
 **Technical Approach:**
 - Semantic HTML: `<section id="problem" aria-labelledby="problem-heading">` with H2 (sr-only) + H3 visible
@@ -1077,3 +1086,15 @@ Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 - Validated responsive design: 1 col mobile (< 768px), 2 col desktop (≥ 768px)
 - Build performance maintained: 370ms (< 500ms target)
 - All acceptance criteria satisfied (AC #1-7)
+
+**2026-01-28 - Code Review Corrections Applied**
+- **[HIGH FIX]** Replaced all `<h4>` elements with `<p class="font-semibold">` for semantic correctness (WCAG 2.4.10 compliance)
+- **[HIGH FIX]** Corrected contrast ratio documentation: accent-700/accent-100 = 5.52:1 (not 8.2:1 as previously stated)
+- **[MEDIUM FIX]** Added `aria-label="Problème et solution"` to section for explicit ARIA landmark
+- **[MEDIUM FIX]** Added `focusable="false"` to all inline SVG icons (7 total) for cross-browser keyboard navigation
+- **[MEDIUM FIX]** Added `focus-within:scale-105` to badge for keyboard user parity with hover effect
+- **[MEDIUM FIX]** Isolated emojis with `<span aria-hidden="true">🤖 👨‍💼</span>` to prevent screen reader pollution
+- **[LOW FIX]** Unified spacing: changed solution points from `gap-3` to `gap-4` for consistency with problem points
+- Build performance after corrections: 356ms (< 500ms target, improved from 370ms)
+- **Status:** 7/9 code review findings fixed (2 LOW issues remain: redundant comments cosmetic only)
+- **Remaining:** Files need to be committed to git (tracked locally but not in version control)
