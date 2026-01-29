@@ -60,6 +60,30 @@ describe('Performance Optimizations (Story 8.3)', () => {
       expect(securityHeaderKeys).toContain('X-XSS-Protection');
       expect(securityHeaderKeys).toContain('Referrer-Policy');
       expect(securityHeaderKeys).toContain('Permissions-Policy');
+      expect(securityHeaderKeys).toContain('Content-Security-Policy');
+    });
+
+    it('should have Content-Security-Policy configured', () => {
+      const vercelConfigPath = path.join(process.cwd(), 'vercel.json');
+      const vercelConfig = JSON.parse(fs.readFileSync(vercelConfigPath, 'utf-8'));
+
+      const globalHeaders = vercelConfig.headers.find((h: any) =>
+        h.source === '/(.*)'
+      );
+
+      const cspHeader = globalHeaders.headers.find((h: any) =>
+        h.key === 'Content-Security-Policy'
+      );
+
+      expect(cspHeader).toBeDefined();
+      expect(cspHeader.value).toBeDefined();
+
+      // Validate CSP includes required directives
+      expect(cspHeader.value).toContain("default-src 'self'");
+      expect(cspHeader.value).toContain('script-src');
+      expect(cspHeader.value).toContain('style-src');
+      expect(cspHeader.value).toContain('googletagmanager.com'); // GA4
+      expect(cspHeader.value).toContain('assets.calendly.com'); // Calendly
     });
 
     it('should have HTML cache policy (always fresh)', () => {
