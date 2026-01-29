@@ -71,44 +71,49 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
     </button>
 
     <script define:vars={{ uniqueId, fullUrl, section }}>
-      // Wait for Calendly SDK to load, then attach event listener
+      // Combined Calendly initialization + GA4 tracking (fixes race condition)
+      import { trackCalendlyClick } from '../../utils/analytics';
+
       const button = document.getElementById(uniqueId);
+      let retryCount = 0;
+      const MAX_RETRIES = 50; // 5 seconds max (50 * 100ms)
 
       function initCalendly() {
         if (typeof Calendly !== 'undefined') {
           button.addEventListener('click', (e) => {
             e.preventDefault();
+
+            // Track click before opening widget
+            trackCalendlyClick(section);
+
+            // Open Calendly popup
             Calendly.initPopupWidget({ url: fullUrl });
           });
         } else {
-          // Retry if Calendly SDK not loaded yet
-          setTimeout(initCalendly, 100);
+          retryCount++;
+          if (retryCount < MAX_RETRIES) {
+            // Retry if Calendly SDK not loaded yet
+            setTimeout(initCalendly, 100);
+          } else {
+            // Fallback: direct link if SDK fails to load
+            button.addEventListener('click', () => {
+              trackCalendlyClick(section);
+              window.open(fullUrl, '_blank', 'noopener,noreferrer');
+            });
+            if (typeof console !== 'undefined' && console.warn) {
+              console.warn('Calendly SDK not loaded - using fallback direct link');
+            }
+          }
         }
       }
 
       initCalendly();
     </script>
-
-    <script>
-      import { trackCalendlyClick } from '../../utils/analytics';
-
-      // Track Calendly button clicks
-      document.addEventListener('DOMContentLoaded', () => {
-        const calendlyButtons = document.querySelectorAll('.calendly-button');
-
-        calendlyButtons.forEach((button) => {
-          const section = button.getAttribute('data-section') || 'contact';
-
-          button.addEventListener('click', () => {
-            trackCalendlyClick(section);
-          });
-        });
-      });
-    </script>
   </>
 ) : (
   <>
     <div
+      id={uniqueId}
       class="calendly-inline-widget calendly-embed-container"
       data-url={fullUrl}
       data-hide-event-details={hideEventDetails}
@@ -119,22 +124,22 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
       aria-label="Calendly widget - Réservez votre appel découverte"
     ></div>
 
-    <script>
+    <script define:vars={{ uniqueId, section }}>
+      // Inline widget tracking - self-targeting to avoid querySelectorAll
       import { trackCalendlyClick } from '../../utils/analytics';
 
-      // Track when Calendly inline widget is interacted with
-      document.addEventListener('DOMContentLoaded', () => {
-        const calendlyContainers = document.querySelectorAll('.calendly-embed-container');
+      const container = document.getElementById(uniqueId);
 
-        calendlyContainers.forEach((container) => {
-          const section = container.getAttribute('data-section') || 'contact';
+      if (container) {
+        // Track on container click as proxy for iframe interaction
+        const handleClick = () => {
+          trackCalendlyClick(section);
+          // Remove listener after first click to prevent duplicates
+          container.removeEventListener('click', handleClick);
+        };
 
-          // Track on container click as proxy for iframe interaction
-          container.addEventListener('click', () => {
-            trackCalendlyClick(section);
-          }, { once: true }); // Track first click only
-        });
-      });
+        container.addEventListener('click', handleClick);
+      }
     </script>
   </>
 )}

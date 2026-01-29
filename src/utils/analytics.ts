@@ -17,11 +17,38 @@
  */
 
 /**
+ * Valid section types for tracking context
+ */
+type SectionType = 'hero' | 'contact' | 'footer' | string;
+
+/**
  * Type-safe check for gtag function availability
  * Prevents errors if GA4 script not loaded
  */
 function isGtagAvailable(): boolean {
   return typeof window !== 'undefined' && typeof window.gtag !== 'undefined';
+}
+
+/**
+ * Validate and sanitize section parameter
+ * Ensures data quality in GA4
+ */
+function validateSection(section: string): string {
+  const validSections: SectionType[] = ['hero', 'contact', 'footer'];
+  const sanitized = section.trim().toLowerCase();
+
+  if (!sanitized) {
+    if (import.meta.env.DEV) {
+      console.warn('Empty section provided, using default: contact');
+    }
+    return 'contact';
+  }
+
+  if (!validSections.includes(sanitized) && import.meta.env.DEV) {
+    console.warn(`Non-standard section: "${sanitized}". Expected: hero, contact, footer`);
+  }
+
+  return sanitized;
 }
 
 /**
@@ -32,18 +59,30 @@ function isGtagAvailable(): boolean {
  */
 export function trackCalendlyClick(section: string = 'contact', label?: string): void {
   if (!isGtagAvailable()) {
-    console.warn('GA4 not loaded - trackCalendlyClick skipped');
+    if (import.meta.env.DEV) {
+      console.warn('GA4 not loaded - trackCalendlyClick skipped');
+    }
     return;
   }
 
-  window.gtag('event', 'calendly_click', {
-    event_category: 'conversion',
-    event_label: label || section,
-    section: section,
-    cta_type: 'calendly'
-  });
+  const validatedSection = validateSection(section);
 
-  console.log(`📊 GA4 Event: calendly_click (section: ${section})`);
+  try {
+    window.gtag('event', 'calendly_click', {
+      event_category: 'conversion',
+      event_label: label || validatedSection,
+      section: validatedSection,
+      cta_type: 'calendly'
+    });
+
+    if (import.meta.env.DEV) {
+      console.log(`📊 GA4 Event: calendly_click (section: ${validatedSection})`);
+    }
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.error('GA4 tracking error:', error);
+    }
+  }
 }
 
 /**
@@ -54,18 +93,30 @@ export function trackCalendlyClick(section: string = 'contact', label?: string):
  */
 export function trackWhatsAppClick(section: string = 'contact', label?: string): void {
   if (!isGtagAvailable()) {
-    console.warn('GA4 not loaded - trackWhatsAppClick skipped');
+    if (import.meta.env.DEV) {
+      console.warn('GA4 not loaded - trackWhatsAppClick skipped');
+    }
     return;
   }
 
-  window.gtag('event', 'whatsapp_click', {
-    event_category: 'conversion',
-    event_label: label || section,
-    section: section,
-    cta_type: 'whatsapp'
-  });
+  const validatedSection = validateSection(section);
 
-  console.log(`📊 GA4 Event: whatsapp_click (section: ${section})`);
+  try {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'conversion',
+      event_label: label || validatedSection,
+      section: validatedSection,
+      cta_type: 'whatsapp'
+    });
+
+    if (import.meta.env.DEV) {
+      console.log(`📊 GA4 Event: whatsapp_click (section: ${validatedSection})`);
+    }
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.error('GA4 tracking error:', error);
+    }
+  }
 }
 
 /**
@@ -76,19 +127,31 @@ export function trackWhatsAppClick(section: string = 'contact', label?: string):
  */
 export function trackFormSubmit(section: string = 'contact', formType: string = 'email'): void {
   if (!isGtagAvailable()) {
-    console.warn('GA4 not loaded - trackFormSubmit skipped');
+    if (import.meta.env.DEV) {
+      console.warn('GA4 not loaded - trackFormSubmit skipped');
+    }
     return;
   }
 
-  window.gtag('event', 'form_submit', {
-    event_category: 'conversion',
-    event_label: `${section}_form`,
-    section: section,
-    form_type: formType,
-    cta_type: 'form'
-  });
+  const validatedSection = validateSection(section);
 
-  console.log(`📊 GA4 Event: form_submit (section: ${section}, type: ${formType})`);
+  try {
+    window.gtag('event', 'form_submit', {
+      event_category: 'conversion',
+      event_label: `${validatedSection}_form`,
+      section: validatedSection,
+      form_type: formType,
+      cta_type: 'form'
+    });
+
+    if (import.meta.env.DEV) {
+      console.log(`📊 GA4 Event: form_submit (section: ${validatedSection}, type: ${formType})`);
+    }
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.error('GA4 tracking error:', error);
+    }
+  }
 }
 
 /**

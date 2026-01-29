@@ -17,7 +17,7 @@ beforeEach(() => {
   vi.spyOn(console, 'warn').mockImplementation(() => {});
 
   // Setup window.gtag mock
-  global.window = {
+  globalThis.window = {
     gtag: mockGtag,
     dataLayer: []
   } as any;
@@ -67,7 +67,7 @@ describe('analytics utilities', () => {
 
     it('should warn and skip when gtag not available', () => {
       // Remove gtag from window
-      global.window.gtag = undefined;
+      globalThis.window.gtag = undefined;
       const warnSpy = vi.spyOn(console, 'warn');
 
       trackCalendlyClick('contact');
@@ -119,7 +119,7 @@ describe('analytics utilities', () => {
     });
 
     it('should warn and skip when gtag not available', () => {
-      global.window.gtag = undefined;
+      globalThis.window.gtag = undefined;
       const warnSpy = vi.spyOn(console, 'warn');
 
       trackWhatsAppClick('hero');
@@ -174,7 +174,7 @@ describe('analytics utilities', () => {
     });
 
     it('should warn and skip when gtag not available', () => {
-      global.window.gtag = undefined;
+      globalThis.window.gtag = undefined;
       const warnSpy = vi.spyOn(console, 'warn');
 
       trackFormSubmit('contact', 'email');
@@ -186,7 +186,7 @@ describe('analytics utilities', () => {
 
   describe('graceful degradation', () => {
     it('should handle multiple calls without gtag gracefully', () => {
-      global.window.gtag = undefined;
+      globalThis.window.gtag = undefined;
       const warnSpy = vi.spyOn(console, 'warn');
 
       trackCalendlyClick('hero');
@@ -198,12 +198,12 @@ describe('analytics utilities', () => {
     });
 
     it('should work correctly when gtag is restored', () => {
-      global.window.gtag = undefined;
+      globalThis.window.gtag = undefined;
       trackCalendlyClick('hero');
       expect(mockGtag).not.toHaveBeenCalled();
 
       // Restore gtag
-      global.window.gtag = mockGtag;
+      globalThis.window.gtag = mockGtag;
       trackCalendlyClick('contact');
 
       expect(mockGtag).toHaveBeenCalledTimes(1);

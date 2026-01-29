@@ -22,31 +22,35 @@ const {
   section = 'contact',
 } = Astro.props;
 const whatsappUrl = getWhatsAppLink(phoneNumber, message);
+
+// Generate unique ID for this component instance
+const uniqueId = `whatsapp-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <Button
   variant="secondary"
   href={whatsappUrl}
   ariaLabel={ariaLabel}
-  class="whatsapp-button"
+  class={`whatsapp-button whatsapp-${uniqueId}`}
   data-section={section}
 >
   {label}
 </Button>
 
-<script>
+<script define:vars={{ uniqueId, section }}>
+  // Self-targeting tracking - avoids querySelectorAll
   import { trackWhatsAppClick } from '../../utils/analytics';
 
-  // Track WhatsApp button clicks
-  document.addEventListener('DOMContentLoaded', () => {
-    const whatsappButtons = document.querySelectorAll('.whatsapp-button');
+  // Use unique class selector for this specific button
+  const button = document.querySelector(`.whatsapp-${uniqueId}`);
 
-    whatsappButtons.forEach((button) => {
-      const section = button.getAttribute('data-section') || 'contact';
+  if (button) {
+    const handleClick = () => {
+      trackWhatsAppClick(section);
+      // Note: Don't remove listener here since user might click multiple times
+      // (each click is a separate conversion event)
+    };
 
-      button.addEventListener('click', () => {
-        trackWhatsAppClick(section);
-      });
-    });
-  });
+    button.addEventListener('click', handleClick);
+  }
 </script>

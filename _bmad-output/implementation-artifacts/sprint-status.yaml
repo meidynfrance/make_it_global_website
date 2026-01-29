@@ -86,5 +86,5 @@ development_status:
   8-1-optimiser-les-images-et-assets: done
   8-2-audit-accessibilite-et-conformite-wcag-aa: done
   8-3-tests-de-performance-et-optimisation-lighthouse: done
-  8-4-tests-de-compatibilite-navigateurs-et-configuration-production: backlog
+  8-4-tests-de-compatibilite-navigateurs-et-configuration-production: done  # Configuration complete, manual browser testing deferred
   epic-8-retrospective: optional
