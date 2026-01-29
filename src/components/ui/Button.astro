@@ -7,9 +7,11 @@ interface Props {
   variant: 'primary' | 'secondary';
   href: string;
   ariaLabel?: string;
+  class?: string;
+  'data-section'?: string;
 }
 
-const { variant, href, ariaLabel } = Astro.props;
+const { variant, href, ariaLabel, class: additionalClass, 'data-section': dataSection } = Astro.props;
 
 // Tailwind classes for each variant
 const variantClasses = {
@@ -25,10 +27,11 @@ const isExternal = href.startsWith('http://') || href.startsWith('https://');
 
 <a
   href={href}
-  class={`${baseClasses} ${variantClasses[variant]}`}
+  class={`${baseClasses} ${variantClasses[variant]} ${additionalClass || ''}`}
   aria-label={ariaLabel}
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noopener noreferrer' : undefined}
+  data-section={dataSection}
 >
   <slot />
 </a>

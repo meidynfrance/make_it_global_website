@@ -17,6 +17,7 @@ interface Props {
   height?: string;
   hideEventDetails?: boolean;
   hideCookieBanner?: boolean;
+  section?: string; // 'contact' | 'hero' - for tracking context
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   height = '630px',
   hideEventDetails = false,
   hideCookieBanner = true,
+  section = 'contact',
 } = Astro.props;
 
 // Improved URL validation - check hostname is exactly calendly.com OR valid username/event format
@@ -61,13 +63,14 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
     <button
       id={uniqueId}
       type="button"
-      class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white"
+      class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white calendly-button"
       aria-label="Réserver un appel découverte avec Make It Global"
+      data-section={section}
     >
       {buttonText}
     </button>
 
-    <script define:vars={{ uniqueId, fullUrl }}>
+    <script define:vars={{ uniqueId, fullUrl, section }}>
       // Wait for Calendly SDK to load, then attach event listener
       const button = document.getElementById(uniqueId);
 
@@ -85,15 +88,53 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
 
       initCalendly();
     </script>
+
+    <script>
+      import { trackCalendlyClick } from '../../utils/analytics';
+
+      // Track Calendly button clicks
+      document.addEventListener('DOMContentLoaded', () => {
+        const calendlyButtons = document.querySelectorAll('.calendly-button');
+
+        calendlyButtons.forEach((button) => {
+          const section = button.getAttribute('data-section') || 'contact';
+
+          button.addEventListener('click', () => {
+            trackCalendlyClick(section);
+          });
+        });
+      });
+    </script>
   </>
 ) : (
-  <div
-    class="calendly-inline-widget"
-    data-url={fullUrl}
-    data-hide-event-details={hideEventDetails}
-    data-hide-cookie-banner={hideCookieBanner}
-    style={`height: ${height}; min-width: 320px;`}
-    role="region"
-    aria-label="Calendly widget - Réservez votre appel découverte"
-  ></div>
+  <>
+    <div
+      class="calendly-inline-widget calendly-embed-container"
+      data-url={fullUrl}
+      data-hide-event-details={hideEventDetails}
+      data-hide-cookie-banner={hideCookieBanner}
+      data-section={section}
+      style={`height: ${height}; min-width: 320px;`}
+      role="region"
+      aria-label="Calendly widget - Réservez votre appel découverte"
+    ></div>
+
+    <script>
+      import { trackCalendlyClick } from '../../utils/analytics';
+
+      // Track when Calendly inline widget is interacted with
+      document.addEventListener('DOMContentLoaded', () => {
+        const calendlyContainers = document.querySelectorAll('.calendly-embed-container');
+
+        calendlyContainers.forEach((container) => {
+          const section = container.getAttribute('data-section') || 'contact';
+
+          // Track on container click as proxy for iframe interaction
+          container.addEventListener('click', () => {
+            trackCalendlyClick(section);
+          }, { once: true }); // Track first click only
+        });
+      });
+    </script>
+  </>
 )}

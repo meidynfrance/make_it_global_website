@@ -11,13 +11,15 @@ interface Props {
   message: string;
   label?: string;
   ariaLabel?: string;
+  section?: string; // 'hero' | 'contact' - for tracking context
 }
 
 const {
   phoneNumber,
   message,
   label = 'Discuter sur WhatsApp',
-  ariaLabel = `Contacter Make It Global sur WhatsApp: ${message.substring(0, 50)}...`
+  ariaLabel = `Contacter Make It Global sur WhatsApp: ${message.substring(0, 50)}...`,
+  section = 'contact',
 } = Astro.props;
 const whatsappUrl = getWhatsAppLink(phoneNumber, message);
 ---
@@ -26,6 +28,25 @@ const whatsappUrl = getWhatsAppLink(phoneNumber, message);
   variant="secondary"
   href={whatsappUrl}
   ariaLabel={ariaLabel}
+  class="whatsapp-button"
+  data-section={section}
 >
   {label}
 </Button>
+
+<script>
+  import { trackWhatsAppClick } from '../../utils/analytics';
+
+  // Track WhatsApp button clicks
+  document.addEventListener('DOMContentLoaded', () => {
+    const whatsappButtons = document.querySelectorAll('.whatsapp-button');
+
+    whatsappButtons.forEach((button) => {
+      const section = button.getAttribute('data-section') || 'contact';
+
+      button.addEventListener('click', () => {
+        trackWhatsAppClick(section);
+      });
+    });
+  });
+</script>
