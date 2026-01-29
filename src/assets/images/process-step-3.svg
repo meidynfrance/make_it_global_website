@@ -1,0 +1,31 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#F1F5F9"/>
+
+  <!-- Check/Success Icon -->
+  <g transform="translate(200, 120)">
+    <!-- Circle background -->
+    <circle cx="0" cy="0" r="50" fill="#10B981"/>
+
+    <!-- Checkmark -->
+    <polyline
+      points="-20,0 -10,15 25,-20"
+      fill="none"
+      stroke="white"
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+
+  <!-- Download Arrow -->
+  <g transform="translate(200, 200)">
+    <line x1="0" y1="-20" x2="0" y2="20" stroke="#3B82F6" stroke-width="5" stroke-linecap="round"/>
+    <polyline points="-10,10 0,20 10,10" fill="none" stroke="#3B82F6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Label -->
+  <text x="200" y="270" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E293B" text-anchor="middle">
+    Étape 3: Vous recevez
+  </text>
+</svg>

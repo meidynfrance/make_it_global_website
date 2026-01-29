@@ -1,0 +1,29 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#F1F5F9"/>
+
+  <!-- AI + Human Icon -->
+  <g transform="translate(150, 120)">
+    <!-- AI Brain/Chip -->
+    <rect x="-30" y="-30" width="60" height="60" rx="5" fill="#10B981" stroke="#059669" stroke-width="3"/>
+    <circle cx="-15" cy="-15" r="5" fill="white"/>
+    <circle cx="15" cy="-15" r="5" fill="white"/>
+    <path d="M -15 10 Q 0 20, 15 10" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(250, 120)">
+    <!-- Human Icon -->
+    <circle cx="0" cy="-20" r="15" fill="#6366F1"/>
+    <path d="M -20 10 Q 0 30, 20 10 L 20 40 Q 0 50, -20 40 Z" fill="#6366F1"/>
+  </g>
+
+  <!-- Plus Sign between AI + Human -->
+  <text x="200" y="135" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#64748B" text-anchor="middle">
+    +
+  </text>
+
+  <!-- Label -->
+  <text x="200" y="260" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1E293B" text-anchor="middle">
+    Étape 2: IA + Humain
+  </text>
+</svg>

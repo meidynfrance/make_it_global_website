@@ -3,34 +3,48 @@
  * HeroSection Component - Main hero section with value proposition and dual CTAs
  * Mobile-first responsive design with accessibility features
  */
-import Button from '../ui/Button.astro';
+import { Picture } from 'astro:assets';
+import CalendlyEmbed from '../ui/CalendlyEmbed.astro';
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
 import { CALENDLY_URL, WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
+import heroBackground from '../../assets/images/hero-background.svg';
 ---
 
 <section
-  class="relative w-full bg-gradient-to-b from-[#EFF6FF] to-white animate-fade-in opacity-100"
+  class="relative w-full overflow-hidden animate-fade-in opacity-100"
   aria-label="Hero"
 >
-  <div class="max-w-4xl mx-auto px-4 py-32 md:py-48 lg:py-64 text-center">
-    <!-- Headline -->
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-neutral-900 leading-tight">
+  <!-- Hero Background Image with priority (LCP optimization) -->
+  <Picture
+    src={heroBackground}
+    formats={["avif", "webp"]}
+    alt=""
+    widths={[400, 800, 1200, 1600, 1920]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 w-full h-full object-cover -z-10"
+  />
+  <!-- Content overlay with improved readability -->
+  <div class="relative z-10 max-w-4xl mx-auto px-4 py-32 md:py-48 lg:py-64 text-center">
+    <!-- Headline with improved contrast over background image -->
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg leading-tight">
       Traduction vidéo avec lip-sync en 48h
     </h1>
 
-    <!-- Subheadline -->
-    <p class="text-lg md:text-xl text-neutral-700 mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed">
+    <!-- Subheadline with improved contrast over background image -->
+    <p class="text-lg md:text-xl text-white/95 drop-shadow-md mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed">
       Service clé-en-main combinant IA et expertise humaine pour traduire vos vidéos, PDFs et textes. Expansion internationale sans effort.
     </p>
 
     <!-- CTAs -->
     <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
-      <Button
-        variant="primary"
-        href={CALENDLY_URL}
-      >
-        Réserver mon appel
-      </Button>
+      <CalendlyEmbed
+        calendlyUrl={CALENDLY_URL}
+        type="popup"
+        buttonText="Réserver mon appel"
+        section="hero"
+      />
 
       <WhatsAppButton
         phoneNumber={WHATSAPP_NUMBER}

@@ -6,7 +6,7 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, ogImage = '/og-image.svg' } = Astro.props;
+const { title, description, ogImage = '/og-image.png' } = Astro.props;
 
 // Use Astro.site for production URL (falls back to localhost in dev)
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://make-it-global.vercel.app';

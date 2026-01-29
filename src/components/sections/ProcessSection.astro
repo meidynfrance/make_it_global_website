@@ -10,10 +10,15 @@
  * Features:
  * - Semantic HTML with ARIA landmarks
  * - Responsive design: 1 col mobile, 3 col desktop
- * - Inline SVG icons for visual impact
+ * - Optimized images with astro:assets
  * - Reassurance message: "You don't have to manage anything"
  * - WCAG AA compliant color contrast
  */
+
+import { Image } from 'astro:assets';
+import step1Image from '../../assets/images/process-step-1.svg';
+import step2Image from '../../assets/images/process-step-2.svg';
+import step3Image from '../../assets/images/process-step-3.svg';
 
 interface Props {
   // No props needed for MVP - hard-coded content
@@ -41,11 +46,14 @@ interface Props {
           <span class="sr-only">Étape </span>
           <span aria-hidden="true">1</span>
         </div>
-        <div class="flex justify-center">
-          <!-- Document Icon - Clear visual for "send your content" -->
-          <svg class="w-12 h-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
+        <div class="flex justify-center mb-4">
+          <Image
+            src={step1Image}
+            alt="Étape 1: Vous envoyez votre contenu"
+            width={400}
+            height={300}
+            class="rounded-lg shadow-md"
+          />
         </div>
         <p class="text-lg font-semibold text-neutral-900">
           Vous envoyez votre contenu
@@ -61,11 +69,14 @@ interface Props {
           <span class="sr-only">Étape </span>
           <span aria-hidden="true">2</span>
         </div>
-        <div class="flex justify-center">
-          <!-- Globe/Language Icon -->
-          <svg class="w-12 h-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+        <div class="flex justify-center mb-4">
+          <Image
+            src={step2Image}
+            alt="Étape 2: On traduit avec IA + validation humaine"
+            width={400}
+            height={300}
+            class="rounded-lg shadow-md"
+          />
         </div>
         <p class="text-lg font-semibold text-neutral-900">
           On traduit et valide
@@ -81,11 +92,14 @@ interface Props {
           <span class="sr-only">Étape </span>
           <span aria-hidden="true">3</span>
         </div>
-        <div class="flex justify-center">
-          <!-- Check Circle Icon -->
-          <svg class="w-12 h-12 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
+        <div class="flex justify-center mb-4">
+          <Image
+            src={step3Image}
+            alt="Étape 3: Vous recevez le résultat final"
+            width={400}
+            height={300}
+            class="rounded-lg shadow-md"
+          />
         </div>
         <p class="text-lg font-semibold text-neutral-900">
           Vous recevez en 48h

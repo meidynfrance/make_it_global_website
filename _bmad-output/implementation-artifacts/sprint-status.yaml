@@ -78,12 +78,12 @@ development_status:
   # Epic 7: Analytics et Mesure de Performance
   epic-7: in-progress
   7-1-integrer-google-analytics-4-dans-baselayout: done
-  7-2-implementer-le-tracking-des-evenements-de-conversion: review
+  7-2-implementer-le-tracking-des-evenements-de-conversion: done
   epic-7-retrospective: optional
 
   # Epic 8: Optimisation Finale et Déploiement Production
-  epic-8: backlog
-  8-1-optimiser-les-images-et-assets: backlog
+  epic-8: in-progress
+  8-1-optimiser-les-images-et-assets: review
   8-2-audit-accessibilite-et-conformite-wcag-aa: backlog
   8-3-tests-de-performance-et-optimisation-lighthouse: backlog
   8-4-tests-de-compatibilite-navigateurs-et-configuration-production: backlog
