@@ -3,7 +3,7 @@
  * HeroSection Component - Main hero section with value proposition and dual CTAs
  * Mobile-first responsive design with accessibility features
  */
-import { Picture } from 'astro:assets';
+import { Image } from 'astro:assets';
 import CalendlyEmbed from '../ui/CalendlyEmbed.astro';
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
 import { CALENDLY_URL, WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
@@ -15,12 +15,13 @@ import heroBackground from '../../assets/images/hero-background.svg';
   aria-label="Hero"
 >
   <!-- Hero Background Image with priority (LCP optimization) -->
-  <Picture
+  <!-- Dark overlay for guaranteed text contrast (WCAG AA compliant) -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20 -z-5"></div>
+  <Image
     src={heroBackground}
-    formats={["avif", "webp"]}
-    alt=""
-    widths={[400, 800, 1200, 1600, 1920]}
-    sizes="100vw"
+    alt="Service de traduction vidéo avec lip-sync professionnel - Make It Global"
+    width={1920}
+    height={1080}
     loading="eager"
     fetchpriority="high"
     class="absolute inset-0 w-full h-full object-cover -z-10"

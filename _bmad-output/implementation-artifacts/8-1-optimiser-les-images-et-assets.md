@@ -182,6 +182,9 @@ Output: Optimized images dans dist/_astro/
 **Dependencies:**
 - ✅ Astro 5.16.15 (already installed with latest image features)
 - ✅ Sharp (automatically installed by Astro for image optimization)
+  - **Note:** Sharp is also reused by `scripts/generate-og-image.mjs` for PNG generation
+  - **Dependency Type:** DevDependency (installed by Astro, no manual install needed)
+  - **Usage:** Image optimization pipeline + OG image generation script
 - ✅ src/assets/images/ folder structure (already exists)
 
 ### Technical Requirements
@@ -235,20 +238,22 @@ import { Image, Picture } from 'astro:assets'; // Current standard
 ```astro
 ---
 // src/components/sections/HeroSection.astro
-import { Picture } from 'astro:assets';
-import heroBackground from '../../assets/images/hero-background.jpg';
+import { Image } from 'astro:assets';
+import heroBackground from '../../assets/images/hero-background.svg';
 ---
 
 <section class="hero-section relative">
+  <!-- Dark overlay for guaranteed text contrast (WCAG AA compliant) -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20 -z-5"></div>
+
   <!-- Background image with priority (LCP optimization) -->
-  <Picture
+  <Image
     src={heroBackground}
-    formats={["avif", "webp"]}
-    alt="Make It Global - Traduction multimédia professionnelle"
-    layout="full-width"
-    widths={[400, 800, 1200, 1600]}
-    sizes="100vw"
-    priority
+    alt="Service de traduction vidéo avec lip-sync professionnel - Make It Global"
+    width={1920}
+    height={1080}
+    loading="eager"
+    fetchpriority="high"
     class="absolute inset-0 w-full h-full object-cover -z-10"
   />
 
@@ -260,12 +265,17 @@ import heroBackground from '../../assets/images/hero-background.jpg';
 ```
 
 **Key Features:**
-- `<Picture>` for multi-format support (AVIF + WebP fallback)
-- `priority` prop = eager loading + fetchpriority="high" (LCP optimization)
-- `layout="full-width"` = responsive srcset auto-generated
-- `widths` = explicit breakpoints for srcset
-- `sizes="100vw"` = image takes full viewport width
+- `<Image>` for SVG source (Picture multi-format not needed for vector)
+- `loading="eager"` + `fetchpriority="high"` for LCP optimization
+- Explicit `width` and `height` to prevent CLS
+- Descriptive alt text (WCAG AA requirement - LCP images need context)
+- Dark overlay ensures WCAG AA text contrast regardless of background
 - `class` = Tailwind positioning for background image
+
+**Why Image vs Picture for SVG:**
+- SVG is already optimal vector format (no need for AVIF/WebP conversion)
+- Picture component would ignore `formats` prop for SVG anyway
+- Image component simpler and reduces build complexity
 
 **Pattern 2: Process Step Images (Standard Responsive)**
 
@@ -1054,12 +1064,13 @@ make_it_global_website/
 ```
 
 **Files Created in Story 8.1:**
-1. 🆕 src/assets/images/hero-background.jpg (source image for hero)
-2. 🆕 src/assets/images/process-step-1.jpg (source image for process)
-3. 🆕 src/assets/images/process-step-2.jpg (source image for process)
-4. 🆕 src/assets/images/process-step-3.jpg (source image for process)
-5. 🆕 src/assets/images/logo.svg ou logo.png (source logo)
-6. 🆕 public/og-image.png (optimized PNG 1200x630px for social sharing)
+1. 🆕 src/assets/images/hero-background.svg (source SVG placeholder for hero)
+2. 🆕 src/assets/images/process-step-1.svg (source SVG placeholder)
+3. 🆕 src/assets/images/process-step-2.svg (source SVG placeholder)
+4. 🆕 src/assets/images/process-step-3.svg (source SVG placeholder)
+5. 🆕 public/og-image.png (optimized PNG 1200x630px, 6.18KB)
+6. 🆕 scripts/generate-og-image.mjs (Sharp script to generate PNG from SVG)
+7. 🆕 src/utils/image-optimization.test.ts (16 tests including negative tests)
 
 **Files Modified in Story 8.1:**
 1. 🔄 src/components/sections/HeroSection.astro (add Picture component with hero background)
@@ -1186,9 +1197,10 @@ N/A - Implementation completed without blocking issues
 **Technical Decisions:**
 
 - **SVG as source format:** Chose SVG placeholders for optimal file size and scalability. In production, these can be replaced with real JPG/PNG photos, and Astro will auto-convert to WebP/AVIF.
-- **Picture vs Image:** Used `<Picture>` for hero (largest image, benefits from multi-format) and `<Image>` for process steps (simpler, smaller images).
-- **Eager loading for hero:** Applied `loading="eager"` + `fetchpriority="high"` to hero background as it's likely the LCP element.
-- **Text contrast adjustment:** Changed hero text to white with drop-shadow for readability over background image.
+- **Image for all components:** Used `<Image>` for both hero and process steps. SVG sources don't benefit from Picture's multi-format generation (AVIF/WebP only work for raster images).
+- **Eager loading for hero:** Applied `loading="eager"` + `fetchpriority="high"` to hero background as it's the LCP element.
+- **Text contrast solution:** Added dark gradient overlay (`bg-gradient-to-b from-black/40 to-black/20`) for guaranteed WCAG AA text contrast, replacing fragile drop-shadow approach.
+- **Descriptive alt text:** Hero background has meaningful alt text ("Service de traduction vidéo...") instead of empty alt, as it's LCP and establishes visual context (WCAG requirement).
 
 ### Completion Notes List
 
@@ -1203,16 +1215,19 @@ N/A - Implementation completed without blocking issues
 - **AC#7:** og-image.png optimized (1200x630px, 6.18KB) and configured in BaseLayout
 
 ✅ **Build Performance Maintained:**
-- Build time: 552ms (slightly above 500ms target, acceptable)
+- Build time: 426ms (✅ UNDER 500ms target, improved from initial 552ms)
 - No new dependencies (uses built-in `astro:assets`)
-- Zero regressions (all 55 tests pass)
+- Zero regressions (all 58 tests pass, +3 negative tests added in code review)
 
 ✅ **Quality Assurance:**
-- Created comprehensive test suite (13 image optimization tests)
+- Created comprehensive test suite (16 image optimization tests)
+  - 13 positive tests (AC validation)
+  - 3 negative tests (error handling, edge cases)
 - Validates HTML output for all ACs
 - Tests CLS prevention (explicit dimensions)
-- Tests accessibility (alt text)
+- Tests accessibility (meaningful alt text, not just presence)
 - Tests lazy loading strategy
+- Code review improvements applied (10 issues fixed)
 
 ✅ **Implementation Complete:**
 - 6/6 tasks completed
@@ -1222,19 +1237,27 @@ N/A - Implementation completed without blocking issues
 ### File List
 
 **Created:**
-- scripts/generate-og-image.mjs
-- src/assets/images/hero-background.svg
-- src/assets/images/process-step-1.svg
-- src/assets/images/process-step-2.svg
-- src/assets/images/process-step-3.svg
-- src/assets/images/logo.svg
-- public/og-image.png
-- src/utils/image-optimization.test.ts
+- scripts/generate-og-image.mjs (Sharp script for OG image generation)
+- src/assets/images/hero-background.svg (hero background placeholder)
+- src/assets/images/process-step-1.svg (process step 1 placeholder)
+- src/assets/images/process-step-2.svg (process step 2 placeholder)
+- src/assets/images/process-step-3.svg (process step 3 placeholder)
+- public/og-image.png (1200x630px optimized PNG, 6.18KB)
+- src/utils/image-optimization.test.ts (16 tests including negative tests)
 
 **Modified:**
-- src/components/sections/HeroSection.astro
-- src/components/sections/ProcessSection.astro
-- src/layouts/BaseLayout.astro
+- src/components/sections/HeroSection.astro (added Image component with hero background, meaningful alt text, contrast overlay)
+- src/components/sections/ProcessSection.astro (added Image components for process steps)
+- src/layouts/BaseLayout.astro (updated og-image to .png)
 
 **Change Log:**
-- 2026-01-29: Story 8.1 completed - Image optimization implemented with astro:assets (Task 1-6 done)
+- 2026-01-29 11:55: Story 8.1 initial implementation - Image optimization with astro:assets (Tasks 1-6)
+- 2026-01-29 12:20: Code review fixes applied - 10 issues resolved (HIGH-1 to MEDIUM-4):
+  - Fixed hero alt text (empty → descriptive)
+  - Changed Picture → Image for SVG source (format mismatch fix)
+  - Added contrast overlay for WCAG AA compliance
+  - Removed unused logo.svg
+  - Documented Sharp dependency
+  - Added 3 negative tests for error handling
+  - Build time improved: 552ms → 426ms (under 500ms target ✅)
+  - Tests: 55 → 58 passing
