@@ -1,0 +1,55 @@
+---
+/**
+ * GoogleAnalytics Component
+ *
+ * Integrates Google Analytics 4 (GA4) tracking into Astro site
+ *
+ * Usage:
+ * ```astro
+ * <GoogleAnalytics gaId={PUBLIC_GOOGLE_ANALYTICS_ID} />
+ * ```
+ *
+ * References:
+ * - https://webreaper.dev/posts/astro-google-tag-manager-ga4/
+ * - https://farrosfr.com/blog/add-google-analytics-to-astro-the-complete-guide/
+ * - https://daniel.es/blog/the-ultimate-astro-google-analytics-guide/
+ */
+
+interface Props {
+  gaId: string; // GA4 Measurement ID (e.g., "G-XXXXXXXXXX")
+}
+
+const { gaId } = Astro.props;
+
+// Validate GA4 Measurement ID format in development
+if (import.meta.env.DEV && gaId) {
+  const isValid = /^G-[A-Z0-9]{10}$/.test(gaId);
+  if (!isValid) {
+    console.warn(
+      `⚠️ Invalid GA4 Measurement ID format: "${gaId}". Expected format: "G-XXXXXXXXXX" (10 alphanumeric characters after G-)`
+    );
+  }
+}
+---
+
+<!-- Google Analytics 4 Script -->
+<!-- is:inline prevents Astro from processing/optimizing this script -->
+<!-- async ensures non-blocking load for optimal performance -->
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+
+<script is:inline define:vars={{ gaId }}>
+  // Initialize dataLayer for GA4
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  // Configure gtag with current timestamp
+  gtag('js', new Date());
+
+  // Configure GA4 with Measurement ID
+  // Automatic page_view tracking enabled
+  // UTM parameters captured automatically
+  gtag('config', gaId);
+</script>

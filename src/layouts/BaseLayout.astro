@@ -14,6 +14,12 @@ const fullOgImage = `${siteUrl}${ogImage}`;
 
 // Import global styles (TailwindCSS v4)
 import '../styles/global.css';
+
+// Import GoogleAnalytics component
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+
+// Google Analytics ID (optional - graceful degradation if undefined)
+const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 ---
 
 <!DOCTYPE html>
@@ -50,8 +56,20 @@ import '../styles/global.css';
     <!-- Preconnect to Calendly CDN for faster scheduling widget load -->
     <link rel="preconnect" href="https://assets.calendly.com" />
 
+    <!-- Preconnect to Google Analytics for faster tracking (100-200ms latency reduction) -->
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
     <!-- Calendly SDK - Async load in head for optimal performance -->
     <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
+
+    <!-- Google Analytics 4 (Story 7.1) -->
+    <!-- Graceful degradation: Only loaded if PUBLIC_GOOGLE_ANALYTICS_ID is defined -->
+    <!-- This allows development/testing without GA4 configured, avoiding errors -->
+    <!-- Production: Configure PUBLIC_GOOGLE_ANALYTICS_ID in Vercel env vars -->
+    {PUBLIC_GOOGLE_ANALYTICS_ID && (
+      <GoogleAnalytics gaId={PUBLIC_GOOGLE_ANALYTICS_ID} />
+    )}
   </head>
   <body>
     <!-- Skip Links - Hidden by default, visible on keyboard focus -->

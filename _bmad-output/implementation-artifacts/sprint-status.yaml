@@ -76,8 +76,8 @@ development_status:
   epic-6-retrospective: optional
 
   # Epic 7: Analytics et Mesure de Performance
-  epic-7: backlog
-  7-1-integrer-google-analytics-4-dans-baselayout: backlog
+  epic-7: in-progress
+  7-1-integrer-google-analytics-4-dans-baselayout: done
   7-2-implementer-le-tracking-des-evenements-de-conversion: backlog
   epic-7-retrospective: optional
 

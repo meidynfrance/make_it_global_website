@@ -10,7 +10,22 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(curl:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "WebFetch(domain:make-it-global-website.vercel.app)",
+      "Bash(git push:*)",
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(npm test:*)",
+      "Bash(timeout 5 npm run dev:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx lighthouse:*)",
+      "Bash(ls:*)",
+      "WebSearch",
+      "Bash(echo:*)",
+      "Bash(lsof:*)",
+      "Bash(kill:*)"
     ]
   }
 }
