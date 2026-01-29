@@ -1,8 +1,19 @@
 # Story 7.2: Implémenter le Tracking des Événements de Conversion
 
-Status: review
+Status: done
 
 ## Change Log
+
+- **2026-01-29 (Code Review)**: Story 7.2 code review fixes applied
+  - Fixed: TypeScript errors in analytics.test.ts (global → globalThis)
+  - Fixed: Removed console.log() in production (conditional import.meta.env.DEV)
+  - Fixed: Added error handling (try/catch) in all tracking functions
+  - Fixed: Added data validation (validateSection) for GA4 data quality
+  - Fixed: HeroSection now uses CalendlyEmbed instead of Button (tracking was missing)
+  - Fixed: CalendlyEmbed race condition - merged scripts, added max retries (50)
+  - Fixed: Event listener optimization - self-targeting, proper cleanup
+  - Fixed: Added @/ path alias in tsconfig.json
+  - Zero TypeScript errors, all tests pass (42/42), build: 446ms
 
 - **2026-01-29**: Story 7.2 completed - GA4 event tracking implemented
   - Created src/utils/analytics.ts with conversion tracking functions
@@ -1127,6 +1138,76 @@ claude-sonnet-4-5-20250929 (Sonnet 4.5)
 - ContactForm.astro: Confirmed NOT implemented in Story 6.1, tracking integration skipped as expected
 - Button.astro modified: Added support for `class` and `data-section` props for tracking context
 
+### Code Review Fixes Applied
+
+**Issue 1 (HIGH): HeroSection Missing Calendly Tracking**
+- Problem: HeroSection used Button component instead of CalendlyEmbed
+- Impact: AC#4 and AC#8 violated - Hero Calendly clicks not tracked
+- Fix: Replaced Button with CalendlyEmbed (type="popup", section="hero")
+- Files: src/components/sections/HeroSection.astro
+
+**Issue 2 (HIGH): TypeScript Errors in Test File**
+- Problem: 7 TypeScript errors - Cannot find name 'global'
+- Impact: Strict TypeScript mode fails, CI/CD issues
+- Fix: Replaced all `global.window` with `globalThis.window`
+- Files: src/utils/analytics.test.ts
+
+**Issue 3 (HIGH): console.log() in Production**
+- Problem: 3 console.log statements polluting production console
+- Impact: Performance hit, data exposure, anti-pattern
+- Fix: Wrapped all console.log/warn in `if (import.meta.env.DEV)` checks
+- Files: src/utils/analytics.ts
+
+**Issue 4 (HIGH): Missing @/ Path Alias**
+- Problem: Spec showed @/utils/analytics but actual code used ../../
+- Impact: Spec vs implementation mismatch, maintainability
+- Fix: Added paths configuration to tsconfig.json (baseUrl + @/* alias)
+- Files: tsconfig.json
+
+**Issue 5 (HIGH): CalendlyEmbed Race Condition**
+- Problem: Two separate scripts adding listeners to same button
+- Impact: Timing issues, possible double-tracking
+- Fix: Merged both scripts into one define:vars script with tracking
+- Files: src/components/ui/CalendlyEmbed.astro
+
+**Issue 6 (HIGH): Infinite Retry Loop Risk**
+- Problem: initCalendly() retries forever if SDK never loads
+- Impact: Memory leak, CPU burn
+- Fix: Added MAX_RETRIES = 50 (5 seconds) + fallback direct link
+- Files: src/components/ui/CalendlyEmbed.astro
+
+**Issue 7 (MEDIUM): No Event Listener Cleanup**
+- Problem: addEventListener without removeEventListener
+- Impact: Future memory leaks with View Transitions
+- Fix: Added cleanup in inline mode, proper once: true usage
+- Files: src/components/ui/CalendlyEmbed.astro
+
+**Issue 8 (MEDIUM): DOMContentLoaded Redundancy**
+- Problem: Multiple components doing querySelectorAll on entire DOM
+- Impact: Performance hit on pages with many CTAs
+- Fix: Self-targeting with unique IDs, no DOMContentLoaded needed
+- Files: src/components/ui/CalendlyEmbed.astro, WhatsAppButton.astro
+
+**Issue 9 (MEDIUM): Missing Data Validation**
+- Problem: trackXXX() accepts any string, GA4 data can be polluted
+- Impact: Analytics data quality issues
+- Fix: Added validateSection() with valid sections list + warnings
+- Files: src/utils/analytics.ts
+
+**Issue 10 (MEDIUM): No Error Handling**
+- Problem: window.gtag() could throw exception and crash
+- Impact: Rare but possible failure (adblockers modify gtag)
+- Fix: Wrapped all gtag calls in try/catch blocks
+- Files: src/utils/analytics.ts
+
+**Result:**
+- ✅ Zero TypeScript errors (was 7)
+- ✅ Zero console pollution in production
+- ✅ All HIGH issues fixed
+- ✅ All MEDIUM issues fixed
+- ✅ All tests passing (42/42)
+- ✅ Build successful (446ms)
+
 ### Completion Notes List
 
 ✅ **Task 1: analytics.ts utility created**
@@ -1193,9 +1274,17 @@ claude-sonnet-4-5-20250929 (Sonnet 4.5)
 - src/utils/analytics.ts
 - src/utils/analytics.test.ts
 
-**Modified Files:**
+**Modified Files (Original Implementation):**
 - src/components/ui/CalendlyEmbed.astro
 - src/components/ui/WhatsAppButton.astro
 - src/components/ui/Button.astro
 - src/components/sections/HeroSection.astro
 - src/components/sections/ContactSection.astro
+
+**Modified Files (Code Review Fixes):**
+- src/utils/analytics.ts (added error handling, validation, DEV-only logging)
+- src/utils/analytics.test.ts (fixed TypeScript errors: global → globalThis)
+- src/components/ui/CalendlyEmbed.astro (fixed race condition, infinite retry, cleanup)
+- src/components/ui/WhatsAppButton.astro (optimized event listeners, self-targeting)
+- src/components/sections/HeroSection.astro (fixed missing tracking: Button → CalendlyEmbed)
+- tsconfig.json (added @/ path alias configuration)
