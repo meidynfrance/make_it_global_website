@@ -83,7 +83,7 @@ development_status:
 
   # Epic 8: Optimisation Finale et Déploiement Production
   epic-8: in-progress
-  8-1-optimiser-les-images-et-assets: review
+  8-1-optimiser-les-images-et-assets: done
   8-2-audit-accessibilite-et-conformite-wcag-aa: backlog
   8-3-tests-de-performance-et-optimisation-lighthouse: backlog
   8-4-tests-de-compatibilite-navigateurs-et-configuration-production: backlog

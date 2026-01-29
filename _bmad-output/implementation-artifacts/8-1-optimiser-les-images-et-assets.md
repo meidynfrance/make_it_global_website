@@ -1,6 +1,6 @@
 # Story 8.1: Optimiser les Images et Assets
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
