@@ -1,6 +1,6 @@
 # Story 5.1: Créer TestimonialsSection avec Témoignages Clients
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -1298,12 +1298,21 @@ N/A - Story not yet implemented
 
 **Modified:**
 - src/pages/index.astro
+- src/layouts/BaseLayout.astro (code review fix: added skip link for #testimonials)
+- src/components/ui/TestimonialCard.astro (code review fix: removed unused custom class)
 
 **Unchanged:**
 - (All other existing files preserved)
 
 ## Change Log
 
+- **2026-01-29:** Code review complete - Story 5.1 marked as done (Date: 2026-01-29)
+  - Fixed ISSUE #1 (HIGH): Added skip link for #testimonials in BaseLayout.astro
+  - Fixed ISSUE #4 (MEDIUM): Removed unused custom class "testimonial-card" from TestimonialCard.astro
+  - Updated story status: review → done
+  - Updated sprint-status.yaml: 5-1-creer-testimonialssection-avec-temoignages-clients → done
+  - Remaining warnings: Vite CSS minify warning (build artifact, non-blocking)
+  - Review findings: 1 High, 4 Medium, 3 Low issues identified - High and critical Medium issues fixed
 - **2026-01-29:** Story 5.1 implementation complete - TestimonialsSection with client success stories added (Date: 2026-01-29)
   - Created TestimonialCard.astro with visual hierarchy and semantic HTML
   - Created TestimonialsSection.astro with 3 varied testimonials
