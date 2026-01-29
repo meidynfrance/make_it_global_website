@@ -1,0 +1,52 @@
+---
+/**
+ * TestimonialCard Component
+ *
+ * Displays a client testimonial with visual hierarchy:
+ * 1. Result (Most Prominent): Large, bold, colored metric
+ * 2. Quote (Main Content): Client's testimonial in conversational French
+ * 3. Client Type (Discreet): Profile type with optional name
+ *
+ * Props:
+ * - quote: Client testimonial quote (2-3 lines max)
+ * - result: Highlighted business result (e.g., "CA triplé en 6 mois")
+ * - clientType: Client profile (e.g., "Infopreneur", "CEO PME B2B")
+ * - clientName (optional): Client name (initials or masked)
+ *
+ * Usage:
+ * <TestimonialCard
+ *   result="CA triplé en 6 mois"
+ *   quote="Grâce à Make It Global, j'ai pu toucher le marché anglophone sans perdre des mois en traduction."
+ *   clientType="Infopreneur"
+ *   clientName="M.L."
+ * />
+ */
+
+interface Props {
+  quote: string;
+  result: string;
+  clientType: string;
+  clientName?: string;
+}
+
+const { quote, result, clientType, clientName } = Astro.props;
+---
+
+<article class="testimonial-card bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 md:p-8">
+  <!-- Result (Visual Prominence) -->
+  <p class="result text-4xl md:text-5xl font-bold text-accent-600 mb-4" aria-label={`Résultat: ${result}`}>
+    {result}
+  </p>
+
+  <!-- Quote (Main Content) -->
+  <blockquote class="quote text-base text-neutral-700 mb-4 italic">
+    <p>« {quote} »</p>
+  </blockquote>
+
+  <!-- Client Type (Discreet) -->
+  <footer class="client-info">
+    <p class="text-sm text-neutral-600 font-medium">
+      {clientName ? `${clientName}, ` : ''}{clientType}
+    </p>
+  </footer>
+</article>

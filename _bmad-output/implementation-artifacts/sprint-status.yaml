@@ -66,8 +66,8 @@ development_status:
   epic-4-retrospective: optional
 
   # Epic 5: Section Témoignages et Résultats Chiffrés
-  epic-5: backlog
-  5-1-creer-testimonialssection-avec-temoignages-clients: backlog
+  epic-5: in-progress
+  5-1-creer-testimonialssection-avec-temoignages-clients: review
   epic-5-retrospective: optional
 
   # Epic 6: Section Contact Multi-Canal (Conversion)

@@ -1,0 +1,72 @@
+---
+/**
+ * TestimonialsSection Component
+ *
+ * Displays client testimonials and concrete business results to create social proof
+ * and emotional momentum before the ContactSection.
+ *
+ * Features:
+ * - 3 varied client testimonials (infopreneur, CEO B2B, formateur)
+ * - Results-focused content with quantifiable metrics
+ * - Responsive grid: 1 col mobile, 2 col tablet, 3 col desktop
+ * - Semantic HTML with WCAG AA accessibility
+ * - Inspirational tone to drive conversion
+ *
+ * Conversion Flow: "Wow résultats" → "Moi aussi je peux" → "Je veux ça" → ContactSection
+ */
+
+import TestimonialCard from '../ui/TestimonialCard.astro';
+
+// Testimonials content - 3 varied client profiles with concrete results
+const testimonials = [
+  {
+    result: 'CA triplé en 6 mois',
+    quote: 'Grâce à Make It Global, j\'ai pu toucher le marché anglophone sans perdre des mois en traduction. Le lip-sync est bluffant, mes clients pensent que je parle anglais couramment!',
+    clientType: 'Infopreneur',
+    clientName: 'M.L.',
+  },
+  {
+    result: 'Nouveau marché allemand en 3 mois',
+    quote: 'On hésitait à se lancer en Allemagne par peur de la barrière linguistique. Avec Make It Global, nos vidéos produits ont été traduites en 2 semaines. Résultat: premiers clients allemands dès le mois suivant.',
+    clientType: 'CEO PME industrielle B2B',
+    clientName: 'P.D.',
+  },
+  {
+    result: 'Audience internationale +150%',
+    quote: 'Mes formations en ligne étaient limitées au marché français. Aujourd\'hui, 60% de mes élèves sont anglophones ou hispanophones. La qualité du doublage fait toute la différence.',
+    clientType: 'Formateur en ligne',
+    clientName: 'S.R.',
+  },
+];
+---
+
+<section
+  id="testimonials"
+  aria-labelledby="testimonials-heading"
+  aria-label="Témoignages clients"
+  class="py-16 md:py-24 px-6 md:px-12 bg-white"
+>
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        Ils Ont Transformé Leur Business
+      </h2>
+      <p class="text-lg text-neutral-700 max-w-2xl mx-auto">
+        Rejoignez les entrepreneurs qui ont osé passer à l'international et ont vu leurs résultats exploser.
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {testimonials.map((testimonial) => (
+        <TestimonialCard
+          result={testimonial.result}
+          quote={testimonial.quote}
+          clientType={testimonial.clientType}
+          clientName={testimonial.clientName}
+        />
+      ))}
+    </div>
+  </div>
+</section>
