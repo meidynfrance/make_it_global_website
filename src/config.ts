@@ -6,7 +6,8 @@
 
 // Contact Information
 export const WHATSAPP_NUMBER = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '33647770475';
-export const WHATSAPP_DEFAULT_MESSAGE = 'Bonjour, j\'aimerais en savoir plus sur vos services de traduction multimédia.';
+export const WHATSAPP_DEFAULT_MESSAGE = `Bonjour, j'aimerais en savoir plus sur vos services de traduction multimédia.`;
+export const WHATSAPP_MESSAGE_CONTACT = `Bonjour, j'aimerais discuter de comment traduire mon contenu à l'international.`;
 
 // External Service URLs
 export const CALENDLY_URL = import.meta.env.PUBLIC_CALENDLY_URL || 'https://calendly.com/contact-makeitglobal-agency/30min';

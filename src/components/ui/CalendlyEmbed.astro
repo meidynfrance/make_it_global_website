@@ -1,0 +1,99 @@
+---
+/**
+ * CalendlyEmbed Component
+ *
+ * Integrates Calendly scheduling widget with popup and inline modes
+ * Implements responsive design and accessibility standards
+ *
+ * @component
+ */
+
+import Button from './Button.astro';
+
+interface Props {
+  calendlyUrl: string;
+  type?: 'popup' | 'inline';
+  buttonText?: string;
+  height?: string;
+  hideEventDetails?: boolean;
+  hideCookieBanner?: boolean;
+}
+
+const {
+  calendlyUrl,
+  type = 'popup',
+  buttonText = 'Réserver mon appel',
+  height = '630px',
+  hideEventDetails = false,
+  hideCookieBanner = true,
+} = Astro.props;
+
+// Improved URL validation - check hostname is exactly calendly.com OR valid username/event format
+const isValidUrl = (() => {
+  try {
+    // If it's a full URL, parse and check hostname
+    if (calendlyUrl.startsWith('http')) {
+      const url = new URL(calendlyUrl);
+      return url.hostname === 'calendly.com' || url.hostname.endsWith('.calendly.com');
+    }
+    // If it's a short format, validate username/event pattern (allow dots, hyphens, underscores)
+    return /^[\w.-]+\/[\w-]+$/.test(calendlyUrl);
+  } catch {
+    return false;
+  }
+})();
+
+if (!isValidUrl) {
+  console.warn(`CalendlyEmbed: Invalid URL format - ${calendlyUrl}`);
+}
+
+// Format URL complète si nécessaire
+const fullUrl = calendlyUrl.startsWith('http')
+  ? calendlyUrl
+  : `https://calendly.com/${calendlyUrl}`;
+
+// Generate unique ID for this component instance
+const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+{type === 'popup' ? (
+  <>
+    <button
+      id={uniqueId}
+      type="button"
+      class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white"
+      aria-label="Réserver un appel découverte avec Make It Global"
+    >
+      {buttonText}
+    </button>
+
+    <script define:vars={{ uniqueId, fullUrl }}>
+      // Wait for Calendly SDK to load, then attach event listener
+      const button = document.getElementById(uniqueId);
+
+      function initCalendly() {
+        if (typeof Calendly !== 'undefined') {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            Calendly.initPopupWidget({ url: fullUrl });
+          });
+        } else {
+          // Retry if Calendly SDK not loaded yet
+          setTimeout(initCalendly, 100);
+        }
+      }
+
+      initCalendly();
+    </script>
+  </>
+) : (
+  <div
+    class="calendly-inline-widget"
+    data-url={fullUrl}
+    data-hide-event-details={hideEventDetails}
+    data-hide-cookie-banner={hideCookieBanner}
+    style={`height: ${height}; min-width: 320px;`}
+    role="region"
+    aria-label="Calendly widget - Réservez votre appel découverte"
+  ></div>
+)}

@@ -46,6 +46,12 @@ import '../styles/global.css';
     <link rel="preconnect" href="https://player.vimeo.com" />
     <link rel="dns-prefetch" href="https://www.youtube.com" />
     <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
+
+    <!-- Preconnect to Calendly CDN for faster scheduling widget load -->
+    <link rel="preconnect" href="https://assets.calendly.com" />
+
+    <!-- Calendly SDK - Async load in head for optimal performance -->
+    <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
   </head>
   <body>
     <!-- Skip Links - Hidden by default, visible on keyboard focus -->
