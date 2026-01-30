@@ -15,11 +15,7 @@
  * - WCAG AA compliant color contrast
  */
 
-import { Image } from 'astro:assets';
 import GeometricBackground from '../ui/GeometricBackground.astro';
-import step1Image from '../../assets/images/process-step-1.svg';
-import step2Image from '../../assets/images/process-step-2.svg';
-import step3Image from '../../assets/images/process-step-3.svg';
 
 interface Props {
   // No props needed for MVP - hard-coded content
@@ -41,78 +37,116 @@ interface Props {
       Notre Processus Clé-en-Main
     </h2>
 
-    <!-- 3-Step Process Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+    <!-- 3-Step Process - Elegant Timeline -->
+    <div class="relative max-w-6xl mx-auto">
+      <!-- Connection Line (Desktop only) -->
+      <div class="hidden md:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500/20 via-cyan-500/40 to-cyan-500/20" aria-hidden="true"></div>
 
-      <!-- Step 1: You send -->
-      <div class="text-center space-y-4">
-        <div class="text-6xl font-bold text-cyan-400 mb-4">
-          <span class="sr-only">Étape </span>
-          <span aria-hidden="true">1</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+
+        <!-- Step 1 -->
+        <div class="relative group">
+          <!-- Number Badge -->
+          <div class="flex justify-center mb-6">
+            <div class="relative">
+              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300">
+                <span class="text-4xl font-bold text-cyan-400">1</span>
+              </div>
+              <!-- Glow effect -->
+              <div class="absolute inset-0 rounded-full bg-cyan-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Icon -->
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-500/20 flex items-center justify-center group-hover:border-cyan-500/40 transition-all duration-300">
+              <!-- Upload Icon -->
+              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Content Card -->
+          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300">
+            <h3 class="text-lg font-semibold text-white mb-3 text-center">
+              Transmission de vos contenus
+            </h3>
+            <p class="text-sm text-text-secondary text-center leading-relaxed">
+              Envoyez vos fichiers dans leur format d'origine. Nous acceptons tous les formats sans conversion préalable.
+            </p>
+          </div>
         </div>
-        <div class="flex justify-center mb-4">
-          <Image
-            src={step1Image}
-            alt="Étape 1: Vous envoyez votre contenu"
-            width={400}
-            height={300}
-            class="rounded-lg shadow-md shadow-cyan-500/20"
-          />
+
+        <!-- Step 2 -->
+        <div class="relative group">
+          <!-- Number Badge -->
+          <div class="flex justify-center mb-6">
+            <div class="relative">
+              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300">
+                <span class="text-4xl font-bold text-cyan-400">2</span>
+              </div>
+              <!-- Glow effect -->
+              <div class="absolute inset-0 rounded-full bg-cyan-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Icon -->
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-500/20 flex items-center justify-center group-hover:border-cyan-500/40 transition-all duration-300">
+              <!-- Process Icon (IA + Human) -->
+              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Content Card -->
+          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300">
+            <h3 class="text-lg font-semibold text-white mb-3 text-center">
+              Traduction, adaptation et finalisation
+            </h3>
+            <p class="text-sm text-text-secondary text-center leading-relaxed">
+              Traduction assistée par IA, validation par experts natifs. Pour les vidéos : remontage complet incluant voix, sous-titres et éléments graphiques.
+            </p>
+          </div>
         </div>
-        <p class="text-lg font-semibold text-white">
-          Transmission de vos contenus
-        </p>
-        <p class="text-base text-text-secondary">
-          Envoyez vos fichiers dans leur format d'origine. Nous acceptons tous les formats sans conversion préalable.
-        </p>
+
+        <!-- Step 3 -->
+        <div class="relative group">
+          <!-- Number Badge -->
+          <div class="flex justify-center mb-6">
+            <div class="relative">
+              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300">
+                <span class="text-4xl font-bold text-cyan-400">3</span>
+              </div>
+              <!-- Glow effect -->
+              <div class="absolute inset-0 rounded-full bg-cyan-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Icon -->
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-500/20 flex items-center justify-center group-hover:border-cyan-500/40 transition-all duration-300">
+              <!-- Check/Delivery Icon -->
+              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Content Card -->
+          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300">
+            <h3 class="text-lg font-semibold text-white mb-3 text-center">
+              Réception des livrables finaux
+            </h3>
+            <p class="text-sm text-text-secondary text-center leading-relaxed">
+              Sous 48h, vous recevez vos contenus prêts à être déployés sur vos canaux de communication.
+            </p>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Step 2: We translate and validate -->
-      <div class="text-center space-y-4">
-        <div class="text-6xl font-bold text-cyan-400 mb-4">
-          <span class="sr-only">Étape </span>
-          <span aria-hidden="true">2</span>
-        </div>
-        <div class="flex justify-center mb-4">
-          <Image
-            src={step2Image}
-            alt="Étape 2: On traduit avec IA + validation humaine"
-            width={400}
-            height={300}
-            class="rounded-lg shadow-md shadow-cyan-500/20"
-          />
-        </div>
-        <p class="text-lg font-semibold text-white">
-          Traduction, adaptation et finalisation
-        </p>
-        <p class="text-base text-text-secondary">
-          Traduction assistée par IA, validation par experts natifs. Pour les vidéos : remontage complet incluant voix, sous-titres et éléments graphiques.
-        </p>
-      </div>
-
-      <!-- Step 3: You receive in 48h -->
-      <div class="text-center space-y-4">
-        <div class="text-6xl font-bold text-cyan-400 mb-4">
-          <span class="sr-only">Étape </span>
-          <span aria-hidden="true">3</span>
-        </div>
-        <div class="flex justify-center mb-4">
-          <Image
-            src={step3Image}
-            alt="Étape 3: Vous recevez le résultat final"
-            width={400}
-            height={300}
-            class="rounded-lg shadow-md shadow-cyan-500/20"
-          />
-        </div>
-        <p class="text-lg font-semibold text-white">
-          Réception des livrables finaux
-        </p>
-        <p class="text-base text-text-secondary">
-          Sous 48h, vous recevez vos contenus prêts à être déployés sur vos canaux de communication.
-        </p>
-      </div>
-
     </div>
 
     <!-- Reassurance Message -->
