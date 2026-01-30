@@ -72,7 +72,21 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
 
     <script define:vars={{ uniqueId, fullUrl, section }}>
       // Combined Calendly initialization + GA4 tracking (fixes race condition)
-      import { trackCalendlyClick } from '../../utils/analytics';
+      // Inline tracking function to avoid import issues in define:vars
+      function trackClick(sectionName) {
+        if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+          try {
+            window.gtag('event', 'calendly_click', {
+              event_category: 'conversion',
+              event_label: sectionName,
+              section: sectionName,
+              cta_type: 'calendly'
+            });
+          } catch (e) {
+            console.error('GA4 tracking error:', e);
+          }
+        }
+      }
 
       const button = document.getElementById(uniqueId);
       let retryCount = 0;
@@ -84,7 +98,7 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
             e.preventDefault();
 
             // Track click before opening widget
-            trackCalendlyClick(section);
+            trackClick(section);
 
             // Open Calendly popup
             Calendly.initPopupWidget({ url: fullUrl });
@@ -97,7 +111,7 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
           } else {
             // Fallback: direct link if SDK fails to load
             button.addEventListener('click', () => {
-              trackCalendlyClick(section);
+              trackClick(section);
               window.open(fullUrl, '_blank', 'noopener,noreferrer');
             });
             if (typeof console !== 'undefined' && console.warn) {
@@ -126,14 +140,28 @@ const uniqueId = `calendly-${Math.random().toString(36).substr(2, 9)}`;
 
     <script define:vars={{ uniqueId, section }}>
       // Inline widget tracking - self-targeting to avoid querySelectorAll
-      import { trackCalendlyClick } from '../../utils/analytics';
+      // Inline tracking function to avoid import issues in define:vars
+      function trackClick(sectionName) {
+        if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+          try {
+            window.gtag('event', 'calendly_click', {
+              event_category: 'conversion',
+              event_label: sectionName,
+              section: sectionName,
+              cta_type: 'calendly'
+            });
+          } catch (e) {
+            console.error('GA4 tracking error:', e);
+          }
+        }
+      }
 
       const container = document.getElementById(uniqueId);
 
       if (container) {
         // Track on container click as proxy for iframe interaction
         const handleClick = () => {
-          trackCalendlyClick(section);
+          trackClick(section);
           // Remove listener after first click to prevent duplicates
           container.removeEventListener('click', handleClick);
         };
