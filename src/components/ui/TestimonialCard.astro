@@ -32,20 +32,20 @@ interface Props {
 const { quote, result, clientType, clientName } = Astro.props;
 ---
 
-<article class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 md:p-8">
+<article class="bg-dark-card rounded-lg shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 p-6 md:p-8 border border-cyan-500/10 hover:border-cyan-500/30">
   <!-- Result (Visual Prominence) -->
-  <p class="result text-4xl md:text-5xl font-bold text-accent-600 mb-4" aria-label={`Résultat: ${result}`}>
+  <p class="result text-4xl md:text-5xl font-bold text-cyan-400 mb-4" aria-label={`Résultat: ${result}`}>
     {result}
   </p>
 
   <!-- Quote (Main Content) -->
-  <blockquote class="quote text-base text-neutral-700 mb-4 italic">
+  <blockquote class="quote text-base text-text-secondary mb-4 italic">
     <p>« {quote} »</p>
   </blockquote>
 
   <!-- Client Type (Discreet) -->
   <footer class="client-info">
-    <p class="text-sm text-neutral-600 font-medium">
+    <p class="text-sm text-text-tertiary font-medium">
       {clientName ? `${clientName}, ` : ''}{clientType}
     </p>
   </footer>

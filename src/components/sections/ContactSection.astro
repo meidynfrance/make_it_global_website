@@ -1,9 +1,9 @@
 ---
 /**
- * ContactSection Component
+ * ContactSection Component - Dark Theme with Geometric Animations
  *
- * Final conversion section with dual CTAs (Calendly + WhatsApp)
- * Implements "Conversion Multi-Canal" + "Zéro Friction" UX principles
+ * Final conversion section with WhatsApp CTA
+ * Implements "Zéro Friction" UX principle
  *
  * @component
  * @warning This component uses an H2 heading and requires a parent H1 on the page
@@ -12,49 +12,45 @@
  */
 
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
-import { CALENDLY_URL, WHATSAPP_NUMBER, WHATSAPP_MESSAGE_CONTACT } from '../../config';
+import GeometricBackground from '../ui/GeometricBackground.astro';
+import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_CONTACT } from '../../config';
 ---
 
 <section
   id="contact"
   aria-labelledby="contact-heading"
   aria-label="Contactez-nous"
-  class="py-16 md:py-24 px-6 md:px-12 bg-primary-900 text-white"
+  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-base text-white overflow-hidden"
 >
-  <div class="max-w-2xl mx-auto text-center">
+  <!-- Geometric Background Animation -->
+  <GeometricBackground intensity="strong" variant="cyan" />
+
+  <!-- Gradient overlay for emphasis -->
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-primary-500/10 pointer-events-none z-5"></div>
+
+  <div class="relative z-10 max-w-2xl mx-auto text-center">
     <!-- Section Header -->
     <div class="mb-12">
       <h2
         id="contact-heading"
-        class="text-4xl md:text-5xl font-extrabold text-white mb-4"
+        class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-[0_0_30px_rgba(0,229,255,0.3)]"
       >
         Hâte de démarrer ?
       </h2>
-      <p class="text-lg md:text-xl text-primary-100">
-        Réservez un appel découverte ou discutez directement avec nous.<br>
+      <p class="text-lg md:text-xl text-text-secondary">
+        Discutez directement avec nous sur WhatsApp.<br>
         Zéro engagement, juste une conversation.
       </p>
     </div>
 
-    <!-- CTA Group: Calendly + WhatsApp (Equal Importance) -->
-    <div class="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
-      <!-- Calendly Button -->
-      <a
-        href={CALENDLY_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white"
-        aria-label="Réserver un appel découverte avec Make It Global"
-      >
-        Réserver mon appel
-      </a>
-
-      <!-- WhatsApp Button -->
+    <!-- CTA: WhatsApp -->
+    <div class="flex justify-center">
       <WhatsAppButton
         phoneNumber={WHATSAPP_NUMBER}
         message={WHATSAPP_MESSAGE_CONTACT}
         label="Discuter sur WhatsApp"
         section="contact"
+        variant="primary"
       />
     </div>
   </div>

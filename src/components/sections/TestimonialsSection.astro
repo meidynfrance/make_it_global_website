@@ -1,6 +1,6 @@
 ---
 /**
- * TestimonialsSection Component
+ * TestimonialsSection Component - Dark Theme with Geometric Animations
  *
  * Displays client testimonials and concrete business results to create social proof
  * and emotional momentum before the ContactSection.
@@ -16,6 +16,7 @@
  */
 
 import TestimonialCard from '../ui/TestimonialCard.astro';
+import GeometricBackground from '../ui/GeometricBackground.astro';
 
 // Testimonials content - 3 varied client profiles with concrete results
 const testimonials = [
@@ -44,15 +45,18 @@ const testimonials = [
   id="testimonials"
   aria-labelledby="testimonials-heading"
   aria-label="Témoignages clients"
-  class="py-16 md:py-24 px-6 md:px-12 bg-white"
+  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-base overflow-hidden"
 >
-  <div class="max-w-7xl mx-auto">
+  <!-- Geometric Background Animation -->
+  <GeometricBackground intensity="medium" variant="cyan" />
+
+  <div class="relative z-10 max-w-7xl mx-auto">
     <!-- Section Header -->
     <div class="text-center mb-12">
-      <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+      <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-bold text-white mb-4">
         Ils Ont Transformé Leur Business
       </h2>
-      <p class="text-lg text-neutral-700 max-w-2xl mx-auto">
+      <p class="text-lg text-text-secondary max-w-2xl mx-auto">
         Rejoignez les entrepreneurs qui ont osé passer à l'international et ont vu leurs résultats exploser.
       </p>
     </div>

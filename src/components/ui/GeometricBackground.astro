@@ -1,0 +1,145 @@
+---
+/**
+ * GeometricBackground Component
+ *
+ * Animated geometric network with parallax effect for dark theme
+ * Creates a subtle moving background with connected nodes and lines
+ *
+ * Props:
+ * - intensity: 'subtle' | 'medium' | 'strong' - Animation visibility
+ * - variant: 'cyan' | 'blue' | 'mixed' - Color scheme
+ */
+
+interface Props {
+  intensity?: 'subtle' | 'medium' | 'strong';
+  variant?: 'cyan' | 'blue' | 'mixed';
+}
+
+const { intensity = 'medium', variant = 'mixed' } = Astro.props;
+
+// Define opacity based on intensity
+const opacityMap = {
+  subtle: { line: 0.1, node: 0.2 },
+  medium: { line: 0.15, node: 0.3 },
+  strong: { line: 0.2, node: 0.4 }
+};
+
+const opacity = opacityMap[intensity];
+
+// Define colors based on variant
+const colorMap = {
+  cyan: { primary: 'rgba(0, 229, 255, ', secondary: 'rgba(0, 212, 230, ' },
+  blue: { primary: 'rgba(43, 138, 237, ', secondary: 'rgba(37, 99, 235, ' },
+  mixed: { primary: 'rgba(0, 229, 255, ', secondary: 'rgba(43, 138, 237, ' }
+};
+
+const colors = colorMap[variant];
+---
+
+<div class="geometric-background" aria-hidden="true">
+  <svg
+    class="geometric-svg"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1920 1080"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <!-- Layer 1: Slow movement (40s) -->
+    <g class="animate-parallax-slow">
+      <!-- Top left polygon -->
+      <line x1="100" y1="100" x2="250" y2="80" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 0s;" />
+      <line x1="250" y1="80" x2="300" y2="200" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 0.5s;" />
+      <line x1="300" y1="200" x2="100" y2="100" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 1s;" />
+      <circle cx="100" cy="100" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 0s;" />
+      <circle cx="250" cy="80" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 0.3s;" />
+      <circle cx="300" cy="200" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 0.6s;" />
+
+      <!-- Top right area -->
+      <line x1="1600" y1="150" x2="1750" y2="100" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 1.5s;" />
+      <line x1="1750" y1="100" x2="1800" y2="250" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 2s;" />
+      <circle cx="1600" cy="150" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 0.9s;" />
+      <circle cx="1750" cy="100" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 1.2s;" />
+      <circle cx="1800" cy="250" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 1.5s;" />
+    </g>
+
+    <!-- Layer 2: Medium movement (30s) -->
+    <g class="animate-parallax-medium">
+      <!-- Center left polygon -->
+      <line x1="150" y1="400" x2="350" y2="450" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 2.5s;" />
+      <line x1="350" y1="450" x2="280" y2="580" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 3s;" />
+      <line x1="280" y1="580" x2="150" y2="400" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 3.5s;" />
+      <circle cx="150" cy="400" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 1.8s;" />
+      <circle cx="350" cy="450" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 2.1s;" />
+      <circle cx="280" cy="580" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 2.4s;" />
+
+      <!-- Center area -->
+      <line x1="800" y1="300" x2="1000" y2="350" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 4s;" />
+      <line x1="1000" y1="350" x2="950" y2="500" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 4.5s;" />
+      <line x1="950" y1="500" x2="800" y2="300" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 5s;" />
+      <circle cx="800" cy="300" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 2.7s;" />
+      <circle cx="1000" cy="350" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 3s;" />
+      <circle cx="950" cy="500" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 3.3s;" />
+
+      <!-- Center right -->
+      <line x1="1400" y1="400" x2="1550" y2="480" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 5.5s;" />
+      <line x1="1550" y1="480" x2="1450" y2="600" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 6s;" />
+      <circle cx="1400" cy="400" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 3.6s;" />
+      <circle cx="1550" cy="480" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 3.9s;" />
+      <circle cx="1450" cy="600" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 4.2s;" />
+    </g>
+
+    <!-- Layer 3: Fast movement (20s) -->
+    <g class="animate-parallax-fast">
+      <!-- Bottom left -->
+      <line x1="200" y1="800" x2="380" y2="850" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 6.5s;" />
+      <line x1="380" y1="850" x2="320" y2="950" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 7s;" />
+      <line x1="320" y1="950" x2="200" y2="800" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 7.5s;" />
+      <circle cx="200" cy="800" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 4.5s;" />
+      <circle cx="380" cy="850" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 4.8s;" />
+      <circle cx="320" cy="950" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 5.1s;" />
+
+      <!-- Bottom center -->
+      <line x1="850" y1="780" x2="1050" y2="820" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 8s;" />
+      <line x1="1050" y1="820" x2="980" y2="960" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 8.5s;" />
+      <circle cx="850" cy="780" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 5.4s;" />
+      <circle cx="1050" cy="820" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 5.7s;" />
+      <circle cx="980" cy="960" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 6s;" />
+
+      <!-- Bottom right -->
+      <line x1="1600" y1="850" x2="1750" y2="900" stroke={`${colors.secondary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 9s;" />
+      <line x1="1750" y1="900" x2="1680" y2="1000" stroke={`${colors.primary}${opacity.line})`} stroke-width="1" class="animate-line-pulse" style="animation-delay: 9.5s;" />
+      <circle cx="1600" cy="850" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 6.3s;" />
+      <circle cx="1750" cy="900" r="3" fill={`${colors.primary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 6.6s;" />
+      <circle cx="1680" cy="1000" r="3" fill={`${colors.secondary}${opacity.node})`} class="animate-node-pulse" style="animation-delay: 6.9s;" />
+    </g>
+  </svg>
+</div>
+
+<style>
+  .geometric-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .geometric-svg {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  /* Ensure GPU acceleration */
+  .animate-parallax-slow,
+  .animate-parallax-medium,
+  .animate-parallax-fast {
+    will-change: transform;
+  }
+
+  line, circle {
+    will-change: opacity, transform;
+  }
+</style>

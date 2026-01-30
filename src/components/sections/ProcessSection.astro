@@ -1,6 +1,6 @@
 ---
 /**
- * ProcessSection Component
+ * ProcessSection Component - Dark Theme with Geometric Animations
  *
  * Displays the 3-step turnkey process:
  * 1. You send your content
@@ -16,6 +16,7 @@
  */
 
 import { Image } from 'astro:assets';
+import GeometricBackground from '../ui/GeometricBackground.astro';
 import step1Image from '../../assets/images/process-step-1.svg';
 import step2Image from '../../assets/images/process-step-2.svg';
 import step3Image from '../../assets/images/process-step-3.svg';
@@ -29,11 +30,14 @@ interface Props {
   id="process"
   aria-labelledby="process-heading"
   aria-label="Processus de travail"
-  class="py-16 md:py-24 px-6 md:px-12 bg-white"
+  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-base overflow-hidden"
 >
-  <div class="max-w-7xl mx-auto">
+  <!-- Geometric Background Animation -->
+  <GeometricBackground intensity="medium" variant="mixed" />
+
+  <div class="relative z-10 max-w-7xl mx-auto">
     <!-- Section Heading -->
-    <h2 id="process-heading" class="text-3xl md:text-4xl font-bold text-center text-neutral-900 mb-12">
+    <h2 id="process-heading" class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
       Notre Processus Clé-en-Main
     </h2>
 
@@ -42,7 +46,7 @@ interface Props {
 
       <!-- Step 1: You send -->
       <div class="text-center space-y-4">
-        <div class="text-6xl font-bold text-accent-500 mb-4">
+        <div class="text-6xl font-bold text-cyan-400 mb-4">
           <span class="sr-only">Étape </span>
           <span aria-hidden="true">1</span>
         </div>
@@ -52,20 +56,20 @@ interface Props {
             alt="Étape 1: Vous envoyez votre contenu"
             width={400}
             height={300}
-            class="rounded-lg shadow-md"
+            class="rounded-lg shadow-md shadow-cyan-500/20"
           />
         </div>
-        <p class="text-lg font-semibold text-neutral-900">
+        <p class="text-lg font-semibold text-white">
           Vous envoyez votre contenu
         </p>
-        <p class="text-base text-neutral-700">
+        <p class="text-base text-text-secondary">
           Aucune conversion requise - envoyez tel quel, tout format accepté.
         </p>
       </div>
 
       <!-- Step 2: We translate and validate -->
       <div class="text-center space-y-4">
-        <div class="text-6xl font-bold text-accent-500 mb-4">
+        <div class="text-6xl font-bold text-cyan-400 mb-4">
           <span class="sr-only">Étape </span>
           <span aria-hidden="true">2</span>
         </div>
@@ -75,20 +79,20 @@ interface Props {
             alt="Étape 2: On traduit avec IA + validation humaine"
             width={400}
             height={300}
-            class="rounded-lg shadow-md"
+            class="rounded-lg shadow-md shadow-cyan-500/20"
           />
         </div>
-        <p class="text-lg font-semibold text-neutral-900">
+        <p class="text-lg font-semibold text-white">
           On traduit et valide
         </p>
-        <p class="text-base text-neutral-700">
+        <p class="text-base text-text-secondary">
           Aucune relecture à faire - validation par experts natifs incluse.
         </p>
       </div>
 
       <!-- Step 3: You receive in 48h -->
       <div class="text-center space-y-4">
-        <div class="text-6xl font-bold text-accent-500 mb-4">
+        <div class="text-6xl font-bold text-cyan-400 mb-4">
           <span class="sr-only">Étape </span>
           <span aria-hidden="true">3</span>
         </div>
@@ -98,13 +102,13 @@ interface Props {
             alt="Étape 3: Vous recevez le résultat final"
             width={400}
             height={300}
-            class="rounded-lg shadow-md"
+            class="rounded-lg shadow-md shadow-cyan-500/20"
           />
         </div>
-        <p class="text-lg font-semibold text-neutral-900">
+        <p class="text-lg font-semibold text-white">
           Vous recevez en 48h
         </p>
-        <p class="text-base text-neutral-700">
+        <p class="text-base text-text-secondary">
           Aucune intégration technique - livraison en 48h, prêt à publier.
         </p>
       </div>
@@ -113,12 +117,12 @@ interface Props {
 
     <!-- Reassurance Message -->
     <div class="mt-16 text-center">
-      <div class="inline-flex items-center gap-2 px-6 py-3 bg-accent-100 border-2 border-accent-300 rounded-lg hover:scale-105 focus-within:scale-105 transition-transform">
+      <div class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-900/20 border-2 border-cyan-500/30 rounded-lg hover:scale-105 focus-within:scale-105 transition-transform">
         <!-- Check Shield Icon for reassurance -->
-        <svg class="w-6 h-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+        <svg class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
-        <span class="text-xl font-bold text-accent-700">
+        <span class="text-xl font-bold text-cyan-300">
           Vous n'avez rien à gérer - On s'occupe de tout
         </span>
       </div>

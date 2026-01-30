@@ -1,30 +1,23 @@
 ---
 /**
- * HeroSection Component - Main hero section with value proposition and dual CTAs
+ * HeroSection Component - Dark Theme with Geometric Animations
  * Mobile-first responsive design with accessibility features
  */
-import { Image } from 'astro:assets';
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
-import { CALENDLY_URL, WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
-import heroBackground from '../../assets/images/hero-background.svg';
+import GeometricBackground from '../ui/GeometricBackground.astro';
+import { WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
 ---
 
 <section
-  class="relative w-full overflow-hidden animate-fade-in opacity-100"
+  class="relative w-full overflow-hidden animate-fade-in opacity-100 bg-dark-base"
   aria-label="Hero"
 >
-  <!-- Hero Background Image with priority (LCP optimization) -->
-  <!-- Dark overlay for guaranteed text contrast (WCAG AA compliant) -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20 -z-5"></div>
-  <Image
-    src={heroBackground}
-    alt="Service de traduction vidéo avec lip-sync professionnel - Make It Global"
-    width={1920}
-    height={1080}
-    loading="eager"
-    fetchpriority="high"
-    class="absolute inset-0 w-full h-full object-cover -z-10"
-  />
+  <!-- Geometric Background Animation -->
+  <GeometricBackground intensity="strong" variant="cyan" />
+
+  <!-- Gradient overlay for depth -->
+  <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-transparent pointer-events-none z-5"></div>
+
   <!-- Content overlay with improved readability -->
   <div class="relative z-10 max-w-4xl mx-auto px-4 py-32 md:py-48 lg:py-64 text-center">
     <!-- Headline with improved contrast over background image -->
@@ -37,22 +30,13 @@ import heroBackground from '../../assets/images/hero-background.svg';
       Service clé-en-main combinant IA et expertise humaine pour traduire vos vidéos, PDFs et textes. Expansion internationale sans effort.
     </p>
 
-    <!-- CTAs -->
-    <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
-      <a
-        href={CALENDLY_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white"
-        aria-label="Réserver un appel découverte avec Make It Global"
-      >
-        Réserver mon appel
-      </a>
-
+    <!-- CTA -->
+    <div class="mt-8 md:mt-10 flex justify-center">
       <WhatsAppButton
         phoneNumber={WHATSAPP_NUMBER}
         message={WHATSAPP_DEFAULT_MESSAGE}
         section="hero"
+        variant="primary"
       />
     </div>
   </div>

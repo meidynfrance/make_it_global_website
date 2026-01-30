@@ -1,17 +1,20 @@
 ---
 /**
- * ProblemSection Component - Problem/Solution section explaining Make It Global's value
+ * ProblemSection Component - Dark Theme with Geometric Animations
  * Presents common internationalization challenges and hybrid AI+Human solution
  * Mobile-first responsive design with semantic HTML and WCAG AA accessibility
  */
+import GeometricBackground from '../ui/GeometricBackground.astro';
 ---
 
 <section
   id="problem"
   aria-label="Problème et solution"
-  class="py-16 md:py-24 px-6 md:px-12 bg-white"
+  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-surface overflow-hidden"
 >
-  <div class="max-w-7xl mx-auto">
+  <!-- Geometric Background Animation -->
+  <GeometricBackground intensity="subtle" variant="blue" />
+  <div class="relative z-10 max-w-7xl mx-auto">
     <!-- Main heading (sr-only for accessibility, visible H3s follow) -->
     <h2 id="problem-heading" class="sr-only">
       Pourquoi Make It Global
@@ -22,7 +25,7 @@
 
       <!-- Colonne Gauche: Le Problème -->
       <div class="space-y-8">
-        <h3 class="text-3xl font-bold text-neutral-900">
+        <h3 class="text-3xl font-bold text-white">
           Le Problème
         </h3>
 
@@ -30,15 +33,15 @@
         <div class="flex items-start gap-4">
           <div class="flex-shrink-0">
             <!-- Clock Icon -->
-            <svg class="w-10 h-10 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div>
-            <p class="text-lg font-semibold text-neutral-900">
+            <p class="text-lg font-semibold text-white">
               Pas le temps de traduire
             </p>
-            <p class="text-neutral-700 mt-1">
+            <p class="text-text-secondary mt-1">
               L'internationalisation semble chronophage et complexe.
             </p>
           </div>
@@ -48,15 +51,15 @@
         <div class="flex items-start gap-4">
           <div class="flex-shrink-0">
             <!-- Puzzle Icon -->
-            <svg class="w-10 h-10 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
             </svg>
           </div>
           <div>
-            <p class="text-lg font-semibold text-neutral-900">
+            <p class="text-lg font-semibold text-white">
               L'international semble compliqué
             </p>
-            <p class="text-neutral-700 mt-1">
+            <p class="text-text-secondary mt-1">
               Trop de détails techniques et de processus à gérer.
             </p>
           </div>
@@ -66,15 +69,15 @@
         <div class="flex items-start gap-4">
           <div class="flex-shrink-0">
             <!-- Robot Icon -->
-            <svg class="w-10 h-10 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
           <div>
-            <p class="text-lg font-semibold text-neutral-900">
+            <p class="text-lg font-semibold text-white">
               IA seule = qualité variable
             </p>
-            <p class="text-neutral-700 mt-1">
+            <p class="text-text-secondary mt-1">
               Les traductions automatiques manquent de nuances culturelles.
             </p>
           </div>
@@ -84,15 +87,15 @@
         <div class="flex items-start gap-4">
           <div class="flex-shrink-0">
             <!-- Money Icon -->
-            <svg class="w-10 h-10 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div>
-            <p class="text-lg font-semibold text-neutral-900">
+            <p class="text-lg font-semibold text-white">
               Trop cher pour se lancer
             </p>
-            <p class="text-neutral-700 mt-1">
+            <p class="text-text-secondary mt-1">
               Les agences traditionnelles coûtent trop cher pour débuter.
             </p>
           </div>
@@ -101,17 +104,17 @@
 
       <!-- Colonne Droite: La Solution -->
       <div class="space-y-6">
-        <h3 class="text-3xl font-bold text-neutral-900">
+        <h3 class="text-3xl font-bold text-white">
           Notre Solution
         </h3>
 
-        <p class="text-lg text-neutral-700">
+        <p class="text-lg text-text-secondary">
           Service clé-en-main qui combine rapidité de l'IA et qualité humaine.
         </p>
 
-        <!-- Highlight Badge: IA + Humain (Contrast: accent-700 on accent-100 = 5.52:1 WCAG AA) -->
-        <div class="inline-flex items-center px-4 py-2 bg-accent-100 border-2 border-accent-300 rounded-lg transition-transform hover:scale-105 focus-within:scale-105">
-          <span class="text-accent-700 font-semibold text-base">
+        <!-- Highlight Badge: IA + Humain (Dark Theme) -->
+        <div class="inline-flex items-center px-4 py-2 bg-cyan-900/20 border-2 border-cyan-500/30 rounded-lg transition-transform hover:scale-105 focus-within:scale-105">
+          <span class="text-cyan-300 font-semibold text-base">
             <span aria-hidden="true">🤖 👨‍💼</span> IA + Validation Humaine
           </span>
         </div>
@@ -122,15 +125,15 @@
           <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
               <!-- Zap/Lightning Icon -->
-              <svg class="w-8 h-8 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
             <div>
-              <p class="text-lg font-semibold text-neutral-900">
+              <p class="text-lg font-semibold text-white">
                 Traduction automatique rapide
               </p>
-              <p class="text-neutral-700 mt-1">
+              <p class="text-text-secondary mt-1">
                 IA de pointe pour des traductions en quelques heures.
               </p>
             </div>
@@ -140,15 +143,15 @@
           <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
               <!-- User-Check Icon -->
-              <svg class="w-8 h-8 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
             <div>
-              <p class="text-lg font-semibold text-neutral-900">
+              <p class="text-lg font-semibold text-white">
                 Validation par experts natifs
               </p>
-              <p class="text-neutral-700 mt-1">
+              <p class="text-text-secondary mt-1">
                 Relecture humaine pour nuances et contexte culturel.
               </p>
             </div>
@@ -158,15 +161,15 @@
           <div class="flex items-start gap-4">
             <div class="flex-shrink-0">
               <!-- Calendar-Check Icon -->
-              <svg class="w-8 h-8 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
               </svg>
             </div>
             <div>
-              <p class="text-lg font-semibold text-neutral-900">
+              <p class="text-lg font-semibold text-white">
                 Livraison en 48h garantie
               </p>
-              <p class="text-neutral-700 mt-1">
+              <p class="text-text-secondary mt-1">
                 Délais respectés pour vos lancements internationaux.
               </p>
             </div>

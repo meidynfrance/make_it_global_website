@@ -1,10 +1,10 @@
 ---
 /**
- * Button Component - Reusable CTA button with primary/secondary variants
+ * Button Component - Dark Theme with Cyan accents
  * Ensures WCAG AA accessibility with ≥44px touch targets
  */
 interface Props {
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'outline';
   href: string;
   ariaLabel?: string;
   class?: string;
@@ -13,13 +13,14 @@ interface Props {
 
 const { variant, href, ariaLabel, class: additionalClass, 'data-section': dataSection } = Astro.props;
 
-// Tailwind classes for each variant
+// Tailwind classes for each variant - Dark Theme
 const variantClasses = {
-  primary: 'bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white',
-  secondary: 'bg-accent-500 hover:bg-accent-600 focus:ring-accent-400 text-white',
+  primary: 'bg-cyan-500 hover:bg-cyan-600 text-dark-base shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/40 focus:ring-cyan-400',
+  secondary: 'bg-primary-500 hover:bg-primary-600 text-white border border-primary-400/30 hover:border-primary-400/50 focus:ring-cyan-400',
+  outline: 'border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 focus:ring-cyan-400',
 };
 
-const baseClasses = 'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px]';
+const baseClasses = 'inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-base min-h-[44px]';
 
 // Detect external links (http/https) for security attributes
 const isExternal = href.startsWith('http://') || href.startsWith('https://');
