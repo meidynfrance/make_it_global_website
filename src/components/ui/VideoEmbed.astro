@@ -51,9 +51,11 @@ const getThumbnail = (): string => {
 // Generate embed URL with optimal parameters
 const getEmbedUrl = (): string => {
   if (platform === 'youtube') {
-    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&cc_load_policy=1`;
+    // Minimalist YouTube player with minimal branding
+    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&color=white&playsinline=1`;
   } else {
-    return `https://player.vimeo.com/video/${videoId}?autoplay=1&badge=0&autopause=0&byline=0`;
+    // Minimalist Vimeo player
+    return `https://player.vimeo.com/video/${videoId}?autoplay=1&badge=0&autopause=0&byline=0&portrait=0&title=0&color=00bcd4`;
   }
 };
 
