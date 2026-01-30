@@ -4,7 +4,6 @@
  * Mobile-first responsive design with accessibility features
  */
 import { Image } from 'astro:assets';
-import CalendlyEmbed from '../ui/CalendlyEmbed.astro';
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
 import { CALENDLY_URL, WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
 import heroBackground from '../../assets/images/hero-background.svg';
@@ -40,12 +39,15 @@ import heroBackground from '../../assets/images/hero-background.svg';
 
     <!-- CTAs -->
     <div class="mt-8 md:mt-10 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
-      <CalendlyEmbed
-        calendlyUrl={CALENDLY_URL}
-        type="popup"
-        buttonText="Réserver mon appel"
-        section="hero"
-      />
+      <a
+        href={CALENDLY_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white"
+        aria-label="Réserver un appel découverte avec Make It Global"
+      >
+        Réserver mon appel
+      </a>
 
       <WhatsAppButton
         phoneNumber={WHATSAPP_NUMBER}

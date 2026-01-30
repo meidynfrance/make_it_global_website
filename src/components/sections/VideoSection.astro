@@ -15,7 +15,6 @@
  */
 
 import VideoEmbed from '../ui/VideoEmbed.astro';
-import CalendlyEmbed from '../ui/CalendlyEmbed.astro';
 import { CALENDLY_URL } from '../../config';
 
 /**
@@ -101,12 +100,15 @@ const videos = [
       <p class="text-lg text-neutral-700 mb-6">
         Impressionné par la qualité ? Discutons de votre projet.
       </p>
-      <CalendlyEmbed
-        calendlyUrl={CALENDLY_URL}
-        type="popup"
-        buttonText="Réserver un appel gratuit"
-        section="videos"
-      />
+      <a
+        href={CALENDLY_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-primary-700 text-white font-semibold rounded-lg hover:bg-primary-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-primary-500 transition-colors"
+        aria-label="Réserver un appel découverte gratuit avec Make It Global"
+      >
+        Réserver un appel gratuit
+      </a>
     </div>
   </div>
 </section>
