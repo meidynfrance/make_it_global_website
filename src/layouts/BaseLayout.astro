@@ -9,7 +9,7 @@ interface Props {
 const { title, description, ogImage = '/og-image.png' } = Astro.props;
 
 // Use Astro.site for production URL (falls back to localhost in dev)
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://make-it-global.vercel.app';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://makeitglobal-agency.com';
 const fullOgImage = `${siteUrl}${ogImage}`;
 
 // Import global styles (TailwindCSS v4)
@@ -17,6 +17,9 @@ import '../styles/global.css';
 
 // Import GoogleAnalytics component
 import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+
+// Import MobileCTABar
+import MobileCTABar from '../components/ui/MobileCTABar.astro';
 
 // Google Analytics ID (optional - graceful degradation if undefined)
 const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
@@ -26,7 +29,7 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
 
@@ -47,13 +50,7 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preconnect to video CDNs for performance (200-300ms latency reduction) -->
-    <link rel="preconnect" href="https://www.youtube-nocookie.com" />
-    <link rel="preconnect" href="https://player.vimeo.com" />
-    <link rel="dns-prefetch" href="https://www.youtube.com" />
-    <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
-
-    <!-- Preconnect to Calendly CDN for faster scheduling widget load -->
+<!-- Preconnect to Calendly CDN for faster scheduling widget load -->
     <link rel="preconnect" href="https://assets.calendly.com" />
 
     <!-- Preconnect to Google Analytics for faster tracking (100-200ms latency reduction) -->
@@ -77,9 +74,6 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
       <a href="#main-content" class="skip-link">
         Passer au contenu principal
       </a>
-      <a href="#videos" class="skip-link">
-        Voir les exemples vidéos
-      </a>
       <a href="#testimonials" class="skip-link">
         Voir les témoignages
       </a>
@@ -90,5 +84,69 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 
     <!-- Main content wrapper with id for skip link target -->
     <slot />
+
+    <!-- Sticky mobile CTA bar -->
+    <MobileCTABar />
+
+    <!-- Scroll Reveal Intersection Observer -->
+    <script is:inline>
+      (function () {
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+          document.querySelectorAll('[data-reveal]').forEach(function(el) {
+            el.classList.add('is-visible');
+          });
+          document.querySelectorAll('[data-counter]').forEach(function(el) {
+            el.classList.add('counter-animate');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(
+          function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                var el = entry.target;
+                el.classList.add('is-visible');
+                observer.unobserve(el);
+
+                if (el.hasAttribute('data-reveal-children')) {
+                  var staggerDelay = parseInt(el.getAttribute('data-reveal-children') || '100', 10);
+                  var children = el.querySelectorAll(':scope > [data-reveal]');
+                  children.forEach(function(child, i) {
+                    child.style.transitionDelay = (i * staggerDelay) + 'ms';
+                    requestAnimationFrame(function() {
+                      child.classList.add('is-visible');
+                    });
+                  });
+                }
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+        );
+
+        document.querySelectorAll('[data-reveal]').forEach(function(el) {
+          observer.observe(el);
+        });
+
+        var counterObserver = new IntersectionObserver(
+          function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('counter-animate');
+                counterObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        document.querySelectorAll('[data-counter]').forEach(function(el) {
+          counterObserver.observe(el);
+        });
+      })();
+    </script>
   </body>
 </html>

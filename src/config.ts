@@ -13,5 +13,5 @@ export const WHATSAPP_MESSAGE_CONTACT = `Bonjour, j'aimerais discuter de comment
 export const CALENDLY_URL = import.meta.env.PUBLIC_CALENDLY_URL || 'https://calendly.com/contact-makeitglobal-agency/30min';
 
 // Site Metadata
-export const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://make-it-global-website.vercel.app';
+export const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://makeitglobal-agency.com';
 export const SITE_NAME = import.meta.env.PUBLIC_SITE_NAME || 'Make It Global';

@@ -33,23 +33,23 @@ interface Props {
 
   <div class="relative z-10 max-w-7xl mx-auto">
     <!-- Section Heading -->
-    <h2 id="process-heading" class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+    <h2 id="process-heading" class="text-3xl md:text-4xl font-bold text-center text-white mb-12" data-reveal="fade-up">
       Notre Processus Clé-en-Main
     </h2>
 
     <!-- 3-Step Process - Elegant Timeline -->
     <div class="relative max-w-6xl mx-auto">
       <!-- Connection Line (Desktop only) -->
-      <div class="hidden md:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500/20 via-cyan-500/40 to-cyan-500/20" aria-hidden="true"></div>
+      <div class="hidden md:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500/20 via-cyan-500/40 to-cyan-500/20 process-line-animated" data-reveal aria-hidden="true"></div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
 
         <!-- Step 1 -->
-        <div class="relative group">
+        <div class="relative group process-step">
           <!-- Number Badge -->
           <div class="flex justify-center mb-6">
             <div class="relative">
-              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300">
+              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300" data-reveal="number-pop">
                 <span class="text-4xl font-bold text-cyan-400">1</span>
               </div>
               <!-- Glow effect -->
@@ -58,7 +58,7 @@ interface Props {
           </div>
 
           <!-- Icon -->
-          <div class="flex justify-center mb-6">
+          <div class="flex justify-center mb-6 icon-hover-rotate">
             <div class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-500/20 flex items-center justify-center group-hover:border-cyan-500/40 transition-all duration-300">
               <!-- Upload Icon -->
               <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -68,7 +68,7 @@ interface Props {
           </div>
 
           <!-- Content Card -->
-          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300">
+          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300" data-reveal="fade-up" data-reveal-delay="200">
             <h3 class="text-lg font-semibold text-white mb-3 text-center">
               Transmission de vos contenus
             </h3>
@@ -79,11 +79,11 @@ interface Props {
         </div>
 
         <!-- Step 2 -->
-        <div class="relative group">
+        <div class="relative group process-step">
           <!-- Number Badge -->
           <div class="flex justify-center mb-6">
             <div class="relative">
-              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300">
+              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300" data-reveal="number-pop" data-reveal-delay="200">
                 <span class="text-4xl font-bold text-cyan-400">2</span>
               </div>
               <!-- Glow effect -->
@@ -92,7 +92,7 @@ interface Props {
           </div>
 
           <!-- Icon -->
-          <div class="flex justify-center mb-6">
+          <div class="flex justify-center mb-6 icon-hover-rotate">
             <div class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-500/20 flex items-center justify-center group-hover:border-cyan-500/40 transition-all duration-300">
               <!-- Process Icon (IA + Human) -->
               <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -102,7 +102,7 @@ interface Props {
           </div>
 
           <!-- Content Card -->
-          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300">
+          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300" data-reveal="fade-up" data-reveal-delay="400">
             <h3 class="text-lg font-semibold text-white mb-3 text-center">
               Traduction, adaptation et finalisation
             </h3>
@@ -113,11 +113,11 @@ interface Props {
         </div>
 
         <!-- Step 3 -->
-        <div class="relative group">
+        <div class="relative group process-step">
           <!-- Number Badge -->
           <div class="flex justify-center mb-6">
             <div class="relative">
-              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300">
+              <div class="w-20 h-20 rounded-full border-2 border-cyan-500/30 bg-dark-card flex items-center justify-center group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300" data-reveal="number-pop" data-reveal-delay="400">
                 <span class="text-4xl font-bold text-cyan-400">3</span>
               </div>
               <!-- Glow effect -->
@@ -126,7 +126,7 @@ interface Props {
           </div>
 
           <!-- Icon -->
-          <div class="flex justify-center mb-6">
+          <div class="flex justify-center mb-6 icon-hover-rotate">
             <div class="w-16 h-16 rounded-lg bg-cyan-900/20 border border-cyan-500/20 flex items-center justify-center group-hover:border-cyan-500/40 transition-all duration-300">
               <!-- Check/Delivery Icon -->
               <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -136,7 +136,7 @@ interface Props {
           </div>
 
           <!-- Content Card -->
-          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300">
+          <div class="bg-dark-card/50 backdrop-blur-sm border border-cyan-500/10 rounded-xl p-6 group-hover:border-cyan-500/30 group-hover:bg-dark-card/70 transition-all duration-300" data-reveal="fade-up" data-reveal-delay="600">
             <h3 class="text-lg font-semibold text-white mb-3 text-center">
               Réception des livrables finaux
             </h3>
@@ -150,13 +150,13 @@ interface Props {
     </div>
 
     <!-- Reassurance Message -->
-    <div class="mt-16 text-center">
+    <div class="mt-16 text-center" data-reveal="scale-in" data-reveal-delay="300">
       <div class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-900/20 border-2 border-cyan-500/30 rounded-lg hover:scale-105 focus-within:scale-105 transition-transform">
         <!-- Check Shield Icon for reassurance -->
         <svg class="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
-        <span class="text-xl font-bold text-cyan-300">
+        <span class="text-base md:text-xl font-bold text-cyan-300">
           Une prise en charge intégrale. Vous déléguez, nous livrons.
         </span>
       </div>

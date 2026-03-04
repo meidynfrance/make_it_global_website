@@ -227,6 +227,207 @@
   animation: slideDown 0.6s ease-out;
 }
 
+/* ==========================================
+   SCROLL REVEAL SYSTEM
+   ========================================== */
+
+/* Base hidden state for all reveal elements */
+[data-reveal] {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Visible state */
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Variant: fade-up (default) */
+[data-reveal="fade-up"] {
+  transform: translateY(40px);
+}
+
+/* Variant: fade-in (opacity only) */
+[data-reveal="fade-in"] {
+  transform: none;
+}
+
+/* Variant: fade-left */
+[data-reveal="fade-left"] {
+  transform: translateX(-40px);
+}
+
+/* Variant: fade-right */
+[data-reveal="fade-right"] {
+  transform: translateX(40px);
+}
+
+/* Variant: scale-in */
+[data-reveal="scale-in"] {
+  transform: scale(0.8);
+}
+
+/* Variant: blur-in (premium headline effect) */
+[data-reveal="blur-in"] {
+  transform: translateY(20px);
+  filter: blur(8px);
+}
+
+/* Variant: number-pop (bouncy scale) */
+[data-reveal="number-pop"] {
+  opacity: 0;
+  transform: scale(0);
+}
+
+[data-reveal="number-pop"].is-visible {
+  animation: numberPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes numberPop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Delay utilities */
+[data-reveal-delay="100"] { transition-delay: 100ms; }
+[data-reveal-delay="200"] { transition-delay: 200ms; }
+[data-reveal-delay="300"] { transition-delay: 300ms; }
+[data-reveal-delay="400"] { transition-delay: 400ms; }
+[data-reveal-delay="500"] { transition-delay: 500ms; }
+[data-reveal-delay="600"] { transition-delay: 600ms; }
+
+/* ==========================================
+   GRADIENT TEXT
+   ========================================== */
+
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #FFFFFF 0%, #00E5FF 50%, #00BCD4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   CTA BUTTON ANIMATIONS
+   ========================================== */
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 10px 25px -5px rgba(0, 188, 212, 0.3); }
+  50% { box-shadow: 0 10px 40px -5px rgba(0, 229, 255, 0.5); }
+}
+
+.cta-pulse {
+  animation: ctaPulse 3s ease-in-out infinite;
+}
+
+@keyframes ctaFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.cta-float {
+  animation: ctaFloat 4s ease-in-out infinite;
+}
+
+/* ==========================================
+   PROCESS PROGRESS LINE
+   ========================================== */
+
+.process-line-animated {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.process-line-animated.is-visible {
+  transform: scaleX(1);
+}
+
+/* ==========================================
+   COUNTER ANIMATION (Testimonials)
+   ========================================== */
+
+@keyframes countSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+[data-counter] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+[data-counter].counter-animate {
+  animation: countSlideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* ==========================================
+   ICON HOVER MICRO-INTERACTIONS
+   ========================================== */
+
+.icon-hover-bounce {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.icon-hover-bounce:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+
+.icon-hover-rotate {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.icon-hover-rotate:hover {
+  transform: rotate(10deg) scale(1.05);
+}
+
+/* ==========================================
+   TOUCH FEEDBACK
+   ========================================== */
+
+.btn-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 5px 15px -5px rgba(0, 188, 212, 0.2);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-outline:active {
+  transform: scale(0.97);
+  background-color: rgba(0, 188, 212, 0.15);
+}
+
+/* ==========================================
+   MOBILE SAFE AREA & CTA BAR
+   ========================================== */
+
+@media (max-width: 767px) {
+  main {
+    padding-bottom: 72px;
+  }
+}
+
+/* Process mobile vertical connectors */
+@media (max-width: 767px) {
+  .process-step:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 32px;
+    margin: 0 auto;
+    background: linear-gradient(to bottom, rgba(0, 229, 255, 0.3), rgba(0, 229, 255, 0.05));
+  }
+}
+
 /* Tailwind v4 color utilities - using custom properties */
 /* Text colors */
 .text-primary-600 {
@@ -394,5 +595,29 @@ html {
   .animate-line-pulse,
   .animate-node-pulse {
     animation: none !important;
+  }
+
+  /* Disable scroll reveal animations */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  [data-counter] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .cta-pulse,
+  .cta-float {
+    animation: none !important;
+  }
+
+  .process-line-animated {
+    transform: scaleX(1) !important;
+    transition: none !important;
   }
 }
