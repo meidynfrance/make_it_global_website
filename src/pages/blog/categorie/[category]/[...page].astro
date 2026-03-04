@@ -1,0 +1,58 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PostCard from '../../../../components/blog/PostCard.astro';
+import Breadcrumbs from '../../../../components/blog/Breadcrumbs.astro';
+import Pagination from '../../../../components/blog/Pagination.astro';
+import { BLOG_PAGE_SIZE, CATEGORY_LABELS, CATEGORY_DESCRIPTIONS } from '../../../../config';
+import { sortPostsByDate, filterPublishedPosts } from '../../../../utils/blog';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const allPosts = await getCollection('blog');
+  const publishedPosts = filterPublishedPosts(allPosts);
+  const categories = Object.keys(CATEGORY_LABELS);
+
+  return categories.flatMap((category) => {
+    const categoryPosts = sortPostsByDate(
+      publishedPosts.filter((post) => post.data.category === category)
+    );
+    return paginate(categoryPosts, {
+      params: { category },
+      pageSize: BLOG_PAGE_SIZE,
+    });
+  });
+};
+
+const { page } = Astro.props;
+const { category } = Astro.params;
+const label = CATEGORY_LABELS[category!] || category;
+const description = CATEGORY_DESCRIPTIONS[category!] || '';
+---
+
+<BaseLayout title={`${label} | Blog - Make It Global`} description={description}>
+  <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+    <Breadcrumbs items={[
+      { label: 'Accueil', href: '/' },
+      { label: 'Blog', href: '/blog/' },
+      { label: label! },
+    ]} />
+
+    <header class="mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-text-heading mb-3">{label}</h1>
+      {description && <p class="text-lg text-text-muted">{description}</p>}
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {page.data.map((post) => (
+        <PostCard post={post} />
+      ))}
+    </div>
+
+    <Pagination
+      currentPage={page.currentPage}
+      totalPages={page.lastPage}
+      baseUrl={`/blog/categorie/${category}/`}
+    />
+  </main>
+</BaseLayout>

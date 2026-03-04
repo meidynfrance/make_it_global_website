@@ -2,14 +2,22 @@
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Production URL - Vercel overrides this automatically with deployment URL
-  // Update this with your actual Vercel URL after first deployment
   site: 'https://makeitglobal-agency.com',
+
+  integrations: [mdx(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()]
+  },
+
+  markdown: {
+    shikiConfig: {
+      theme: 'github-light'
+    }
   }
 });

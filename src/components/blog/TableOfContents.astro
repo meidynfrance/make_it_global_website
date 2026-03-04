@@ -1,0 +1,73 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <aside class="hidden lg:block" aria-label="Sommaire">
+    <div class="sticky top-24">
+      <h2 class="text-sm font-semibold text-text-heading mb-4 uppercase tracking-wider">
+        Sommaire
+      </h2>
+      <nav>
+        <ul class="space-y-2 text-sm border-l-2 border-neutral-200">
+          {filteredHeadings.map((heading) => (
+            <li>
+              <a
+                href={`#${heading.slug}`}
+                class:list={[
+                  'block transition-colors hover:text-primary-500 border-l-2 -ml-0.5',
+                  heading.depth === 2
+                    ? 'pl-4 text-text-body border-transparent'
+                    : 'pl-8 text-text-muted border-transparent',
+                ]}
+                data-toc-link
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </aside>
+)}
+
+<script is:inline>
+  (function() {
+    var links = document.querySelectorAll('[data-toc-link]');
+    if (!links.length) return;
+
+    var headingIds = Array.from(links).map(function(link) {
+      return link.getAttribute('href').slice(1);
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          links.forEach(function(link) {
+            var isActive = link.getAttribute('href') === '#' + entry.target.id;
+            link.classList.toggle('text-primary-500', isActive);
+            link.classList.toggle('border-primary-500', isActive);
+            link.classList.toggle('border-transparent', !isActive);
+          });
+        }
+      });
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+    headingIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  })();
+</script>

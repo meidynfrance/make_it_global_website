@@ -1,6 +1,6 @@
 ---
 /**
- * TestimonialsSection Component - Dark Theme with Geometric Animations
+ * TestimonialsSection Component - Apple-Inspired Light Pastel Theme
  *
  * Displays client testimonials and concrete business results to create social proof
  * and emotional momentum before the ContactSection.
@@ -45,24 +45,24 @@ const testimonials = [
   id="testimonials"
   aria-labelledby="testimonials-heading"
   aria-label="Témoignages clients"
-  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-base overflow-hidden"
+  class="relative py-20 md:py-32 px-6 md:px-12 bg-gradient-to-br from-primary-50/50 to-teal-50/30 overflow-hidden"
 >
   <!-- Geometric Background Animation -->
-  <GeometricBackground intensity="medium" variant="cyan" />
+  <GeometricBackground intensity="medium" variant="mixed" />
 
   <div class="relative z-10 max-w-7xl mx-auto">
     <!-- Section Header -->
     <div class="text-center mb-12">
-      <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-bold text-white mb-4" data-reveal="fade-up">
+      <h2 id="testimonials-heading" class="text-3xl md:text-4xl lg:text-5xl font-bold text-text-heading mb-4" data-reveal="fade-up">
         Ils ont accéléré leur développement international
       </h2>
-      <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-reveal="fade-up" data-reveal-delay="100">
+      <p class="text-lg text-text-muted max-w-2xl mx-auto" data-reveal="fade-up" data-reveal-delay="100">
         Ces dirigeants ont choisi de déléguer la localisation de leurs contenus. Ils adressent aujourd'hui de nouveaux marchés.
       </p>
     </div>
 
     <!-- Testimonials Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8" data-reveal-children="200">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" data-reveal-children="200">
       {testimonials.map((testimonial) => (
         <div data-reveal="fade-up">
           <TestimonialCard

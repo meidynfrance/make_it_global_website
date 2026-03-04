@@ -1,0 +1,99 @@
+---
+import { SITE_NAME } from '../../config';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Accueil' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 glass-strong" id="navbar">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Navigation principale">
+    <a href="/" class="flex items-center gap-2 text-text-heading font-bold text-lg hover:text-primary-500 transition-colors">
+      {SITE_NAME}
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'text-primary-500'
+                : 'text-text-body hover:text-primary-500',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+    >
+      <span class="block w-5 h-0.5 bg-text-heading transition-transform origin-center" id="bar1"></span>
+      <span class="block w-5 h-0.5 bg-text-heading transition-opacity" id="bar2"></span>
+      <span class="block w-5 h-0.5 bg-text-heading transition-transform origin-center" id="bar3"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden glass-strong border-t border-neutral-200">
+    <ul class="px-4 py-4 space-y-3">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'block py-2 text-sm font-medium transition-colors',
+              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
+                ? 'text-primary-500'
+                : 'text-text-body hover:text-primary-500',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<script is:inline>
+  (function() {
+    var btn = document.getElementById('mobile-menu-btn');
+    var menu = document.getElementById('mobile-menu');
+    var bar1 = document.getElementById('bar1');
+    var bar2 = document.getElementById('bar2');
+    var bar3 = document.getElementById('bar3');
+    var isOpen = false;
+
+    btn.addEventListener('click', function() {
+      isOpen = !isOpen;
+      menu.classList.toggle('hidden', !isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+
+      if (isOpen) {
+        bar1.style.transform = 'rotate(45deg) translate(3px, 3px)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'rotate(-45deg) translate(3px, -3px)';
+      } else {
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+      }
+    });
+  })();
+</script>

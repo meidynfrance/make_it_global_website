@@ -1,6 +1,6 @@
 ---
 /**
- * ProblemSection Component - Dark Theme with Geometric Animations
+ * ProblemSection Component - Apple-inspired Light Pastel Theme
  * Presents common internationalization challenges and hybrid AI+Human solution
  * Mobile-first responsive design with semantic HTML and WCAG AA accessibility
  */
@@ -10,10 +10,11 @@ import GeometricBackground from '../ui/GeometricBackground.astro';
 <section
   id="problem"
   aria-label="Problème et solution"
-  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-surface overflow-hidden"
+  class="relative py-20 md:py-32 px-6 md:px-12 overflow-hidden"
+  style="background: linear-gradient(180deg, #FAFBFF 0%, #F0F4FF 50%, #FAFBFF 100%);"
 >
   <!-- Geometric Background Animation -->
-  <GeometricBackground intensity="subtle" variant="blue" />
+  <GeometricBackground intensity="subtle" variant="primary" />
   <div class="relative z-10 max-w-7xl mx-auto">
     <!-- Main heading (sr-only for accessibility, visible H3s follow) -->
     <h2 id="problem-heading" class="sr-only">
@@ -25,80 +26,88 @@ import GeometricBackground from '../ui/GeometricBackground.astro';
 
       <!-- Colonne Gauche: Le Problème -->
       <div class="space-y-8">
-        <h3 class="text-3xl font-bold text-white" data-reveal="fade-up">
+        <h3 class="text-3xl md:text-4xl font-bold text-text-heading" data-reveal="fade-up">
           Le Problème
         </h3>
 
         <div data-reveal-children="150">
         <!-- Point Problème 1: Manque de temps -->
-        <div class="flex items-start gap-4 mb-8" data-reveal="fade-left">
-          <div class="flex-shrink-0 icon-hover-bounce">
-            <!-- Clock Icon -->
-            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div>
-            <p class="text-lg font-semibold text-white">
-              Des contenus performants, limités à un seul marché
-            </p>
-            <p class="text-text-secondary mt-1">
-              Vos vidéos, formations et documents génèrent des résultats en France. Mais des marchés à fort potentiel restent inaccessibles faute de versions localisées.
-            </p>
+        <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 mb-6 card-hover" data-reveal="fade-left">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 icon-hover-bounce">
+              <!-- Clock Icon -->
+              <svg class="w-10 h-10 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-lg font-semibold text-text-heading">
+                Des contenus performants, limités à un seul marché
+              </p>
+              <p class="text-text-muted mt-1">
+                Vos vidéos, formations et documents génèrent des résultats en France. Mais des marchés à fort potentiel restent inaccessibles faute de versions localisées.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Point Problème 2: Complexité perçue -->
-        <div class="flex items-start gap-4 mb-8" data-reveal="fade-left">
-          <div class="flex-shrink-0 icon-hover-bounce">
-            <!-- Puzzle Icon -->
-            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-            </svg>
-          </div>
-          <div>
-            <p class="text-lg font-semibold text-white">
-              Un processus chronophage et complexe
-            </p>
-            <p class="text-text-secondary mt-1">
-              Coordonner traducteurs, monteurs, relecteurs... L'internationalisation de vos contenus mobilise des ressources que vous n'avez pas.
-            </p>
+        <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 mb-6 card-hover" data-reveal="fade-left">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 icon-hover-bounce">
+              <!-- Puzzle Icon -->
+              <svg class="w-10 h-10 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-lg font-semibold text-text-heading">
+                Un processus chronophage et complexe
+              </p>
+              <p class="text-text-muted mt-1">
+                Coordonner traducteurs, monteurs, relecteurs... L'internationalisation de vos contenus mobilise des ressources que vous n'avez pas.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Point Problème 3: IA seule variable -->
-        <div class="flex items-start gap-4 mb-8" data-reveal="fade-left">
-          <div class="flex-shrink-0 icon-hover-bounce">
-            <!-- Robot Icon -->
-            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <div>
-            <p class="text-lg font-semibold text-white">
-              L'IA seule ne suffit pas
-            </p>
-            <p class="text-text-secondary mt-1">
-              Les outils automatiques produisent des traductions approximatives. Pour vos communications professionnelles, la qualité doit être irréprochable.
-            </p>
+        <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 mb-6 card-hover" data-reveal="fade-left">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 icon-hover-bounce">
+              <!-- Robot Icon -->
+              <svg class="w-10 h-10 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-lg font-semibold text-text-heading">
+                L'IA seule ne suffit pas
+              </p>
+              <p class="text-text-muted mt-1">
+                Les outils automatiques produisent des traductions approximatives. Pour vos communications professionnelles, la qualité doit être irréprochable.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Point Problème 4: Coût perçu élevé -->
-        <div class="flex items-start gap-4 mb-8" data-reveal="fade-left">
-          <div class="flex-shrink-0 icon-hover-bounce">
-            <!-- Money Icon -->
-            <svg class="w-10 h-10 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div>
-            <p class="text-lg font-semibold text-white">
-              Les agences traditionnelles manquent d'agilité
-            </p>
-            <p class="text-text-secondary mt-1">
-              Délais de plusieurs semaines, coûts élevés, processus rigides. Difficile de tester un nouveau marché dans ces conditions.
-            </p>
+        <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 mb-6 card-hover" data-reveal="fade-left">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 icon-hover-bounce">
+              <!-- Money Icon -->
+              <svg class="w-10 h-10 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-lg font-semibold text-text-heading">
+                Les agences traditionnelles manquent d'agilité
+              </p>
+              <p class="text-text-muted mt-1">
+                Délais de plusieurs semaines, coûts élevés, processus rigides. Difficile de tester un nouveau marché dans ces conditions.
+              </p>
+            </div>
           </div>
         </div>
         </div>
@@ -106,17 +115,17 @@ import GeometricBackground from '../ui/GeometricBackground.astro';
 
       <!-- Colonne Droite: La Solution -->
       <div class="space-y-6">
-        <h3 class="text-3xl font-bold text-white" data-reveal="fade-up">
+        <h3 class="text-3xl md:text-4xl font-bold text-text-heading" data-reveal="fade-up">
           Notre solution : l'externalisation complète
         </h3>
 
-        <p class="text-lg text-text-secondary" data-reveal="fade-up" data-reveal-delay="100">
+        <p class="text-lg text-text-muted" data-reveal="fade-up" data-reveal-delay="100">
           Nous combinons l'efficacité de l'IA et l'expertise de traducteurs natifs. Vous transmettez vos contenus, nous livrons des fichiers finalisés, prêts à être déployés.
         </p>
 
-        <!-- Highlight Badge: IA + Humain (Dark Theme) -->
-        <div class="inline-flex items-center px-4 py-2 bg-cyan-900/20 border-2 border-cyan-500/30 rounded-lg transition-transform hover:scale-105 focus-within:scale-105" data-reveal="scale-in" data-reveal-delay="200">
-          <span class="text-cyan-300 font-semibold text-base">
+        <!-- Highlight Badge: IA + Humain (Glass Morphism) -->
+        <div class="inline-flex items-center px-5 py-2.5 rounded-xl border border-white/60 shadow-card transition-transform hover:scale-105 focus-within:scale-105" style="background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-image: linear-gradient(135deg, #6366f1, #06b6d4) 1;" data-reveal="scale-in" data-reveal-delay="200">
+          <span class="gradient-text font-semibold text-base">
             <span aria-hidden="true">🤖 👨‍💼</span> IA + Validation Humaine
           </span>
         </div>
@@ -124,56 +133,62 @@ import GeometricBackground from '../ui/GeometricBackground.astro';
         <!-- Points Solution -->
         <div class="space-y-4 mt-6" data-reveal-children="150">
           <!-- Point 1: Traduction automatique rapide -->
-          <div class="flex items-start gap-4" data-reveal="fade-right">
-            <div class="flex-shrink-0 icon-hover-bounce">
-              <!-- Zap/Lightning Icon -->
-              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <div>
-              <p class="text-lg font-semibold text-white">
-                IA et expertise humaine combinées
-              </p>
-              <p class="text-text-secondary mt-1">
-                L'intelligence artificielle assure rapidité et cohérence. Nos experts natifs garantissent précision et adaptation culturelle.
-              </p>
+          <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 card-hover" data-reveal="fade-right">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 icon-hover-bounce">
+                <!-- Zap/Lightning Icon -->
+                <svg class="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-semibold text-text-heading">
+                  IA et expertise humaine combinées
+                </p>
+                <p class="text-text-muted mt-1">
+                  L'intelligence artificielle assure rapidité et cohérence. Nos experts natifs garantissent précision et adaptation culturelle.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Point 2: Validation par experts natifs -->
-          <div class="flex items-start gap-4" data-reveal="fade-right">
-            <div class="flex-shrink-0 icon-hover-bounce">
-              <!-- User-Check Icon -->
-              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <p class="text-lg font-semibold text-white">
-                Tous formats, tous contenus
-              </p>
-              <p class="text-text-secondary mt-1">
-                Vidéos, PDFs, présentations, formations en ligne, sites web... Nous prenons en charge l'intégralité de vos supports.
-              </p>
+          <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 card-hover" data-reveal="fade-right">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 icon-hover-bounce">
+                <!-- User-Check Icon -->
+                <svg class="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-semibold text-text-heading">
+                  Tous formats, tous contenus
+                </p>
+                <p class="text-text-muted mt-1">
+                  Vidéos, PDFs, présentations, formations en ligne, sites web... Nous prenons en charge l'intégralité de vos supports.
+                </p>
+              </div>
             </div>
           </div>
 
           <!-- Point 3: Livraison en 72h garantie -->
-          <div class="flex items-start gap-4" data-reveal="fade-right">
-            <div class="flex-shrink-0 icon-hover-bounce">
-              <!-- Calendar-Check Icon -->
-              <svg class="w-8 h-8 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-            </div>
-            <div>
-              <p class="text-lg font-semibold text-white">
-                Livraison finalisée sous 72h
-              </p>
-              <p class="text-text-secondary mt-1">
-                Aucun travail de post-production de votre côté. Nous livrons des contenus finaux : montage effectué, mise en page terminée, prêts à publier.
-              </p>
+          <div class="bg-white rounded-2xl shadow-card border border-neutral-100 p-6 card-hover" data-reveal="fade-right">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 icon-hover-bounce">
+                <!-- Calendar-Check Icon -->
+                <svg class="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-lg font-semibold text-text-heading">
+                  Livraison finalisée sous 72h
+                </p>
+                <p class="text-text-muted mt-1">
+                  Aucun travail de post-production de votre côté. Nous livrons des contenus finaux : montage effectué, mise en page terminée, prêts à publier.
+                </p>
+              </div>
             </div>
           </div>
         </div>

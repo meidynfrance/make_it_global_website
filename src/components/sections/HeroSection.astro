@@ -1,6 +1,6 @@
 ---
 /**
- * HeroSection Component - Dark Theme with Geometric Animations
+ * HeroSection Component - Apple-inspired Light Pastel Theme
  * Mobile-first responsive design with accessibility features
  */
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
@@ -9,20 +9,17 @@ import { WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
 ---
 
 <section
-  class="relative w-full overflow-hidden bg-dark-base"
+  class="relative w-full overflow-hidden bg-gradient-to-b from-primary-50/30 via-white to-teal-50/20"
   aria-label="Hero"
 >
-  <!-- Geometric Background Animation -->
-  <GeometricBackground intensity="strong" variant="cyan" />
+  <!-- Floating Gradient Orbs Background -->
+  <GeometricBackground intensity="strong" variant="mixed" />
 
-  <!-- Gradient overlay for depth -->
-  <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-transparent pointer-events-none z-5"></div>
-
-  <!-- Content overlay with improved readability -->
-  <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 md:py-48 lg:py-64 text-center">
+  <!-- Content -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 py-32 md:py-48 lg:py-56 text-center">
     <!-- Headline with gradient text and blur-in reveal -->
     <h1
-      class="text-4xl md:text-5xl lg:text-6xl font-extrabold gradient-text-cyan drop-shadow-lg leading-tight"
+      class="text-5xl md:text-6xl lg:text-7xl font-extrabold gradient-text-hero leading-tight tracking-tight"
       data-reveal="blur-in"
     >
       Accélérez votre expansion internationale
@@ -30,16 +27,16 @@ import { WHATSAPP_NUMBER, WHATSAPP_DEFAULT_MESSAGE } from '../../config';
 
     <!-- Subheadline with staggered fade-up -->
     <p
-      class="text-base md:text-xl text-white/95 drop-shadow-md mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed"
+      class="text-lg md:text-xl text-text-body mt-6 md:mt-8 max-w-2xl mx-auto leading-relaxed"
       data-reveal="fade-up"
       data-reveal-delay="200"
     >
       Nous traduisons et adaptons l'ensemble de vos contenus — vidéos, formations, PDFs, webinaire de vente, emails, audio... — pour vos marchés cibles. Vous poursuivez votre activité, nous gérons l'intégralité du processus.
     </p>
 
-    <!-- CTA with breathing animation -->
+    <!-- CTA with floating animation -->
     <div
-      class="mt-8 md:mt-10 flex justify-center cta-float"
+      class="mt-10 md:mt-12 flex justify-center cta-float"
       data-reveal="fade-up"
       data-reveal-delay="400"
     >

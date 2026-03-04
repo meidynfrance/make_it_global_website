@@ -1,0 +1,47 @@
+---
+import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_CONTACT, CALENDLY_URL } from '../../config';
+
+interface Props {
+  variant?: 'contact' | 'calendly';
+  text?: string;
+}
+
+const { variant = 'contact', text } = Astro.props;
+
+const defaultTexts = {
+  contact: 'Besoin d\'aide pour internationaliser vos contenus ?',
+  calendly: 'Discutons de votre projet d\'internationalisation',
+};
+
+const displayText = text || defaultTexts[variant];
+
+const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE_CONTACT)}`;
+---
+
+<aside class="my-10 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-primary-50 to-teal-50 border border-primary-100">
+  <p class="text-lg font-semibold text-text-heading mb-3">
+    {displayText}
+  </p>
+  <p class="text-sm text-text-muted mb-5">
+    Notre equipe vous accompagne dans la localisation de tous vos contenus multimedia. Reponse sous 24h.
+  </p>
+  {variant === 'contact' ? (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-primary inline-flex items-center gap-2 text-sm"
+    >
+      Discuter sur WhatsApp
+    </a>
+  ) : (
+    <a
+      href={CALENDLY_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-secondary inline-flex items-center gap-2 text-sm"
+    >
+      Reserver un appel gratuit
+    </a>
+  )}
+</aside>

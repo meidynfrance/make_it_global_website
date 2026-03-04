@@ -1,6 +1,6 @@
 ---
 /**
- * ContactSection Component - Dark Theme with Geometric Animations
+ * ContactSection Component - Apple-Inspired Light Pastel Theme
  *
  * Final conversion section with WhatsApp CTA
  * Implements "Zéro Friction" UX principle
@@ -20,32 +20,32 @@ import { WHATSAPP_NUMBER, WHATSAPP_MESSAGE_CONTACT } from '../../config';
   id="contact"
   aria-labelledby="contact-heading"
   aria-label="Contactez-nous"
-  class="relative py-16 md:py-24 px-6 md:px-12 bg-dark-base text-white overflow-hidden"
+  class="relative py-20 md:py-32 px-6 md:px-12 bg-white overflow-hidden"
 >
   <!-- Geometric Background Animation -->
-  <GeometricBackground intensity="strong" variant="cyan" />
+  <GeometricBackground intensity="strong" variant="mixed" />
 
   <!-- Gradient overlay for emphasis -->
-  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-primary-500/10 pointer-events-none z-5"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-primary-50 to-teal-50 pointer-events-none z-5"></div>
 
   <div class="relative z-10 max-w-2xl mx-auto text-center">
     <!-- Section Header -->
     <div class="mb-12">
       <h2
         id="contact-heading"
-        class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-[0_0_30px_rgba(0,229,255,0.3)]"
+        class="text-3xl md:text-5xl lg:text-6xl font-extrabold gradient-text-hero mb-4"
         data-reveal="blur-in"
       >
         Échangeons sur votre projet
       </h2>
-      <p class="text-lg md:text-xl text-text-secondary" data-reveal="fade-up" data-reveal-delay="200">
+      <p class="text-lg md:text-xl text-text-muted" data-reveal="fade-up" data-reveal-delay="200">
         Présentez-nous vos contenus et vos marchés cibles.<br>
         Nous vous indiquerons comment nous pouvons vous accompagner.
       </p>
     </div>
 
     <!-- CTA: WhatsApp -->
-    <div class="flex justify-center" data-reveal="fade-up" data-reveal-delay="400">
+    <div class="flex justify-center cta-float" data-reveal="fade-up" data-reveal-delay="400">
       <WhatsAppButton
         phoneNumber={WHATSAPP_NUMBER}
         message={WHATSAPP_MESSAGE_CONTACT}

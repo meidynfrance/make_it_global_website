@@ -1,9 +1,9 @@
 ---
 /**
- * TestimonialCard Component
+ * TestimonialCard Component - Apple-Inspired Light Pastel Theme
  *
  * Displays a client testimonial with visual hierarchy:
- * 1. Result (Most Prominent): Large, bold, colored metric
+ * 1. Result (Most Prominent): Large, bold, gradient metric
  * 2. Quote (Main Content): Client's testimonial in conversational French
  * 3. Client Type (Discreet): Profile type with optional name
  *
@@ -32,20 +32,23 @@ interface Props {
 const { quote, result, clientType, clientName } = Astro.props;
 ---
 
-<article class="bg-dark-card rounded-xl shadow-lg hover:shadow-cyan-500/20 hover:-translate-y-1 transition-all duration-300 p-5 md:p-8 border border-cyan-500/10 hover:border-cyan-500/30">
+<article class="relative bg-white rounded-3xl shadow-card border border-neutral-100 p-6 md:p-8 card-hover">
+  <!-- Decorative quotation mark -->
+  <span class="absolute top-4 left-6 text-5xl leading-none text-primary-200/60 font-serif select-none pointer-events-none" aria-hidden="true">&ldquo;</span>
+
   <!-- Result (Visual Prominence) -->
-  <p class="result text-3xl md:text-5xl font-bold text-cyan-400 mb-4" aria-label={`Résultat: ${result}`} data-counter>
+  <p class="result text-3xl md:text-4xl font-bold gradient-text mb-4 mt-4" aria-label={`Résultat: ${result}`} data-counter>
     {result}
   </p>
 
   <!-- Quote (Main Content) -->
-  <blockquote class="quote text-base text-text-secondary mb-4 italic">
-    <p>« {quote} »</p>
+  <blockquote class="quote text-base text-text-body mb-4 italic">
+    <p>&laquo;&nbsp;{quote}&nbsp;&raquo;</p>
   </blockquote>
 
   <!-- Client Type (Discreet) -->
   <footer class="client-info">
-    <p class="text-sm text-text-tertiary font-medium">
+    <p class="text-sm text-text-muted font-medium">
       {clientName ? `${clientName}, ` : ''}{clientType}
     </p>
   </footer>

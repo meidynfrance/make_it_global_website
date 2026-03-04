@@ -1,0 +1,33 @@
+---
+import { CATEGORY_LABELS } from '../../config';
+
+interface Props {
+  category: string;
+  linked?: boolean;
+}
+
+const { category, linked = false } = Astro.props;
+const label = CATEGORY_LABELS[category] || category;
+
+const colorMap: Record<string, string> = {
+  'strategie-internationale': 'bg-primary-50 text-primary-600',
+  'localisation-video': 'bg-teal-50 text-teal-600',
+  'localisation-contenu': 'bg-amber-50 text-amber-500',
+  'croissance-b2b': 'bg-rose-50 text-rose-500',
+  'guides-sectoriels': 'bg-primary-50 text-primary-500',
+  'seo-international': 'bg-teal-50 text-teal-600',
+  'outils-et-ressources': 'bg-neutral-100 text-neutral-600',
+};
+
+const classes = `inline-block px-2.5 py-1 rounded-full text-xs font-medium ${colorMap[category] || 'bg-neutral-100 text-neutral-600'}`;
+---
+
+{linked ? (
+  <a href={`/blog/categorie/${category}/`} class={classes}>
+    {label}
+  </a>
+) : (
+  <span class={classes}>
+    {label}
+  </span>
+)}

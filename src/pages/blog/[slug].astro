@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { getReadingTime, getRelatedPosts, filterPublishedPosts } from '../../utils/blog';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allPosts = await getCollection('blog');
+  const publishedPosts = filterPublishedPosts(allPosts);
+
+  return publishedPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post, allPosts: publishedPosts },
+  }));
+};
+
+const { post, allPosts } = Astro.props;
+const { Content, headings } = await post.render();
+const readingTime = getReadingTime(post.body || '');
+const relatedPosts = getRelatedPosts(post, allPosts);
+---
+
+<BlogLayout post={post} headings={headings} readingTime={readingTime} relatedPosts={relatedPosts}>
+  <Content />
+</BlogLayout>

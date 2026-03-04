@@ -2,62 +2,65 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 
-  // Mobile-First Strategy: sm:640px, md:768px, lg:1024px, xl:1280px
-  // Usage: class="text-3xl md:text-4xl lg:text-5xl"
-
   theme: {
     extend: {
-      // Color System - Dark Theme WCAG AA compliant (≥4.5:1)
-      // Brand: Cyan électrique (énergie) + Blue (confiance)
       colors: {
-        // Primary: Keep for secondary accents (primary-600 = 7.2:1 contrast ✅)
+        // Primary: Indigo pastel
         primary: {
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#3B82F6',
-          600: '#2563EB',  // Secondary accent (7.2:1 ✅)
-          700: '#1D4ED8',  // Hover (9.1:1 ✅)
-          800: '#1E40AF',
-          900: '#1E3A8A'
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81'
         },
-        // Dark backgrounds
-        dark: {
-          base: '#000000',      // Fond principal pure black
-          surface: '#0F0F14',   // Sections alternées
-          card: '#1A1A24',      // Cartes témoignages
+        // Surfaces
+        surface: {
+          white: '#FFFFFF',
+          50: '#FAFBFF',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
         },
-        // Cyan: Main CTAs, highlights (replaces accent/orange)
-        cyan: {
-          300: '#00E5FF',  // Highlights brillants (10.2:1 contrast ✅)
-          400: '#00D4E6',  // Icons et numéros (9.5:1 ✅)
-          500: '#00BCD4',  // CTAs principaux (7.8:1 contrast ✅)
-          600: '#0097A7',  // Hover states (6.1:1 ✅)
-          700: '#00838F',  // Darker hover
-          900: '#004D54',  // Backgrounds de badges
+        // Teal accent
+        teal: {
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6',
+          600: '#0D9488',
         },
-        // Text colors for dark theme
+        // Rose accent
+        rose: {
+          50: '#FFF1F2',
+          100: '#FFE4E6',
+          200: '#FECDD3',
+          300: '#FDA4AF',
+          400: '#FB7185',
+          500: '#F43F5E',
+        },
+        // Amber accent
+        amber: {
+          50: '#FFFBEB',
+          100: '#FEF3C7',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#FBBF24',
+          500: '#F59E0B',
+        },
+        // Text
         text: {
-          primary: '#FFFFFF',      // Titres principaux (21:1 ✅)
-          secondary: '#B4B4C8',    // Corps de texte (8.5:1 ✅)
-          tertiary: '#8A8A9E',     // Texte tertiaire (5.2:1 ✅)
+          heading: '#0F172A',
+          body: '#334155',
+          muted: '#64748B',
+          light: '#94A3B8',
         },
-        // Legacy accent: Keep for backward compatibility
-        accent: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F97316',
-          600: '#EA580C',
-          700: '#C2410C',
-          800: '#9A3412',
-          900: '#7C2D12'
-        },
-        // Neutral: Keep for backward compatibility
+        // Legacy compatibility
         neutral: {
           50: '#F8FAFC',
           100: '#F1F5F9',
@@ -71,17 +74,33 @@ export default {
           900: '#0F172A'
         }
       },
-      // Typography: Inter only (performance-optimized for <3s load time)
-      // Decision: Single font vs dual-font for performance (UX Design alignment)
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif']
       },
-
-      // Animations: Subtle, prefers-reduced-motion compliant
+      borderRadius: {
+        '2xl': '1rem',
+        '3xl': '1.5rem',
+        '4xl': '2rem',
+      },
+      boxShadow: {
+        'glass': '0 8px 32px rgba(99, 102, 241, 0.08)',
+        'glass-lg': '0 16px 48px rgba(99, 102, 241, 0.12)',
+        'card': '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)',
+        'card-hover': '0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
+        'soft': '0 2px 8px rgba(0,0,0,0.04)',
+        'glow-primary': '0 0 40px rgba(99, 102, 241, 0.15)',
+        'glow-teal': '0 0 40px rgba(45, 212, 191, 0.15)',
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.6s ease-out',
-        'slide-down': 'slideDown 0.6s ease-out'
+        'slide-down': 'slideDown 0.6s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
+        'float-delayed': 'float 7s ease-in-out infinite 2s',
+        'pulse-soft': 'pulseSoft 4s ease-in-out infinite',
+        'spin-slow': 'spin 20s linear infinite',
+        'gradient-shift': 'gradientShift 8s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -95,7 +114,20 @@ export default {
         slideDown: {
           '0%': { opacity: '0', transform: 'translateY(-20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' }
-        }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '33%': { transform: 'translateY(-10px) rotate(1deg)' },
+          '66%': { transform: 'translateY(5px) rotate(-1deg)' },
+        },
+        pulseSoft: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+          '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+        },
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
       }
     }
   },

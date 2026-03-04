@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import CategoryBadge from '../../components/blog/CategoryBadge.astro';
+import Pagination from '../../components/blog/Pagination.astro';
+import { BLOG_PAGE_SIZE, BLOG_TITLE, BLOG_DESCRIPTION, CATEGORY_LABELS } from '../../config';
+import { sortPostsByDate, filterPublishedPosts } from '../../utils/blog';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const allPosts = await getCollection('blog');
+  const publishedPosts = sortPostsByDate(filterPublishedPosts(allPosts));
+  return paginate(publishedPosts, { pageSize: BLOG_PAGE_SIZE });
+};
+
+const { page } = Astro.props;
+const categories = Object.entries(CATEGORY_LABELS);
+---
+
+<BaseLayout title={BLOG_TITLE} description={BLOG_DESCRIPTION}>
+  <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+    <header class="mb-12 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-text-heading mb-4">
+        Le Blog <span class="gradient-text">Make It Global</span>
+      </h1>
+      <p class="text-lg text-text-muted max-w-2xl mx-auto">
+        Conseils, strategies et guides pour internationaliser vos contenus et developper votre entreprise a l'international.
+      </p>
+    </header>
+
+    <!-- Category filters -->
+    <nav class="flex flex-wrap gap-2 mb-10 justify-center" aria-label="Filtrer par categorie">
+      <a
+        href="/blog/"
+        class="inline-block px-3 py-1.5 rounded-full text-sm font-medium bg-primary-500 text-white"
+      >
+        Tous
+      </a>
+      {categories.map(([slug, label]) => (
+        <a
+          href={`/blog/categorie/${slug}/`}
+          class="inline-block px-3 py-1.5 rounded-full text-sm font-medium bg-surface-100 text-text-body hover:bg-primary-50 hover:text-primary-500 transition-colors"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Posts grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {page.data.map((post) => (
+        <PostCard post={post} />
+      ))}
+    </div>
+
+    <Pagination
+      currentPage={page.currentPage}
+      totalPages={page.lastPage}
+      baseUrl="/blog/"
+    />
+  </main>
+</BaseLayout>
