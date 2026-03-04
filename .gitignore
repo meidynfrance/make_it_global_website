@@ -27,3 +27,7 @@ pnpm-debug.log*
 # vercel
 .vercel
 .env*.local
+
+# bmad (unused)
+_bmad/
+_bmad-output/

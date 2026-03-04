@@ -225,9 +225,6 @@ vercel
 - [TailwindCSS Documentation](https://tailwindcss.com/docs)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [Vercel Documentation](https://vercel.com/docs)
-- **Browser Compatibility Report:** `_bmad-output/implementation-artifacts/browser-compatibility-report.md`
-- **Manual Testing Guide:** `_bmad-output/implementation-artifacts/manual-testing-guide.md`
-
 ## 🤝 Contribution
 
 Pour toute question ou suggestion, contactez l'équipe de développement.
