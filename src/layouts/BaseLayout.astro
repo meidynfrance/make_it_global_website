@@ -42,6 +42,9 @@ import MobileCTABar from '../components/ui/MobileCTABar.astro';
 // Import Navbar
 import Navbar from '../components/ui/Navbar.astro';
 
+// Import Footer
+import Footer from '../components/ui/Footer.astro';
+
 // Google Analytics ID (optional - graceful degradation if undefined)
 const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 ---
@@ -122,6 +125,8 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     <div class:list={[showNavbar && 'pt-16']}>
       <slot />
     </div>
+
+    <Footer />
 
     <!-- Sticky mobile CTA bar -->
     <MobileCTABar />

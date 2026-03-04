@@ -555,6 +555,18 @@ a[class*="btn"]:focus-visible {
   color: var(--color-primary-700);
 }
 
+.prose a[class*="btn"] {
+  text-decoration: none;
+}
+
+.prose a.btn-primary {
+  color: white;
+}
+
+.prose a.btn-secondary {
+  color: white;
+}
+
 .prose strong {
   font-weight: 600;
   color: var(--color-text-heading);
