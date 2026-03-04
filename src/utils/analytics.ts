@@ -5,10 +5,10 @@
  *
  * Usage:
  * ```typescript
- * import { trackCalendlyClick } from '@/utils/analytics';
+ * import { trackWhatsAppClick } from '@/utils/analytics';
  *
  * // In component
- * onClick={() => trackCalendlyClick('contact')}
+ * onClick={() => trackWhatsAppClick('contact')}
  * ```
  *
  * References:
@@ -52,40 +52,6 @@ function validateSection(section: string): string {
 }
 
 /**
- * Track Calendly widget click event
- *
- * @param section - Where the Calendly widget is placed (e.g., 'hero', 'contact')
- * @param label - Optional additional context
- */
-export function trackCalendlyClick(section: string = 'contact', label?: string): void {
-  if (!isGtagAvailable()) {
-    if (import.meta.env.DEV) {
-      console.warn('GA4 not loaded - trackCalendlyClick skipped');
-    }
-    return;
-  }
-
-  const validatedSection = validateSection(section);
-
-  try {
-    window.gtag('event', 'calendly_click', {
-      event_category: 'conversion',
-      event_label: label || validatedSection,
-      section: validatedSection,
-      cta_type: 'calendly'
-    });
-
-    if (import.meta.env.DEV) {
-      console.log(`📊 GA4 Event: calendly_click (section: ${validatedSection})`);
-    }
-  } catch (error) {
-    if (import.meta.env.DEV) {
-      console.error('GA4 tracking error:', error);
-    }
-  }
-}
-
-/**
  * Track WhatsApp button click event
  *
  * @param section - Where the WhatsApp button is placed (e.g., 'hero', 'contact')
@@ -110,7 +76,7 @@ export function trackWhatsAppClick(section: string = 'contact', label?: string):
     });
 
     if (import.meta.env.DEV) {
-      console.log(`📊 GA4 Event: whatsapp_click (section: ${validatedSection})`);
+      console.log(`GA4 Event: whatsapp_click (section: ${validatedSection})`);
     }
   } catch (error) {
     if (import.meta.env.DEV) {
@@ -145,7 +111,7 @@ export function trackFormSubmit(section: string = 'contact', formType: string = 
     });
 
     if (import.meta.env.DEV) {
-      console.log(`📊 GA4 Event: form_submit (section: ${validatedSection}, type: ${formType})`);
+      console.log(`GA4 Event: form_submit (section: ${validatedSection}, type: ${formType})`);
     }
   } catch (error) {
     if (import.meta.env.DEV) {

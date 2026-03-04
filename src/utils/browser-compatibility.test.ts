@@ -5,14 +5,14 @@
  * that must work across all browsers (Chrome, Firefox, Safari, Edge).
  *
  * Automated tests cover:
- * - Third-party script integration (Calendly, GA4)
+ * - Third-party script integration (GA4)
  * - WhatsApp link format validation
  * - Video embed URL structure
  * - Accessibility attributes (ARIA, skip links)
  * - Meta tags for social sharing
  *
  * Manual tests required (cannot be automated):
- * - Calendly SDK initialization and modal display
+ *
  * - WhatsApp opens correctly (desktop vs mobile)
  * - GA4 events in Network tab
  * - Video lazy loading and playback
@@ -40,13 +40,6 @@ describe('Browser Compatibility - HTML Structure Validation', () => {
   }
 
   describe('Third-Party Integrations (AC #5)', () => {
-    it('should include Calendly SDK script in <head>', async () => {
-      const html = await fetchProductionHTML();
-
-      expect(html).toContain('https://assets.calendly.com/assets/external/widget.js');
-      expect(html).toContain('async'); // Calendly should load asynchronously
-    });
-
     it('should include Google Analytics 4 script with correct ID', async () => {
       const html = await fetchProductionHTML();
 
@@ -88,9 +81,6 @@ describe('Browser Compatibility - HTML Structure Validation', () => {
       expect(html).toContain('<link rel="preconnect" href="https://www.youtube-nocookie.com">');
       expect(html).toContain('<link rel="preconnect" href="https://player.vimeo.com">');
 
-      // Preconnect to Calendly
-      expect(html).toContain('<link rel="preconnect" href="https://assets.calendly.com">');
-
       // DNS prefetch for GA4
       expect(html).toContain('dns-prefetch');
       expect(html).toContain('googletagmanager.com');
@@ -108,9 +98,6 @@ describe('Browser Compatibility - HTML Structure Validation', () => {
 
     it('should have ARIA labels on interactive elements', async () => {
       const html = await fetchProductionHTML();
-
-      // Calendly buttons should have aria-label
-      expect(html).toMatch(/aria-label="[^"]*appel[^"]*"/i);
 
       // WhatsApp buttons should have aria-label
       expect(html).toMatch(/aria-label="[^"]*WhatsApp[^"]*"/i);
@@ -234,9 +221,9 @@ describe('Browser Compatibility - HTML Structure Validation', () => {
     it('should have async scripts for third-party resources', async () => {
       const html = await fetchProductionHTML();
 
-      // Calendly and GA4 should load asynchronously
+      // GA4 should load asynchronously
       const asyncScripts = html.match(/<script async/g) || [];
-      expect(asyncScripts.length).toBeGreaterThanOrEqual(2); // At least Calendly + GA4
+      expect(asyncScripts.length).toBeGreaterThanOrEqual(1); // At least GA4
     });
 
     it('should use CSS asset hashing for cache busting', async () => {
@@ -270,36 +257,6 @@ describe('Browser Compatibility - HTML Structure Validation', () => {
 
       expect(html).toContain('video-facade'); // Facade class
       expect(html).toContain('aria-label="Lire la vidéo'); // Play button accessibility
-    });
-  });
-
-  describe('Calendly Integration (AC #5)', () => {
-    it('should have Calendly popup buttons with unique IDs', async () => {
-      const html = await fetchProductionHTML();
-
-      // Buttons should have unique IDs for SDK targeting
-      expect(html).toMatch(/id="calendly-[a-z0-9]+"/);
-
-      // Buttons should have calendly-button class
-      expect(html).toContain('calendly-button');
-    });
-
-    it('should have Calendly popup buttons in multiple sections', async () => {
-      const html = await fetchProductionHTML();
-
-      // Should have Calendly buttons in Hero and Contact sections
-      expect(html).toContain('data-section="hero"');
-      expect(html).toContain('data-section="contact"');
-
-      // Multiple Calendly buttons should exist
-      const calendlyButtons = html.match(/class="[^"]*calendly-button[^"]*"/g) || [];
-      expect(calendlyButtons.length).toBeGreaterThanOrEqual(2); // At least Hero + Contact
-    });
-
-    it('should have Calendly URLs in data attributes', async () => {
-      const html = await fetchProductionHTML();
-
-      expect(html).toContain('https://calendly.com/contact-makeitglobal-agency/30min');
     });
   });
 

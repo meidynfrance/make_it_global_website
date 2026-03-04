@@ -83,7 +83,6 @@ describe('Performance Optimizations (Story 8.3)', () => {
       expect(cspHeader.value).toContain('script-src');
       expect(cspHeader.value).toContain('style-src');
       expect(cspHeader.value).toContain('googletagmanager.com'); // GA4
-      expect(cspHeader.value).toContain('assets.calendly.com'); // Calendly
     });
 
     it('should have HTML cache policy (always fresh)', () => {
@@ -258,15 +257,6 @@ describe('Performance Optimizations (Story 8.3)', () => {
       const gaContent = fs.readFileSync(gaPath, 'utf-8');
 
       expect(gaContent).toContain('async');
-    });
-
-    it('should load Calendly SDK async', () => {
-      const baseLayoutPath = path.join(process.cwd(), 'src/layouts/BaseLayout.astro');
-      const baseLayoutContent = fs.readFileSync(baseLayoutPath, 'utf-8');
-
-      // Check Calendly script is async
-      expect(baseLayoutContent).toContain('assets.calendly.com');
-      expect(baseLayoutContent).toContain('async');
     });
 
     it('should have preconnect hints', () => {

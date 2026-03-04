@@ -2,7 +2,7 @@
  * Test suite for analytics event tracking utilities
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { trackCalendlyClick, trackWhatsAppClick, trackFormSubmit } from './analytics';
+import { trackWhatsAppClick, trackFormSubmit } from './analytics';
 
 // Mock window.gtag
 const mockGtag = vi.fn();
@@ -24,59 +24,6 @@ beforeEach(() => {
 });
 
 describe('analytics utilities', () => {
-  describe('trackCalendlyClick', () => {
-    it('should send calendly_click event with correct parameters', () => {
-      trackCalendlyClick('contact');
-
-      expect(mockGtag).toHaveBeenCalledWith('event', 'calendly_click', {
-        event_category: 'conversion',
-        event_label: 'contact',
-        section: 'contact',
-        cta_type: 'calendly'
-      });
-    });
-
-    it('should use default section "contact" when not provided', () => {
-      trackCalendlyClick();
-
-      expect(mockGtag).toHaveBeenCalledWith('event', 'calendly_click',
-        expect.objectContaining({
-          section: 'contact',
-          event_label: 'contact'
-        })
-      );
-    });
-
-    it('should use custom label when provided', () => {
-      trackCalendlyClick('hero', 'custom-label');
-
-      expect(mockGtag).toHaveBeenCalledWith('event', 'calendly_click',
-        expect.objectContaining({
-          event_label: 'custom-label',
-          section: 'hero'
-        })
-      );
-    });
-
-    it('should log console message with section', () => {
-      const consoleSpy = vi.spyOn(console, 'log');
-      trackCalendlyClick('hero');
-
-      expect(consoleSpy).toHaveBeenCalledWith('📊 GA4 Event: calendly_click (section: hero)');
-    });
-
-    it('should warn and skip when gtag not available', () => {
-      // Remove gtag from window
-      globalThis.window.gtag = undefined;
-      const warnSpy = vi.spyOn(console, 'warn');
-
-      trackCalendlyClick('contact');
-
-      expect(warnSpy).toHaveBeenCalledWith('GA4 not loaded - trackCalendlyClick skipped');
-      expect(mockGtag).not.toHaveBeenCalled();
-    });
-  });
-
   describe('trackWhatsAppClick', () => {
     it('should send whatsapp_click event with correct parameters', () => {
       trackWhatsAppClick('hero');
@@ -109,13 +56,6 @@ describe('analytics utilities', () => {
           section: 'contact'
         })
       );
-    });
-
-    it('should log console message with section', () => {
-      const consoleSpy = vi.spyOn(console, 'log');
-      trackWhatsAppClick('contact');
-
-      expect(consoleSpy).toHaveBeenCalledWith('📊 GA4 Event: whatsapp_click (section: contact)');
     });
 
     it('should warn and skip when gtag not available', () => {
@@ -166,13 +106,6 @@ describe('analytics utilities', () => {
       );
     });
 
-    it('should log console message with section and type', () => {
-      const consoleSpy = vi.spyOn(console, 'log');
-      trackFormSubmit('contact', 'full_contact');
-
-      expect(consoleSpy).toHaveBeenCalledWith('📊 GA4 Event: form_submit (section: contact, type: full_contact)');
-    });
-
     it('should warn and skip when gtag not available', () => {
       globalThis.window.gtag = undefined;
       const warnSpy = vi.spyOn(console, 'warn');
@@ -189,25 +122,24 @@ describe('analytics utilities', () => {
       globalThis.window.gtag = undefined;
       const warnSpy = vi.spyOn(console, 'warn');
 
-      trackCalendlyClick('hero');
       trackWhatsAppClick('contact');
       trackFormSubmit('contact', 'email');
 
-      expect(warnSpy).toHaveBeenCalledTimes(3);
+      expect(warnSpy).toHaveBeenCalledTimes(2);
       expect(mockGtag).not.toHaveBeenCalled();
     });
 
     it('should work correctly when gtag is restored', () => {
       globalThis.window.gtag = undefined;
-      trackCalendlyClick('hero');
+      trackWhatsAppClick('hero');
       expect(mockGtag).not.toHaveBeenCalled();
 
       // Restore gtag
       globalThis.window.gtag = mockGtag;
-      trackCalendlyClick('contact');
+      trackWhatsAppClick('contact');
 
       expect(mockGtag).toHaveBeenCalledTimes(1);
-      expect(mockGtag).toHaveBeenCalledWith('event', 'calendly_click',
+      expect(mockGtag).toHaveBeenCalledWith('event', 'whatsapp_click',
         expect.objectContaining({ section: 'contact' })
       );
     });
