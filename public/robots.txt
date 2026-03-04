@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://makeitglobal-agency.com/sitemap-index.xml
