@@ -7,7 +7,7 @@
 export const WHATSAPP_NUMBER = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '33647770475';
 export const WHATSAPP_DEFAULT_MESSAGE = `Bonjour, j'aimerais discuter d'un projet d'implémentation IA.`;
 export const WHATSAPP_MESSAGE_CONTACT = `Bonjour, j'aimerais en savoir plus sur vos services IA pour mon entreprise.`;
-export const CONTACT_EMAIL = 'hello@makeitglobal-agency.com';
+export const CONTACT_EMAIL = 'contact@makeitglobal-agency.com';
 
 // Booking link — Google Calendar appointment scheduling (CEO)
 export const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL || 'https://calendar.app.google/TKgeUJnmeS56BdrC6';
@@ -20,11 +20,11 @@ export const SITE_DESCRIPTION = "Nous concevons et déployons des outils métier
 
 // Navigation principale
 export const NAV_SERVICES = [
-  { href: '/services/implementation-ia',   label: "Implémentation IA",       description: "Stratégie + déploiement complet en entreprise" },
-  { href: '/services/outils-metier',       label: "Outils métier sur-mesure", description: "Interfaces internes boostées à l'IA" },
-  { href: '/services/saas-agents-ia',      label: "SaaS & agents IA",         description: "Produits et agents autonomes" },
-  { href: '/services/automatisations',     label: "Automatisations",          description: "n8n, Make, workflows custom" },
-  { href: '/services/seo-automatise',      label: "SEO automatisé",           description: "Content IA + SEO programmatique" },
+  { href: '/services/implementation-ia',   label: "Implémentation IA",       description: "Stratégie et déploiement complet en entreprise" },
+  { href: '/services/outils-metier',       label: "Outils métier sur-mesure", description: "Des interfaces internes pensées pour votre métier" },
+  { href: '/services/saas-agents-ia',      label: "Produits & assistants IA", description: "Des assistants autonomes qui travaillent pour vous" },
+  { href: '/services/automatisations',     label: "Automatisations",          description: "Vos tâches répétitives, automatisées de bout en bout" },
+  { href: '/services/seo-automatise',      label: "SEO automatisé",           description: "Contenu IA et référencement automatisé" },
 ];
 
 export const NAV_RESOURCES = [
