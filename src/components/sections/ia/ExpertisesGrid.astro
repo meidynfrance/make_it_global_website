@@ -9,26 +9,21 @@ const icons: Record<string, string> = {
   '/services/seo-automatise':      'M11 4a7 7 0 107 7 M21 21l-4.35-4.35 M11 8v3l2 2',
 };
 
-const details: Record<string, { tags: string[]; outcome: string }> = {
+const details: Record<string, { outcome: string }> = {
   '/services/implementation-ia': {
-    tags: ['Stratégie', 'Déploiement', 'Change management'],
-    outcome: 'De zéro à prod en 3 mois',
+    outcome: 'De zéro à la mise en service en 3 mois',
   },
   '/services/outils-metier': {
-    tags: ['Next.js', 'Supabase', 'LLM'],
-    outcome: 'Interfaces internes dopées à l\'IA',
+    outcome: 'Des interfaces internes pensées pour votre métier',
   },
   '/services/saas-agents-ia': {
-    tags: ['LangChain', 'Claude', 'OpenAI'],
-    outcome: 'Agents autonomes en production',
+    outcome: 'Des assistants autonomes qui travaillent pour vous',
   },
   '/services/automatisations': {
-    tags: ['n8n', 'Make', 'Custom'],
-    outcome: 'Workflows qui tournent 24/7',
+    outcome: 'Vos tâches répétitives tournent toutes seules, 24/7',
   },
   '/services/seo-automatise': {
-    tags: ['Content IA', 'Programmatic', 'Embeddings'],
-    outcome: 'Trafic organique x3 à 12 mois',
+    outcome: '3 fois plus de visiteurs en 12 mois',
   },
 };
 ---
@@ -44,37 +39,30 @@ const details: Record<string, { tags: string[]; outcome: string }> = {
         </h2>
       </div>
       <p class="max-w-md text-text-muted" data-reveal="fade-up" data-reveal-delay="100">
-        On ne vend pas du "conseil IA". On code, on déploie, on maintient. Chaque mission est pilotée par un lead technique senior.
+        On ne vend pas du conseil. On construit, on déploie, on maintient. Chaque mission est pilotée par un responsable technique senior.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-children="100">
       {NAV_SERVICES.map((svc, i) => (
-        <a
-          href={svc.href}
-          class="card card-glow p-8 group relative overflow-hidden"
+        <div
+          class="card p-8 relative overflow-hidden"
           data-reveal="fade-up"
         >
           <div class="absolute top-4 right-4 text-xs font-mono text-text-dim">
             0{i + 1}
           </div>
-          <div class="w-12 h-12 rounded-xl border border-border bg-bg-elevated flex items-center justify-center text-primary-400 group-hover:text-primary-300 group-hover:border-primary-500/40 transition-all">
+          <div class="w-12 h-12 rounded-xl border border-border bg-bg-elevated flex items-center justify-center text-primary-400">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d={icons[svc.href]}></path>
             </svg>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-text-primary tracking-tight">{svc.label}</h3>
           <p class="mt-2 text-sm text-text-muted leading-relaxed">{svc.description}</p>
-          <div class="mt-5 flex flex-wrap gap-1.5">
-            {details[svc.href].tags.map((tag) => (
-              <span class="badge text-[10px]">{tag}</span>
-            ))}
-          </div>
-          <div class="mt-6 pt-5 border-t border-border-subtle flex items-center justify-between">
+          <div class="mt-6 pt-5 border-t border-border-subtle">
             <span class="text-xs text-text-muted">{details[svc.href].outcome}</span>
-            <span class="text-primary-400 group-hover:text-primary-300 group-hover:translate-x-0.5 transition-all text-sm">→</span>
           </div>
-        </a>
+        </div>
       ))}
     </div>
   </div>

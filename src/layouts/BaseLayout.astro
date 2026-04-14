@@ -13,6 +13,7 @@ interface Props {
     tags?: string[];
   };
   showNavbar?: boolean;
+  showMobileCTA?: boolean;
   extraSchema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
@@ -24,6 +25,7 @@ const {
   canonicalUrl,
   articleMeta,
   showNavbar = true,
+  showMobileCTA = true,
   extraSchema,
 } = Astro.props;
 
@@ -145,7 +147,7 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     <Footer />
 
     <!-- Sticky mobile CTA bar -->
-    <MobileCTABar />
+    {showMobileCTA && <MobileCTABar />}
 
     <!-- Scroll Reveal Intersection Observer -->
     <script is:inline>

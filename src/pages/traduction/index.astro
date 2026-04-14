@@ -1,28 +1,291 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import HeroSection from '../../components/sections/HeroSection.astro';
-import ProblemSection from '../../components/sections/ProblemSection.astro';
-import ProcessSection from '../../components/sections/ProcessSection.astro';
-import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
-import ContactSection from '../../components/sections/ContactSection.astro';
+import DottedBg from '../../components/ui/DottedBg.astro';
+import { BOOKING_URL, CONTACT_EMAIL } from '../../config';
+
+const problems = [
+  {
+    icon: '01',
+    title: "Des contenus limités à un seul marché",
+    desc: "Vos vidéos, formations et documents génèrent des résultats en France. Mais des marchés à fort potentiel restent inaccessibles faute de versions localisées.",
+  },
+  {
+    icon: '02',
+    title: "Un processus trop complexe à gérer seul",
+    desc: "Coordonner traducteurs, monteurs, relecteurs... L'internationalisation mobilise des ressources que vous n'avez pas.",
+  },
+  {
+    icon: '03',
+    title: "L'IA seule ne suffit pas",
+    desc: "Les outils automatiques produisent des traductions approximatives. Pour vos communications professionnelles, la qualité doit être irréprochable.",
+  },
+];
+
+const services = [
+  {
+    icon: 'M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
+    title: "Vidéos & doublage",
+    desc: "Doublage IA-hybride, sous-titrage, remontage complet. Vous recevez un fichier prêt à publier.",
+  },
+  {
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+    title: "Documents & formations",
+    desc: "PDFs, présentations, formations en ligne, e-books. Mise en page conservée, contenu adapté.",
+  },
+  {
+    icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9',
+    title: "Sites web & emails",
+    desc: "Localisation de sites web, landing pages, campagnes email. Adaptation culturelle incluse.",
+  },
+  {
+    icon: 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0-11V3m0 0L9 7m3-4l3 4',
+    title: "Audio & podcasts",
+    desc: "Transcription, traduction et doublage de contenus audio pour vos marchés internationaux.",
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    title: 'Transmission de vos contenus',
+    duration: 'Jour 1',
+    desc: "Envoyez vos fichiers dans leur format d'origine. Nous acceptons tous les formats sans conversion préalable.",
+  },
+  {
+    n: '02',
+    title: 'Traduction et adaptation',
+    duration: '2 à 5 jours',
+    desc: "Traduction assistée par IA, validation par experts natifs. Pour les vidéos : remontage complet incluant voix, sous-titres et éléments graphiques.",
+  },
+  {
+    n: '03',
+    title: 'Livraison finalisée',
+    duration: 'Sous 72h',
+    desc: "Vous recevez vos contenus prêts à être déployés. Aucun travail de post-production de votre côté.",
+  },
+];
+
+const testimonials = [
+  {
+    metric: 'CA x3',
+    metricLabel: 'en 6 mois grâce aux nouveaux marchés',
+    quote: "Nous produisions des contenus performants en France. Make It Global les a adaptés pour les marchés anglophone et hispanophone. Six mois plus tard, notre chiffre d'affaires avait triplé.",
+    author: 'M.L.',
+    company: 'Dirigeant — Infoproduits',
+  },
+  {
+    metric: '30 jours',
+    metricLabel: "pour ouvrir le marché allemand",
+    quote: "Nous reportions notre expansion en Allemagne depuis deux ans. Nous avons transmis nos vidéos produits un lundi et reçu les versions allemandes le vendredi suivant. Premier client allemand le mois suivant.",
+    author: 'P.D.',
+    company: 'CEO — PME industrielle B2B',
+  },
+  {
+    metric: '60%',
+    metricLabel: "de clients internationaux aujourd'hui",
+    quote: "Mon activité de formation était cantonnée au marché français. Aujourd'hui, plus de la moitié de mes clients sont anglophones ou hispanophones. La qualité du doublage a fait la différence.",
+    author: 'S.R.',
+    company: 'Dirigeant — Organisme de formation',
+  },
+];
 ---
 
 <BaseLayout
   title="Traduction & localisation de contenus — Make It Global"
-  description="Notre métier historique : traduction, doublage et adaptation de vidéos, formations, PDFs, sites web. Service clé-en-main, livraison sous 48h."
+  description="Notre métier historique : traduction, doublage et adaptation de vidéos, formations, PDFs, sites web. Service clé-en-main, livraison sous 72h."
+  showMobileCTA={false}
 >
   <main id="main-content">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-      <a href="/" class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary transition-colors">
-        ← Retour à Make It Global IA
-      </a>
-      <div class="mt-6 badge badge-primary">Branche historique · Traduction &amp; International</div>
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-24">
+      <DottedBg variant="grid" />
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-flex" data-reveal="fade-up">
+          <span class="badge badge-primary">Branche historique · Traduction & International</span>
+        </div>
+
+        <h1
+          class="mt-8 text-5xl sm:text-6xl md:text-7xl font-bold tracking-[-0.035em] leading-[0.95] text-text-primary"
+          data-reveal="fade-up"
+          data-reveal-delay="100"
+        >
+          Accélérez votre<br />
+          <span class="gradient-text">expansion internationale.</span>
+        </h1>
+
+        <p
+          class="mt-8 text-lg sm:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed"
+          data-reveal="fade-up"
+          data-reveal-delay="200"
+        >
+          Nous traduisons et adaptons l'ensemble de vos contenus — vidéos, formations, PDFs, emails, audio — pour vos marchés cibles. Vous poursuivez votre activité, nous gérons tout.
+        </p>
+
+        <div
+          class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
+          data-reveal="fade-up"
+          data-reveal-delay="300"
+        >
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary cta-pulse">
+            Réserver un appel découverte
+          </a>
+        </div>
+
+        <p class="mt-6 text-xs text-text-dim font-mono uppercase tracking-wider" data-reveal="fade-up" data-reveal-delay="400">
+          Livraison sous 72h · Tous formats acceptés · Devis gratuit
+        </p>
+      </div>
     </section>
 
-    <HeroSection />
-    <ProblemSection />
-    <ProcessSection />
-    <TestimonialsSection />
-    <ContactSection />
+    <!-- Problème -->
+    <section class="relative py-24 sm:py-32" id="probleme">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl" data-reveal="fade-up">
+          <span class="badge">Le constat</span>
+          <h2 class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">
+            Vos contenus performent en France.<br />
+            <span class="text-text-muted">Pas encore à l'international.</span>
+          </h2>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-5" data-reveal-children="150">
+          {problems.map((p) => (
+            <div class="card p-8" data-reveal="fade-up">
+              <div class="font-mono text-xs text-primary-400">{p.icon}</div>
+              <h3 class="mt-4 text-xl font-semibold text-text-primary tracking-tight">{p.title}</h3>
+              <p class="mt-3 text-sm text-text-muted leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Notre solution -->
+    <section class="relative py-24 sm:py-32 border-y border-border-subtle bg-bg-surface/30" id="services">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-16" data-reveal="fade-up">
+          <span class="badge">Notre solution</span>
+          <h2 class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">
+            IA + experts natifs.<br />
+            <span class="gradient-text-primary">Le meilleur des deux mondes.</span>
+          </h2>
+          <p class="mt-6 text-lg text-text-muted">
+            L'intelligence artificielle assure rapidité et cohérence. Nos experts natifs garantissent précision et adaptation culturelle. Vous recevez des contenus finalisés, prêts à publier.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" data-reveal-children="100">
+          {services.map((svc) => (
+            <div class="card p-8" data-reveal="fade-up">
+              <div class="w-12 h-12 rounded-xl border border-border bg-bg-elevated flex items-center justify-center text-primary-400">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d={svc.icon}></path>
+                </svg>
+              </div>
+              <h3 class="mt-6 text-xl font-semibold text-text-primary tracking-tight">{svc.title}</h3>
+              <p class="mt-2 text-sm text-text-muted leading-relaxed">{svc.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Processus -->
+    <section class="relative py-24 sm:py-32" id="processus">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-16" data-reveal="fade-up">
+          <span class="badge">Processus</span>
+          <h2 class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">
+            3 étapes,<br />
+            <span class="gradient-text">zéro prise de tête.</span>
+          </h2>
+          <p class="mt-6 text-lg text-text-muted">
+            Vous déléguez, nous livrons. Aucun travail de post-production de votre côté.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-reveal-children="150">
+          {steps.map((s) => (
+            <div class="card p-6" data-reveal="fade-up">
+              <div class="flex items-center justify-between">
+                <div class="font-mono text-2xl font-bold text-primary-400">{s.n}</div>
+                <span class="badge text-[10px]">{s.duration}</span>
+              </div>
+              <h3 class="mt-5 text-lg font-semibold text-text-primary">{s.title}</h3>
+              <p class="mt-2 text-sm text-text-muted leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="relative py-24 border-t border-border-subtle" aria-labelledby="testimonials-trad-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-14" data-reveal="fade-up">
+          <span class="badge">Témoignages</span>
+          <h2 id="testimonials-trad-heading" class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary leading-[1.1]">
+            Ils ont accéléré leur<br />
+            <span class="gradient-text">développement international.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-children="150">
+          {testimonials.map((t) => (
+            <figure class="card p-8" data-reveal="fade-up">
+              <div class="mb-5">
+                <div class="text-3xl font-bold text-accent-400 tracking-tight">{t.metric}</div>
+                <div class="text-xs text-text-dim mt-1">{t.metricLabel}</div>
+              </div>
+
+              <blockquote class="text-sm text-text-muted leading-relaxed italic">
+                "{t.quote}"
+              </blockquote>
+
+              <figcaption class="mt-6 pt-5 border-t border-border-subtle">
+                <div class="text-sm font-semibold text-text-primary">{t.author}</div>
+                <div class="text-xs text-text-muted">{t.company}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="relative py-24 sm:py-32 border-t border-border-subtle">
+      <DottedBg variant="grid" />
+      <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2
+          class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-text-primary leading-[1]"
+          data-reveal="fade-up"
+        >
+          Échangeons sur<br />
+          <span class="gradient-text">votre projet.</span>
+        </h2>
+
+        <p
+          class="mt-8 text-lg text-text-muted max-w-xl mx-auto"
+          data-reveal="fade-up"
+          data-reveal-delay="100"
+        >
+          Présentez-nous vos contenus et vos marchés cibles. Nous vous indiquerons comment nous pouvons vous accompagner.
+        </p>
+
+        <div
+          class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
+          data-reveal="fade-up"
+          data-reveal-delay="200"
+        >
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-primary cta-pulse">
+            Réserver un appel
+          </a>
+        </div>
+
+        <p class="mt-6 text-xs text-text-dim" data-reveal="fade-up" data-reveal-delay="300">
+          Vous préférez l'email ? <a href={`mailto:${CONTACT_EMAIL}`} class="text-primary-400 hover:text-primary-300">{CONTACT_EMAIL}</a>
+        </p>
+      </div>
+    </section>
   </main>
 </BaseLayout>

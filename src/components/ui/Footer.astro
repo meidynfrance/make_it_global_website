@@ -29,7 +29,7 @@ const currentYear = new Date().getFullYear();
         <ul class="space-y-2.5 text-sm">
           {NAV_SERVICES.map((svc) => (
             <li>
-              <a href={svc.href} class="text-text-muted hover:text-text-primary transition-colors">{svc.label}</a>
+              <span class="text-text-muted">{svc.label}</span>
             </li>
           ))}
         </ul>
@@ -41,7 +41,7 @@ const currentYear = new Date().getFullYear();
         <ul class="space-y-2.5 text-sm">
           <li><a href="/traduction/" class="text-text-muted hover:text-text-primary transition-colors">Notre métier historique</a></li>
           <li><a href="/blog/localisation/" class="text-text-muted hover:text-text-primary transition-colors">Blog Localisation</a></li>
-          <li><a href="/traduction/#services" class="text-text-muted hover:text-text-primary transition-colors">Services de localisation</a></li>
+          <li><a href="/traduction/" class="text-text-muted hover:text-text-primary transition-colors">Services de localisation</a></li>
         </ul>
       </div>
 
