@@ -4,7 +4,7 @@ import { SITE_NAME, NAV_SERVICES, BOOKING_URL, CONTACT_EMAIL } from '../../confi
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative border-t border-border-subtle bg-bg-base">
+<footer class="relative section-dark">
   <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -50,7 +50,6 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-[11px] font-mono uppercase tracking-wider text-text-dim mb-4">Ressources</h3>
         <ul class="space-y-2.5 text-sm">
           <li><a href="/blog/" class="text-text-muted hover:text-text-primary transition-colors">Blog IA</a></li>
-          <li><a href="/cas-clients/" class="text-text-muted hover:text-text-primary transition-colors">Cas clients</a></li>
           <li><a href="/audit-ia/" class="text-text-muted hover:text-text-primary transition-colors">Audit IA gratuit</a></li>
           <li><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-text-primary transition-colors">Réserver un appel</a></li>
           <li><a href={`mailto:${CONTACT_EMAIL}`} class="text-text-muted hover:text-text-primary transition-colors">{CONTACT_EMAIL}</a></li>

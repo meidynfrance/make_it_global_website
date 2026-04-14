@@ -30,7 +30,6 @@ export const NAV_SERVICES = [
 export const NAV_RESOURCES = [
   { href: '/blog/',              label: 'Blog IA' },
   { href: '/blog/localisation/', label: 'Blog Localisation' },
-  { href: '/cas-clients/',       label: 'Cas clients' },
   { href: '/audit-ia/',          label: 'Audit IA gratuit' },
 ];
 
