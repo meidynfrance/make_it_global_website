@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DottedBg from '../components/ui/DottedBg.astro';
+import { BOOKING_URL } from '../config';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Discovery',
+    duration: '1 semaine',
+    desc: "Interviews des équipes, cartographie des process, analyse des données existantes. Vous repartez avec une vision claire des opportunités IA classées par ROI.",
+    deliverables: ['Cartographie des process', "Liste priorisée de cas d'usage", 'Estimation ROI', "Roadmap 3-6-12 mois"],
+  },
+  {
+    n: '02',
+    title: 'PoC en 2 semaines',
+    duration: '2 semaines',
+    desc: "On choisit le cas d'usage n°1 et on construit un prototype fonctionnel. Testé en conditions réelles par vos équipes. Objectif : prouver la valeur avant d'investir.",
+    deliverables: ['Prototype fonctionnel', 'Tests utilisateurs', 'Métriques de performance', 'Décision go/no-go production'],
+  },
+  {
+    n: '03',
+    title: 'Production',
+    duration: '4 à 8 semaines',
+    desc: "Développement solide, intégrations avec vos outils existants, mise en prod avec monitoring, formation de vos équipes. Livraison clé en main.",
+    deliverables: ['Code source complet', 'Documentation technique', 'Formation équipes', 'Dashboard de monitoring'],
+  },
+  {
+    n: '04',
+    title: 'Run & itération',
+    duration: 'continu',
+    desc: "Support, maintenance évolutive, analyse des usages réels, itérations. Vous gardez la main, on reste disponibles. Engagement mensuel léger, sans lock-in.",
+    deliverables: ['Support prioritaire', 'Évolutions mensuelles', 'Monitoring proactif', "Revue trimestrielle d'impact"],
+  },
+];
+
+const principles = [
+  { title: 'Build > slides', desc: "On ne vend pas du PowerPoint. On code, on déploie, on maintient. Chaque livraison est mesurable." },
+  { title: "PoC en 2 semaines", desc: "On prouve la valeur avant d'engager le client dans un gros projet. Si le PoC ne convainc pas, on arrête." },
+  { title: "Votre code, votre infra", desc: "Pas de lock-in propriétaire. Vous possédez tout. On peut être remplacé demain si nécessaire." },
+  { title: 'Humain dans la boucle', desc: "L'IA décide vite. L'humain garde le contrôle sur ce qui compte. On définit ensemble les guardrails." },
+  { title: 'Transparence budgétaire', desc: "Pas de régie déguisée. Forfaits clairs, périmètres contractuels, pas de surprise sur la facture." },
+  { title: 'Accompagnement sincère', desc: "Si votre vrai problème n'est pas l'IA, on vous le dira. Mieux vaut un client satisfait qu'un projet mal aligné." },
+];
+---
+
+<BaseLayout
+  title="Notre méthode — Make It Global"
+  description="Comment on travaille : Discovery → PoC en 2 semaines → Production → Run. Méthode transparente, livrables clairs, ROI mesuré."
+>
+  <main id="main-content">
+    <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-24">
+      <DottedBg variant="grid" />
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="badge badge-primary" data-reveal="fade-up">Méthode</span>
+        <h1 class="mt-8 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-text-primary leading-[1.05]" data-reveal="fade-up" data-reveal-delay="100">
+          De zéro à prod,<br />
+          <span class="gradient-text">en 4 étapes.</span>
+        </h1>
+        <p class="mt-8 text-lg sm:text-xl text-text-muted max-w-2xl mx-auto" data-reveal="fade-up" data-reveal-delay="200">
+          Notre méthode privilégie la preuve rapide et l'impact mesurable. Pas de slide-ware, pas de roadmap à 18 mois. On vise le premier résultat en 2 semaines.
+        </p>
+      </div>
+    </section>
+
+    <section class="relative py-20 border-t border-border-subtle">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {steps.map((step, i) => (
+          <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-12" data-reveal="fade-up">
+            <div>
+              <div class="font-mono text-5xl font-bold text-primary-400">{step.n}</div>
+              <div class="mt-3 badge">{step.duration}</div>
+            </div>
+            <div>
+              <h2 class="text-3xl font-bold text-text-primary tracking-tight">{step.title}</h2>
+              <p class="mt-4 text-lg text-text-muted leading-relaxed">{step.desc}</p>
+              <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {step.deliverables.map((d) => (
+                  <div class="flex items-start gap-2 text-sm text-text-secondary">
+                    <span class="text-accent-500 mt-1">✓</span>
+                    <span>{d}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="relative py-24 border-t border-border-subtle bg-bg-surface/30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-12" data-reveal="fade-up">
+          <span class="badge">Principes</span>
+          <h2 class="mt-6 text-4xl font-bold tracking-tight text-text-primary">Ce à quoi on ne déroge jamais.</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-children="100">
+          {principles.map((p) => (
+            <div class="card p-6" data-reveal="fade-up">
+              <h3 class="text-lg font-semibold text-text-primary">{p.title}</h3>
+              <p class="mt-3 text-sm text-text-muted leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative py-24 border-t border-border-subtle">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary" data-reveal="fade-up">On commence par où ?</h2>
+        <p class="mt-6 text-lg text-text-muted" data-reveal="fade-up" data-reveal-delay="100">
+          Un audit de 30 minutes suffit pour voir si notre méthode colle à vos enjeux.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3" data-reveal="fade-up" data-reveal-delay="200">
+          <a href="/audit-ia/" class="btn-primary">Obtenir mon audit IA</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary">Réserver un appel</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

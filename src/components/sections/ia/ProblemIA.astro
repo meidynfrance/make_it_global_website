@@ -1,0 +1,44 @@
+---
+const problems = [
+  {
+    icon: '01',
+    title: "L'IA reste un buzzword chez vous",
+    desc: "ChatGPT en one-shot, quelques prompts dans Slack... mais rien qui tourne vraiment en prod, ni qui rapporte des heures à vos équipes.",
+  },
+  {
+    icon: '02',
+    title: "Vos SaaS génériques coûtent sans rendre",
+    desc: "Des outils du marché empilés, mal intégrés, qui ne collent pas à votre métier. Résultat : double saisie, friction, personne ne les utilise.",
+  },
+  {
+    icon: '03',
+    title: "Vos process manuels saignent du temps",
+    desc: "Qualification de leads, reporting, devis, emails de suivi, analyse de données... des heures gaspillées chaque semaine par vos équipes.",
+  },
+];
+---
+
+<section class="relative py-24 sm:py-32" id="problem">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl" data-reveal="fade-up">
+      <span class="badge">01 · Le constat</span>
+      <h2 class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">
+        Vous avez entendu parler de l'IA.<br />
+        <span class="text-text-muted">Sans la voir dans votre P&amp;L.</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-muted">
+        La plupart des PME et ETI restent bloquées au stade de l'expérimentation. On passe à l'étape où l'IA génère vraiment de la valeur — mesurable.
+      </p>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-5" data-reveal-children="150">
+      {problems.map((p) => (
+        <div class="card p-8" data-reveal="fade-up">
+          <div class="font-mono text-xs text-primary-400">{p.icon}</div>
+          <h3 class="mt-4 text-xl font-semibold text-text-primary tracking-tight">{p.title}</h3>
+          <p class="mt-3 text-sm text-text-muted leading-relaxed">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

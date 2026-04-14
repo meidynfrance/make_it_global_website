@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import ProblemSection from '../../components/sections/ProblemSection.astro';
+import ProcessSection from '../../components/sections/ProcessSection.astro';
+import TestimonialsSection from '../../components/sections/TestimonialsSection.astro';
+import ContactSection from '../../components/sections/ContactSection.astro';
+---
+
+<BaseLayout
+  title="Traduction & localisation de contenus — Make It Global"
+  description="Notre métier historique : traduction, doublage et adaptation de vidéos, formations, PDFs, sites web. Service clé-en-main, livraison sous 48h."
+>
+  <main id="main-content">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary transition-colors">
+        ← Retour à Make It Global IA
+      </a>
+      <div class="mt-6 badge badge-primary">Branche historique · Traduction &amp; International</div>
+    </section>
+
+    <HeroSection />
+    <ProblemSection />
+    <ProcessSection />
+    <TestimonialsSection />
+    <ContactSection />
+  </main>
+</BaseLayout>

@@ -1,32 +1,77 @@
 ---
-import { SITE_NAME } from '../../config';
+import { SITE_NAME, NAV_SERVICES, BOOKING_URL } from '../../config';
 
 const currentPath = Astro.url.pathname;
 
-const navLinks = [
-  { href: '/', label: 'Accueil' },
-  { href: '/blog/', label: 'Blog' },
-  { href: '/#contact', label: 'Contact' },
+const topLinks = [
+  { href: '/methode/',     label: 'Méthode' },
+  { href: '/cas-clients/', label: 'Cas clients' },
+  { href: '/blog/',        label: 'Blog' },
+  { href: '/a-propos/',    label: 'À propos' },
 ];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 glass-strong" id="navbar">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Navigation principale">
-    <a href="/" class="flex items-center gap-2 text-text-heading font-bold text-lg hover:text-primary-500 transition-colors">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16" aria-label="Navigation principale">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 text-text-primary font-semibold tracking-tight text-[15px] hover:text-white transition-colors">
+      <span class="inline-block w-2 h-2 rounded-full bg-primary-500 shadow-[0_0_12px_#7C5CFF]"></span>
       {SITE_NAME}
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden md:flex items-center gap-8">
-      {navLinks.map((link) => (
+    <ul class="hidden lg:flex items-center gap-1">
+      <!-- Services méga-menu -->
+      <li class="relative group">
+        <button
+          type="button"
+          class="btn-ghost text-sm font-medium"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Services
+          <svg class="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="absolute top-full left-0 pt-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 ease-out translate-y-1 group-hover:translate-y-0">
+          <div class="w-[420px] p-2 rounded-2xl border border-border bg-bg-surface/95 backdrop-blur-xl shadow-card">
+            {NAV_SERVICES.map((svc) => (
+              <a
+                href={svc.href}
+                class="block p-3 rounded-xl hover:bg-white/5 transition-colors group/item"
+              >
+                <div class="text-sm font-medium text-text-primary group-hover/item:text-primary-300">{svc.label}</div>
+                <div class="text-xs text-text-muted mt-0.5">{svc.description}</div>
+              </a>
+            ))}
+            <div class="h-px bg-border-subtle my-1"></div>
+            <a
+              href="/traduction/"
+              class="block p-3 rounded-xl hover:bg-white/5 transition-colors"
+            >
+              <div class="text-sm font-medium text-text-primary flex items-center gap-2">
+                Traduction & International
+                <span class="badge">Historique</span>
+              </div>
+              <div class="text-xs text-text-muted mt-0.5">Notre métier d'origine : localisation de contenus</div>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      {topLinks.map((link) => (
         <li>
           <a
             href={link.href}
             class:list={[
-              'text-sm font-medium transition-colors',
-              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-primary-500'
-                : 'text-text-body hover:text-primary-500',
+              'btn-ghost text-sm font-medium',
+              isActive(link.href) ? 'text-primary-300' : '',
             ]}
           >
             {link.label}
@@ -34,39 +79,57 @@ const navLinks = [
         </li>
       ))}
     </ul>
+
+    <!-- Desktop CTAs -->
+    <div class="hidden lg:flex items-center gap-2">
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-ghost text-sm">Réserver un appel</a>
+      <a href="/audit-ia/" class="btn-primary text-sm !py-2 !px-4 !min-h-[40px]">Audit IA gratuit</a>
+    </div>
 
     <!-- Mobile hamburger -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden flex flex-col gap-1.5 p-2"
+      class="lg:hidden flex flex-col gap-1.5 p-2 -mr-2"
       aria-label="Ouvrir le menu"
       aria-expanded="false"
     >
-      <span class="block w-5 h-0.5 bg-text-heading transition-transform origin-center" id="bar1"></span>
-      <span class="block w-5 h-0.5 bg-text-heading transition-opacity" id="bar2"></span>
-      <span class="block w-5 h-0.5 bg-text-heading transition-transform origin-center" id="bar3"></span>
+      <span class="block w-5 h-0.5 bg-text-primary transition-transform origin-center" id="bar1"></span>
+      <span class="block w-5 h-0.5 bg-text-primary transition-opacity" id="bar2"></span>
+      <span class="block w-5 h-0.5 bg-text-primary transition-transform origin-center" id="bar3"></span>
     </button>
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden glass-strong border-t border-neutral-200">
-    <ul class="px-4 py-4 space-y-3">
-      {navLinks.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            class:list={[
-              'block py-2 text-sm font-medium transition-colors',
-              currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href))
-                ? 'text-primary-500'
-                : 'text-text-body hover:text-primary-500',
-            ]}
-          >
-            {link.label}
-          </a>
-        </li>
+  <div id="mobile-menu" class="hidden lg:hidden glass-strong border-t border-border-subtle">
+    <div class="px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
+      <div class="px-3 pt-2 pb-1 text-[11px] uppercase tracking-wider text-text-dim font-mono">Services</div>
+      {NAV_SERVICES.map((svc) => (
+        <a href={svc.href} class="block px-3 py-2.5 rounded-lg text-sm text-text-secondary hover:bg-white/5 hover:text-text-primary">
+          {svc.label}
+        </a>
       ))}
-    </ul>
+      <a href="/traduction/" class="block px-3 py-2.5 rounded-lg text-sm text-text-secondary hover:bg-white/5 hover:text-text-primary">
+        Traduction & International <span class="text-text-dim text-[11px]">(historique)</span>
+      </a>
+
+      <div class="h-px bg-border-subtle my-2"></div>
+
+      {topLinks.map((link) => (
+        <a href={link.href} class:list={[
+          'block px-3 py-2.5 rounded-lg text-sm hover:bg-white/5 hover:text-text-primary',
+          isActive(link.href) ? 'text-primary-300' : 'text-text-secondary',
+        ]}>
+          {link.label}
+        </a>
+      ))}
+
+      <div class="h-px bg-border-subtle my-2"></div>
+
+      <div class="flex flex-col gap-2 pt-2">
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary w-full">Réserver un appel</a>
+        <a href="/audit-ia/" class="btn-primary w-full">Audit IA gratuit</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -78,6 +141,7 @@ const navLinks = [
     var bar2 = document.getElementById('bar2');
     var bar3 = document.getElementById('bar3');
     var isOpen = false;
+    if (!btn || !menu) return;
 
     btn.addEventListener('click', function() {
       isOpen = !isOpen;

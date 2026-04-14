@@ -1,0 +1,62 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Discovery',
+    duration: '1 semaine',
+    desc: 'Audit de vos process, identification des cas d\'usage à plus fort ROI, cadrage technique. Vous repartez avec une roadmap.',
+  },
+  {
+    n: '02',
+    title: 'PoC en 2 semaines',
+    duration: '2 semaines',
+    desc: 'Prototype fonctionnel sur le cas d\'usage n°1. Vous testez en conditions réelles avant de valider la phase production.',
+  },
+  {
+    n: '03',
+    title: 'Production',
+    duration: '4 à 8 semaines',
+    desc: 'Développement, intégrations, mise en prod, formation de vos équipes. Livraison avec monitoring et documentation.',
+  },
+  {
+    n: '04',
+    title: 'Run & itération',
+    duration: 'continu',
+    desc: 'On maintient, on mesure, on itère. Vous gardez la main, on reste disponibles pour faire évoluer l\'outil avec votre métier.',
+  },
+];
+---
+
+<section class="relative py-24 sm:py-32 border-y border-border-subtle bg-bg-surface/30" id="methode">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mb-16" data-reveal="fade-up">
+      <span class="badge">03 · Méthode</span>
+      <h2 class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">
+        De zéro à prod,<br />
+        <span class="gradient-text-primary">en 4 étapes claires.</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-muted">
+        Pas de slide-ware. Pas de roadmap à 18 mois. On vise le premier impact mesurable en 2 semaines.
+      </p>
+    </div>
+
+    <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" data-reveal-children="150">
+      {steps.map((s) => (
+        <div class="card p-6" data-reveal="fade-up">
+          <div class="flex items-center justify-between">
+            <div class="font-mono text-2xl font-bold text-primary-400">{s.n}</div>
+            <span class="badge text-[10px]">{s.duration}</span>
+          </div>
+          <h3 class="mt-5 text-lg font-semibold text-text-primary">{s.title}</h3>
+          <p class="mt-2 text-sm text-text-muted leading-relaxed">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center" data-reveal="fade-up">
+      <a href="/methode/" class="btn-ghost text-sm">
+        Voir la méthode en détail →
+      </a>
+    </div>
+  </div>
+</section>

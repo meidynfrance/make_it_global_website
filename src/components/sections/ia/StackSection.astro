@@ -1,0 +1,38 @@
+---
+const stack = [
+  { category: 'LLMs', items: ['Claude', 'GPT-4', 'Gemini', 'Mistral', 'Llama'] },
+  { category: 'Frameworks IA', items: ['LangChain', 'LlamaIndex', 'Anthropic SDK', 'Vercel AI'] },
+  { category: 'Backend & Data', items: ['Supabase', 'Postgres', 'Pinecone', 'Weaviate'] },
+  { category: 'Frontend', items: ['Next.js', 'Astro', 'React', 'Tailwind'] },
+  { category: 'Automatisation', items: ['n8n', 'Make', 'Zapier', 'Temporal'] },
+  { category: 'Infra', items: ['Vercel', 'AWS', 'Cloudflare', 'Docker'] },
+];
+---
+
+<section class="relative py-24 sm:py-32 border-y border-border-subtle">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16" data-reveal="fade-up">
+      <span class="badge">05 · Stack</span>
+      <h2 class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary">
+        Une stack moderne,<br />
+        <span class="text-text-muted">sans la hype inutile.</span>
+      </h2>
+      <p class="mt-6 text-text-muted">
+        On choisit l'outil qui résout le problème, pas celui qu'on aime. Voici ce qu'on utilise en production au quotidien.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" data-reveal-children="100">
+      {stack.map((group) => (
+        <div class="card p-6" data-reveal="fade-up">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-text-dim">{group.category}</div>
+          <div class="mt-4 flex flex-wrap gap-1.5">
+            {group.items.map((item) => (
+              <span class="badge">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+---
+title: "Agents IA : ce qui marche vraiment (et ce qui ne marche pas encore)"
+description: "On entend parler d'agents IA partout. Derrière la hype, voici ce qui est réellement déployable en entreprise aujourd'hui, et ce qui ne l'est pas."
+publishDate: 2026-04-13
+section: "ia"
+category: "agents-ia"
+tags: ["agents-ia", "llm", "automatisation", "retour-experience"]
+image:
+  src: "/images/blog/agents-ia-ce-qui-marche.webp"
+  alt: "Schéma d'architecture d'un agent IA avec LLM, outils et mémoire"
+author:
+  name: "Make It Global"
+  role: "Equipe IA"
+draft: false
+featured: true
+---
+
+Depuis un an, on n'entend plus que ça : *« les agents IA vont tout changer »*. On va être honnêtes : sur 10 projets d'agents qu'on nous demande, on en refuse 4, on en reformule 3, et on en livre 3 tels quels. Voici ce qu'on a appris.
+
+## D'abord, c'est quoi un agent IA ?
+
+Un agent IA n'est pas un chatbot. Un chatbot répond à une question, point. Un agent IA **prend des décisions** pour atteindre un objectif. Il peut :
+
+- Appeler plusieurs outils (API, base de données, moteur de recherche),
+- Boucler sur lui-même pour corriger ses erreurs,
+- Garder un contexte mémoire d'une session à l'autre,
+- Décider d'agir différemment selon les résultats intermédiaires.
+
+La différence clé, c'est l'**autonomie décisionnelle**. Un chatbot suit un script. Un agent improvise à l'intérieur d'un cadre que vous lui donnez.
+
+## Ce qui marche vraiment en production (aujourd'hui, 2026)
+
+### 1. Les agents de qualification / routage
+
+Sur un lead entrant, un formulaire de contact, une demande SAV : l'agent lit, qualifie, route vers la bonne personne avec le bon contexte. C'est le cas d'usage le plus rentable qu'on voit, et de très loin.
+
+Pourquoi ça marche : le périmètre est étroit, les données d'entrée sont structurées ou semi-structurées, la décision à prendre est finie (3 à 10 destinations possibles), et l'impact est immédiatement mesurable (temps économisé, taux de conversion).
+
+### 2. Les agents de recherche documentaire
+
+Un employé pose une question en langage naturel, l'agent va chercher dans vos 2 000 documents internes, synthétise, cite ses sources. C'est le fameux RAG (Retrieval-Augmented Generation), qui est passé du stade expérimental à la production en 2025.
+
+Attention : la qualité dépend à 80% de la qualité de l'indexation de vos documents, pas du modèle. On voit des projets échouer parce qu'on a branché un LLM sur un SharePoint en pagaille. La discipline documentaire est un prérequis, pas une option.
+
+### 3. Les agents de préparation (research assistants)
+
+Avant un rendez-vous commercial : l'agent scanne le site du prospect, le LinkedIn, les actualités récentes, la base CRM, et produit une fiche de préparation. Avant un entretien de recrutement : l'agent lit le CV, croise avec le poste, génère 5 questions adaptées. Avant une revue de contrat : l'agent extrait les clauses sensibles.
+
+Ces agents ne prennent pas de décision finale. Ils préparent le terrain pour qu'un humain décide mieux et plus vite. C'est exactement là qu'ils sont le plus fiables.
+
+## Ce qui ne marche PAS encore (ou mal)
+
+### Les agents multi-étapes 100% autonomes sur des workflows complexes
+
+*« L'agent va lire l'email, créer le devis, l'envoyer au client, relancer si pas de réponse, puis planifier le RDV. »* Sur le papier, c'est séduisant. En pratique, au bout de 4-5 étapes, le taux d'erreur cumulé devient inacceptable. Chaque étape a 95% de fiabilité, mais 0,95⁵ = 77%. Un client sur quatre reçoit une connerie.
+
+La solution n'est pas de viser 100% d'autonomie. C'est d'insérer des **points de contrôle humain** à chaque décision critique. Un agent qui propose, un humain qui valide en un clic. Ça prend 30 secondes au lieu de 30 minutes, c'est fiable, et c'est déployable tout de suite.
+
+### Les agents qui touchent à des systèmes financiers ou juridiques critiques
+
+Tant que la traçabilité, la reproductibilité et l'explicabilité ne sont pas au niveau attendu par un auditeur, on ne met pas un agent en bout de chaîne sur un virement bancaire, une signature de contrat, ou une déclaration fiscale. On l'utilise en amont pour préparer, jamais en aval pour exécuter.
+
+### Les agents qui remplacent un jugement humain nuancé
+
+Tout ce qui touche au jugement fin — recruter, licencier, évaluer la performance, arbitrer un conflit client, négocier — n'est pas automatisable avec la techno actuelle. Et ce n'est pas un problème de modèle, c'est un problème de nature de la tâche.
+
+## Les 4 questions à se poser avant de lancer un projet d'agent
+
+Avant de valider un projet d'agent IA, on fait passer ces 4 questions :
+
+1. **Est-ce qu'il y a un objectif clair et mesurable ?** Si vous ne savez pas comment vous mesurerez le succès, le projet va s'étirer et mourir.
+2. **Est-ce que les outils à brancher existent déjà (APIs, DBs, webhooks) ?** Si on doit construire l'infrastructure en plus de l'agent, on multiplie le coût par 3.
+3. **Est-ce qu'on peut insérer un humain dans la boucle sans casser la valeur ?** Si la réponse est non, le projet est probablement trop ambitieux pour la v1.
+4. **Est-ce qu'on peut prouver la valeur en 2 semaines ?** Si non, on reformule le périmètre.
+
+## La règle qu'on applique à tous nos projets
+
+> Un agent IA bien conçu remplace un process manuel chiant par un process hybride rapide. Il ne remplace pas un humain intelligent par une boîte noire.
+
+Si à la fin d'un projet vous avez l'impression d'avoir perdu le contrôle, vous avez fait fausse route. Si vous avez l'impression que votre équipe a un nouveau collègue ultra-efficace qu'elle supervise facilement, vous avez réussi.
+
+C'est la différence entre un gadget et un levier.
+
+Vous avez un cas d'usage d'agent en tête et vous vous demandez s'il est mûr pour la production ? [Prenez un audit gratuit](/audit-ia/), on vous donne notre avis sans langue de bois.

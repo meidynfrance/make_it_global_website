@@ -1,0 +1,55 @@
+---
+title: "SEO programmatique 12 000 pages pour SaaS B2B"
+client: "SaaS B2B US (NDA)"
+sector: "SaaS B2B"
+description: "Génération de 12 000 pages ciblées long-tail avec contrôle qualité IA + humain. Sitemap dynamique, maillage interne auto."
+publishDate: 2026-01-08
+service: "seo-automatise"
+metrics:
+  - value: "+218%"
+    label: "trafic organique"
+  - value: "12 000"
+    label: "pages générées"
+  - value: "6 mois"
+    label: "ramp-up"
+  - value: "34%"
+    label: "pages en top 10"
+featured: true
+---
+
+## Le contexte
+
+Un SaaS B2B américain, produit d'analyse de données, cherchait à capter du trafic long-tail sur des requêtes de comparaison et de use-cases très spécifiques. Ces requêtes représentent des dizaines de milliers de pages potentielles — impossible à produire manuellement.
+
+L'approche programmatique traditionnelle (pages template remplies de data) avait été essayée avec un prestataire SEO : résultat, des pages "slop" que Google a partiellement désindexées.
+
+## Ce qu'on a construit
+
+Un pipeline de génération de contenu SEO avec contrôle qualité à deux niveaux :
+
+1. **Data layer** : extraction de 12 000 combinaisons `[use case] x [industrie] x [integration]` depuis leur data warehouse et leurs retours clients.
+2. **Template system** : structure de page définie avec sections obligatoires (problème, solution, preuve, intégration).
+3. **Génération IA** : Claude Sonnet rédige chaque page en s'appuyant sur des snippets de vraies conversations client et des données produit réelles. Chaque page est unique, sourcée, utile.
+4. **Quality gates** : contrôle automatique (longueur, unicité vs pages existantes, lisibilité, présence des éléments clés) + revue humaine sur 10% des pages en échantillonnage aléatoire.
+5. **Maillage interne** : liens générés par embeddings — chaque page pointe vers les 5-8 pages sémantiquement les plus proches.
+6. **Sitemap dynamique** : indexation progressive, 500 pages par semaine pour éviter les signaux de flood.
+
+## Stack technique
+
+- **Pipeline** : Python + Anthropic SDK, orchestré sur Temporal
+- **Data** : BigQuery + embeddings dans Pinecone
+- **CMS** : Next.js app router avec ISR (Incremental Static Regeneration)
+- **Monitoring SEO** : Ahrefs API + Google Search Console MCP pour les alertes
+- **QA** : LangChain quality chain + sampling humain via outil custom
+
+## Les résultats après 6 mois
+
+- **+218% de trafic organique** (vs baseline 6 mois avant).
+- **34% des pages en top 10** sur leur requête cible (moyenne du marché SEO programmatique : 8-12%).
+- **Aucune désindexation manuelle** signalée par Google Search Console.
+- **Conversion tunnel** : les pages générées convertissent à 1.9% en démo (vs 2.2% sur le reste du site — gap très acceptable pour du top-funnel).
+- **Coût amorti en 4 mois** grâce au trafic gagné et aux leads générés.
+
+## Ce qu'on a appris
+
+La différence entre "SEO programmatique utile" et "content slop" tient à trois choses : des données sources réelles, une structure de page qui répond vraiment à l'intention, et un taux d'échantillonnage humain qui permet de détecter les dérives avant qu'elles se multiplient. On ne peut pas simplement brancher GPT et laisser tourner.

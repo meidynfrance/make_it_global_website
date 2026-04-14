@@ -1,0 +1,22 @@
+---
+// Social proof bar — logos / stats
+const stats = [
+  { value: '30+', label: 'Projets IA livrés' },
+  { value: '48h', label: 'PoC opérationnel' },
+  { value: '6+ ans', label: 'Dev & automatisation' },
+  { value: '100%', label: 'Réalisé en France' },
+];
+---
+
+<section class="relative border-y border-border-subtle bg-bg-surface/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10" data-reveal="fade-up">
+      {stats.map((s) => (
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-text-primary tracking-tight">{s.value}</div>
+          <div class="mt-1 text-xs sm:text-sm text-text-muted font-mono uppercase tracking-wider">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

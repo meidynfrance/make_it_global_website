@@ -1,0 +1,74 @@
+---
+/**
+ * TestimonialsIA — Dark-tech testimonials section
+ * Témoignages clients sur les missions IA : micro-SaaS, outils métier,
+ * dashboards de pilotage, automatisations de process.
+ */
+
+const testimonials = [
+  {
+    metric: '+42% de marge',
+    metricLabel: 'sur les projets pilotés par le dashboard',
+    quote: "On pilotait nos chantiers à coups de fichiers Excel et de réunions hebdo. Make It Global nous a construit un dashboard branché sur nos outils existants, qui calcule en temps réel la marge par projet et alerte dès qu'un poste dérive. En 3 mois on a identifié 4 chantiers à problème qu'on aurait vus trop tard avant.",
+    author: 'Directeur des opérations',
+    company: 'PME du BTP · 85 salariés',
+    service: 'Dashboard de pilotage',
+  },
+  {
+    metric: '22h / semaine',
+    metricLabel: "d'administratif éliminées",
+    quote: "Toute notre équipe commerciale perdait un temps dingue à ressaisir des données entre le CRM, le devis et la facturation. L'outil métier qu'on nous a livré fait le lien entre les trois et génère les devis à partir d'un brief en langage naturel. Les commerciaux nous remercient chaque semaine.",
+    author: 'CEO',
+    company: 'ETI services B2B · 140 salariés',
+    service: 'Outil métier sur-mesure',
+  },
+  {
+    metric: '6 mois',
+    metricLabel: "pour passer d'une idée à un micro-SaaS rentable",
+    quote: "On avait une intuition produit mais zéro ressource tech en interne. En 2 semaines ils ont livré un PoC fonctionnel, en 3 mois un micro-SaaS en prod avec paiement et onboarding. On est à 40 clients payants aujourd'hui, entièrement autonome sur l'infra qu'ils nous ont laissée.",
+    author: 'Fondatrice',
+    company: 'Start-up B2B SaaS · 6 salariés',
+    service: 'Micro-SaaS clé en main',
+  },
+];
+---
+
+<section class="relative py-24 border-t border-border-subtle" aria-labelledby="testimonials-ia-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mb-14" data-reveal="fade-up">
+      <span class="badge">Témoignages</span>
+      <h2 id="testimonials-ia-heading" class="mt-6 text-4xl sm:text-5xl font-bold tracking-tight text-text-primary leading-[1.1]">
+        Ce qu'en disent<br />
+        <span class="gradient-text">les équipes sur le terrain.</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-muted leading-relaxed">
+        Trois retours d'expérience de dirigeants qui ont déployé des outils IA qui tournent vraiment en production.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-children="150">
+      {testimonials.map((t) => (
+        <figure class="card p-7 flex flex-col h-full" data-reveal="fade-up">
+          <div>
+            <div class="font-mono text-xs uppercase tracking-wider text-primary-400">{t.service}</div>
+            <div class="mt-4 text-3xl font-bold gradient-text-accent tracking-tight leading-none">{t.metric}</div>
+            <div class="mt-1 text-xs text-text-dim">{t.metricLabel}</div>
+          </div>
+
+          <blockquote class="mt-6 flex-1 text-sm text-text-secondary leading-relaxed">
+            <span class="text-primary-400/50 font-serif text-2xl leading-none align-top">"</span>{t.quote}<span class="text-primary-400/50 font-serif text-2xl leading-none align-top">"</span>
+          </blockquote>
+
+          <figcaption class="mt-6 pt-5 border-t border-border-subtle">
+            <div class="text-sm font-semibold text-text-primary">{t.author}</div>
+            <div class="text-xs text-text-muted">{t.company}</div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="mt-10 text-xs text-text-dim text-center max-w-2xl mx-auto">
+      Identités anonymisées à la demande des clients (NDA en cours). Les chiffres et les secteurs sont exacts, vérifiables sur demande auprès de références.
+    </p>
+  </div>
+</section>

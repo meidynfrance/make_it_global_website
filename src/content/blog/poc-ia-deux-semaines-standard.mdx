@@ -1,0 +1,94 @@
+---
+title: "PoC IA en 2 semaines : pourquoi c'est devenu notre standard"
+description: "On refuse désormais toute mission IA sans PoC en 2 semaines. Voici pourquoi ce format a changé notre taux de réussite et celui de nos clients."
+publishDate: 2026-04-13
+section: "ia"
+category: "retours-experience"
+tags: ["poc", "methode", "roi", "retour-experience", "implementation-ia"]
+image:
+  src: "/images/blog/poc-ia-deux-semaines.webp"
+  alt: "Tableau de bord montrant les résultats d'un PoC IA après 14 jours"
+author:
+  name: "Make It Global"
+  role: "Equipe IA"
+draft: false
+featured: false
+---
+
+Il y a deux ans, on livrait comme tout le monde : des missions de 3 à 6 mois, un cadrage, un cahier des charges, puis un développement linéaire. On livrait ce qu'on avait promis, à peu près dans les temps, pour un budget à peu près tenu.
+
+Et pourtant, sur une mission sur trois, on avait ce moment gênant à la livraison : *« C'est bien, mais en fait on aurait préféré autre chose. »* Pas un échec — un demi-succès. Le client payait, utilisait un peu, puis revenait 6 mois plus tard avec une demande différente.
+
+Aujourd'hui, on ne lance plus **aucune mission** sans un PoC en 2 semaines. Voici pourquoi, et comment on le fait.
+
+## Le problème qu'on essayait de résoudre
+
+Sur un projet IA, contrairement à un projet web classique, la principale inconnue n'est pas *comment* on va coder la chose. C'est *si la chose va marcher sur nos données*.
+
+Concrètement : est-ce que le modèle va comprendre notre jargon métier ? Est-ce que les documents internes sont assez propres pour nourrir un RAG ? Est-ce que la précision sera suffisante pour que les utilisateurs fassent confiance à la sortie ? Est-ce que le ratio coût/requête sera soutenable à grande échelle ?
+
+Ces questions ne se répondent pas dans un cahier des charges. Elles se répondent en **mettant les mains dans les données réelles** le plus tôt possible.
+
+## Pourquoi 2 semaines, pas 1 ni 4
+
+**1 semaine**, c'est trop court. On n'a pas le temps de récupérer les données, de comprendre le métier, de tester plusieurs approches. On livre quelque chose qui n'a pas vraiment été mis à l'épreuve.
+
+**4 semaines**, c'est déjà un projet. On commence à sur-concevoir, à ajouter des fonctionnalités *« tant qu'on y est »*, à se projeter dans la v2. Et surtout, on passe le point de non-retour psychologique : à 4 semaines investies, ni le client ni nous ne sommes prêts à dire *« en fait ça ne marche pas »*.
+
+**2 semaines**, c'est la fenêtre où on peut encore tuer le projet sans drame. C'est aussi long assez pour produire quelque chose de testé en conditions réelles.
+
+## Ce que contient concrètement un PoC 2 semaines
+
+Chez nous, un PoC 2 semaines suit toujours le même rythme :
+
+**Jour 1-2 — Compréhension métier.** On passe 2 demi-journées avec les utilisateurs finaux (pas les sponsors). Pas un brief, un **atelier** où ils font leur boulot devant nous. C'est là qu'on apprend 80% de ce qui compte.
+
+**Jour 3-4 — Récupération et exploration des données.** On récupère un échantillon réel (anonymisé si nécessaire). On regarde la forme, la qualité, les trous. On identifie les bizarreries. Si à ce stade on voit que les données sont inexploitables, on le dit tout de suite — et on propose un plan B.
+
+**Jour 5-8 — Construction du prototype.** On assemble le strict minimum pour résoudre le cas d'usage n°1. Pas d'interface léchée, pas de gestion d'erreurs sophistiquée, pas d'authentification. Juste : donnée en entrée, traitement IA, résultat en sortie.
+
+**Jour 9-10 — Test avec les utilisateurs finaux.** On met le prototype entre les mains des personnes qui vont s'en servir. On regarde. On note tout ce qui coince. On mesure le temps gagné ou la qualité gagnée sur un échantillon représentatif (30-50 cas).
+
+**Jour 11-12 — Itération rapide.** On corrige les 3 ou 4 problèmes majeurs identifiés. On ne touche pas au reste.
+
+**Jour 13-14 — Restitution chiffrée et décision.** On présente au client : ce qui a marché, ce qui n'a pas marché, la métrique d'impact mesurée sur l'échantillon, le chiffrage de la mise en production, et la question binaire : **on y va, ou on arrête ?**
+
+## Ce qu'on a appris en faisant ça
+
+### 1. On tue plus de projets qu'avant — et c'est une bonne chose
+
+Sur les 18 derniers PoC qu'on a livrés, 4 ont été arrêtés après les 2 semaines. Soit parce que la précision n'était pas au rendez-vous, soit parce que les données internes n'étaient pas assez structurées, soit parce que le ROI estimé ne justifiait plus l'investissement en production.
+
+Dans chacun de ces 4 cas, le client nous a remerciés. Parce qu'à l'ancienne, ces projets auraient continué 3 mois de plus avant d'arriver au même constat, pour 60 000€ de plus.
+
+### 2. Les 14 projets restants ont eu un taux d'adoption de 92%
+
+Contre environ 55% sur nos anciennes missions en format classique. La raison est simple : quand les utilisateurs finaux sont impliqués dès le jour 1, et qu'ils ont testé le prototype avec leurs propres données avant la décision de mise en prod, l'adoption est déjà acquise. Il n'y a plus la phase *« je découvre ça en réunion de lancement et je ne suis pas convaincu »*.
+
+### 3. Le PoC ne coûte presque rien comparé au vrai projet
+
+Un PoC 2 semaines coûte entre 8 000€ et 15 000€ selon la complexité. Un projet IA complet en représente 30 000€ à 100 000€. Le PoC, c'est de l'ordre de 15% du budget total, pour sécuriser les 85% restants. Aucun autre investissement n'a ce ratio d'assurance.
+
+## Ce que vous pouvez faire sans nous
+
+Même si vous gérez le projet en interne, vous pouvez adopter cette logique :
+
+- **Imposez un délai de 2 semaines pour prouver qu'un cas d'usage IA marche sur vos données.** Si personne dans votre équipe n'est capable de tenir ce délai, c'est que le cadrage est flou — pas que l'équipe est lente.
+- **Refusez de signer un projet IA long sans avoir vu une démo sur vos vraies données.** Les démos sur des données publiques ne prouvent rien.
+- **Impliquez les utilisateurs finaux dès la semaine 1.** Pas les sponsors, les utilisateurs.
+- **Définissez la métrique de succès avant de commencer.** Si vous ne savez pas comment vous mesurerez *« ça marche »*, vous ne le saurez pas plus dans 3 mois.
+
+## En résumé
+
+Un PoC 2 semaines, c'est un acte de discipline, pas un raccourci. Ça force à :
+
+1. Choisir un périmètre vraiment étroit,
+2. Confronter l'idée aux données réelles tout de suite,
+3. Mesurer au lieu de croire,
+4. Être prêt à arrêter un projet qui ne marche pas.
+
+Aucune de ces disciplines n'est propre à l'IA. Mais l'IA amplifie le coût des projets flous — parce que les coûts cachés (data quality, hallucinations, monitoring) apparaissent tard. Le PoC 2 semaines les fait remonter tôt.
+
+C'est devenu notre standard. Et franchement, on ne reviendra jamais en arrière.
+
+Envie d'un PoC sur votre premier cas d'usage IA ? [Réservez un audit gratuit](/audit-ia/), on cadre ensemble en 30 minutes.

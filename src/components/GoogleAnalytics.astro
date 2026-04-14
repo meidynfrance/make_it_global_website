@@ -53,3 +53,30 @@ if (import.meta.env.DEV && gaId) {
   // UTM parameters captured automatically
   gtag('config', gaId);
 </script>
+
+<!-- Custom event: cta_rdv_click — any click on a booking link (Google Calendar, Cal.com, Calendly) -->
+<script is:inline>
+  (function () {
+    var BOOKING_HOSTS = ['calendar.app.google', 'cal.com', 'calendly.com'];
+    document.addEventListener('click', function (e) {
+      var target = e.target;
+      // Walk up to find the closest <a> (in case click lands on inner <span>)
+      while (target && target.nodeName !== 'A') {
+        target = target.parentNode;
+        if (!target || target === document.body) return;
+      }
+      if (!target || !target.href) return;
+      try {
+        var url = new URL(target.href);
+        if (BOOKING_HOSTS.indexOf(url.hostname) === -1) return;
+      } catch (_) { return; }
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_rdv_click', {
+          link_url: target.href,
+          link_text: (target.innerText || '').trim().slice(0, 80),
+          page_path: window.location.pathname,
+        });
+      }
+    }, { capture: true });
+  })();
+</script>

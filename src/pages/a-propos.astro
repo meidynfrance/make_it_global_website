@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DottedBg from '../components/ui/DottedBg.astro';
+import { BOOKING_URL } from '../config';
+
+const milestones = [
+  { year: '2018', label: 'Création', desc: "Meidy Baffou lance Make It Global comme agence de localisation de contenus pour infopreneurs et PME francophones." },
+  { year: '2020', label: 'Hybrid AI', desc: "Premier workflow de doublage hybride IA + révision humaine. Gain de 70% sur les délais de livraison." },
+  { year: '2022', label: 'Stack full-code', desc: "Développement d'outils internes pour industrialiser la production. Premiers projets custom en dev applicatif." },
+  { year: '2024', label: 'Pivot IA', desc: "Make It Global devient agence d'implémentation IA. Les outils internes deviennent le cœur du métier." },
+  { year: '2026', label: 'Aujourd\'hui', desc: "Agence spécialisée PME/ETI : outils métier, agents IA, automatisations, SEO. Branche traduction conservée." },
+];
+---
+
+<BaseLayout
+  title="À propos — Make It Global"
+  description="De la localisation de contenus à l'implémentation IA. Make It Global accompagne les PME et ETI depuis 2018."
+>
+  <main id="main-content">
+    <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28">
+      <DottedBg variant="grid" />
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="badge" data-reveal="fade-up">À propos</span>
+        <h1 class="mt-8 text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-text-primary leading-[1.05]" data-reveal="fade-up" data-reveal-delay="100">
+          On bâtit des outils<br />
+          <span class="gradient-text">qui servent vraiment.</span>
+        </h1>
+        <p class="mt-8 text-lg sm:text-xl text-text-muted max-w-2xl leading-relaxed" data-reveal="fade-up" data-reveal-delay="200">
+          Make It Global a commencé en 2018 comme agence de localisation de contenus. En 2024, on a pivoté vers l'implémentation IA en entreprise — tout en gardant la branche traduction qui continue de tourner.
+        </p>
+        <p class="mt-4 text-lg text-text-muted max-w-2xl leading-relaxed" data-reveal="fade-up" data-reveal-delay="300">
+          Notre conviction : l'IA ne vaut que si elle tourne en production et génère de la valeur mesurable. On code. On déploie. On maintient. Et on dit non quand on pense que l'IA n'est pas la bonne réponse.
+        </p>
+      </div>
+    </section>
+
+    <section class="relative py-24 border-t border-border-subtle bg-bg-surface/30">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12" data-reveal="fade-up">
+          <span class="badge">Parcours</span>
+          <h2 class="mt-6 text-4xl font-bold tracking-tight text-text-primary">De la localisation à l'IA.</h2>
+        </div>
+        <div class="space-y-8">
+          {milestones.map((m) => (
+            <div class="grid grid-cols-[80px_1fr] sm:grid-cols-[120px_1fr] gap-6" data-reveal="fade-up">
+              <div class="font-mono text-lg sm:text-xl text-primary-400 font-bold">{m.year}</div>
+              <div>
+                <h3 class="text-xl font-semibold text-text-primary">{m.label}</h3>
+                <p class="mt-2 text-text-muted leading-relaxed">{m.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative py-24 border-t border-border-subtle">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="card p-10" data-reveal="fade-up">
+          <span class="badge badge-primary">Fondateur</span>
+          <h2 class="mt-6 text-3xl font-bold text-text-primary">Meidy Baffou</h2>
+          <p class="mt-4 text-text-muted leading-relaxed">
+            Six ans de développement et d'automatisation au service des entreprises francophones. Après avoir industrialisé la localisation de contenus via des outils IA-hybrides, Meidy a fait pivoter Make It Global vers l'implémentation IA pour mettre cette expertise au service d'un marché plus large.
+          </p>
+          <p class="mt-4 text-text-muted leading-relaxed">
+            Conviction : les PME et ETI françaises ont autant besoin d'IA opérationnelle que les scale-ups américaines. Et elles méritent un partenaire qui code vraiment, plutôt qu'un consultant qui vend du PowerPoint.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative py-24 border-t border-border-subtle">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl sm:text-5xl font-bold tracking-tight text-text-primary" data-reveal="fade-up">On travaille ensemble ?</h2>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3" data-reveal="fade-up" data-reveal-delay="100">
+          <a href="/audit-ia/" class="btn-primary">Obtenir un audit IA</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary">Réserver un appel</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

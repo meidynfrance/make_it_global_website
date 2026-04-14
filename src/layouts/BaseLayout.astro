@@ -13,6 +13,7 @@ interface Props {
     tags?: string[];
   };
   showNavbar?: boolean;
+  extraSchema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
@@ -23,7 +24,22 @@ const {
   canonicalUrl,
   articleMeta,
   showNavbar = true,
+  extraSchema,
 } = Astro.props;
+
+// JSON-LD Organization (site-wide)
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Make It Global',
+  url: 'https://makeitglobal-agency.com',
+  logo: 'https://makeitglobal-agency.com/favicon.svg',
+  description: "Agence d'implémentation IA pour PME et ETI : outils métier, agents IA, automatisations, SEO automatisé.",
+  sameAs: [
+    'https://www.linkedin.com/company/make-it-global',
+  ],
+};
+const extraSchemas = extraSchema ? (Array.isArray(extraSchema) ? extraSchema : [extraSchema]) : [];
 
 // Use Astro.site for production URL (falls back to localhost in dev)
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://makeitglobal-agency.com';
@@ -50,12 +66,19 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 ---
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0A0B" />
+    <meta name="color-scheme" content="dark" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
     <!-- Open Graph Meta Tags (LinkedIn Priority) -->
     <meta property="og:title" content={title} />
@@ -98,19 +121,18 @@ const PUBLIC_GOOGLE_ANALYTICS_ID = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     {PUBLIC_GOOGLE_ANALYTICS_ID && (
       <GoogleAnalytics gaId={PUBLIC_GOOGLE_ANALYTICS_ID} />
     )}
+
+    <!-- JSON-LD Organization (site-wide) -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {extraSchemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
-  <body>
+  <body class="bg-bg-base text-text-secondary antialiased">
     <!-- Skip Links - Hidden by default, visible on keyboard focus -->
     <nav class="skip-links" aria-label="Navigation rapide">
-      <a href="#main-content" class="skip-link">
-        Passer au contenu principal
-      </a>
-      <a href="#testimonials" class="skip-link">
-        Voir les témoignages
-      </a>
-      <a href="#contact" class="skip-link">
-        Réserver un appel
-      </a>
+      <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+      <a href="/audit-ia/" class="skip-link">Obtenir un audit IA</a>
     </nav>
 
     {showNavbar && <Navbar />}

@@ -1,0 +1,19 @@
+---
+interface Props {
+  variant?: 'default' | 'primary' | 'accent';
+  dot?: boolean;
+  class?: string;
+}
+
+const { variant = 'default', dot = false, class: additionalClass } = Astro.props;
+
+const variantClass = {
+  default: '',
+  primary: 'badge-primary',
+  accent:  'badge-accent',
+}[variant];
+---
+
+<span class={`badge ${variantClass} ${dot ? 'badge-dot' : ''} ${additionalClass || ''}`}>
+  <slot />
+</span>

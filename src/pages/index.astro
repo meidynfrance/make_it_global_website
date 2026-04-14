@@ -1,31 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
-import ProblemSection from '../components/sections/ProblemSection.astro';
-import ProcessSection from '../components/sections/ProcessSection.astro';
-import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
-import ContactSection from '../components/sections/ContactSection.astro';
+import HeroIA from '../components/sections/ia/HeroIA.astro';
+import LogoBar from '../components/sections/ia/LogoBar.astro';
+import ProblemIA from '../components/sections/ia/ProblemIA.astro';
+import ExpertisesGrid from '../components/sections/ia/ExpertisesGrid.astro';
+import MethodeSection from '../components/sections/ia/MethodeSection.astro';
+import CaseStudiesFeatured from '../components/sections/ia/CaseStudiesFeatured.astro';
+import TestimonialsIA from '../components/sections/ia/TestimonialsIA.astro';
+import StackSection from '../components/sections/ia/StackSection.astro';
+import HistoricBranchBanner from '../components/sections/ia/HistoricBranchBanner.astro';
+import FinalCTA from '../components/sections/ia/FinalCTA.astro';
+import { SITE_DESCRIPTION } from '../config';
 ---
 
 <BaseLayout
-  title="Make It Global — Localisation de contenus pour votre expansion internationale"
-  description="Nous traduisons et adaptons l'ensemble de vos contenus — vidéos, formations, documents, site web — pour vos marchés cibles. Service clé-en-main, livraison sous 48h."
+  title="Make It Global — Agence d'implémentation IA pour PME et ETI"
+  description={SITE_DESCRIPTION}
 >
-  <!-- Main content starts here -->
   <main id="main-content">
-    <!-- Hero Section - First section in main content -->
-    <HeroSection />
-
-    <!-- Problem/Solution Section -->
-    <ProblemSection />
-
-    <!-- Process Section - Turnkey process visualization -->
-    <ProcessSection />
-
-<!-- Testimonials Section - Client success stories and results -->
-    <TestimonialsSection />
-
-    <!-- Contact Section - WhatsApp conversion -->
-    <ContactSection />
+    <HeroIA />
+    <LogoBar />
+    <ProblemIA />
+    <ExpertisesGrid />
+    <MethodeSection />
+    <CaseStudiesFeatured />
+    <TestimonialsIA />
+    <StackSection />
+    <HistoricBranchBanner />
+    <FinalCTA />
   </main>
 </BaseLayout>

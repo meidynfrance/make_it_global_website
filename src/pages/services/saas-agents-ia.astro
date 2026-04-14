@@ -1,0 +1,38 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const deliverables = [
+  { title: "Agents autonomes en production", desc: "LangChain / Claude / OpenAI, avec tool use, memory, guardrails. Capables d'exécuter des tâches sans supervision." },
+  { title: "Architecture multi-agents", desc: "Orchestrateur, agents spécialisés, supervisor. Pour les cas d'usage complexes qui ne tiennent pas dans un seul prompt." },
+  { title: "Retrieval Augmented Generation", desc: "Votre base de connaissances vectorisée, indexée, interrogeable par l'agent. Réponses contextualisées et précises." },
+  { title: "Interface conversationnelle", desc: "Chat web, Slack, Teams, ou embarqué dans vos outils. Avec historique, auth, logs." },
+  { title: "Observabilité complète", desc: "Traces LangSmith/Helicone, métriques de coût, alertes, dashboard de monitoring." },
+  { title: "Guardrails & fallbacks", desc: "Validation de sortie, escalade humaine, limites de coût, protection prompt injection." },
+];
+
+const process = [
+  { n: '01', title: 'Scoping', desc: "Quel problème résout l'agent ? Quelles tools ? Quels guardrails ?" },
+  { n: '02', title: 'Prototype', desc: "Agent fonctionnel en 1 semaine, testé sur un jeu de cas réels." },
+  { n: '03', title: 'Hardening', desc: "Ajout des guardrails, gestion des edge cases, optimisation coûts." },
+  { n: '04', title: 'Production', desc: "Déploiement, monitoring, support. On itère selon l'usage réel." },
+];
+
+const faqs = [
+  { q: "C'est quoi concrètement un agent IA ?", a: "Un programme qui utilise un LLM pour décider dynamiquement quelles actions prendre. À la différence d'un workflow fixe, il raisonne, choisit ses outils, et s'adapte à chaque situation." },
+  { q: "C'est risqué de laisser un agent agir sans supervision ?", a: "On met toujours des guardrails : limites de coût, validation humaine sur les actions critiques, logs complets, rollback possible. L'agent ne fait rien qui n'ait été explicitement autorisé." },
+  { q: "Quel ROI espérer ?", a: "Ça dépend du cas, mais un agent bien placé remplace typiquement 15 à 40h de travail humain par semaine, avec un coût d'infrastructure autour de 200-800€/mois." },
+  { q: "Vous développez aussi des SaaS from scratch ?", a: "Oui. On peut vous accompagner sur toute la stack d'un SaaS B2B : frontend, backend, paiement, auth, IA. De l'idée au MVP en 2-3 mois." },
+];
+---
+
+<ServiceLayout
+  title="SaaS & agents IA autonomes — Make It Global"
+  description="Agents IA en production : LangChain, Claude, OpenAI. Multi-agents, RAG, guardrails, observabilité. De l'idée au SaaS déployé."
+  kicker="Service 03 · Agents & SaaS"
+  headline="Des agents qui exécutent. Pas juste qui parlent."
+  subheadline="On conçoit et déploie des agents IA autonomes en production — avec outils, mémoire, guardrails et observabilité. Ou on construit le SaaS complet à partir de zéro."
+  deliverables={deliverables}
+  process={process}
+  faqs={faqs}
+  relatedCase={{ slug: 'agent-qualification-leads', title: "Agent de qualification de leads B2B — 78% de qualification automatique", metric: '78%' }}
+/>

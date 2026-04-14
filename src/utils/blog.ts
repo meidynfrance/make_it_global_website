@@ -59,3 +59,23 @@ export function filterPublishedPosts(posts: CollectionEntry<'blog'>[]): Collecti
     ? posts.filter((post) => !post.data.draft)
     : posts;
 }
+
+/**
+ * IA categories (explicit list — mirrors the enum in src/content/config.ts)
+ */
+const IA_CATEGORIES = new Set([
+  'implementation-ia',
+  'outils-metier',
+  'agents-ia',
+  'automatisation',
+  'seo-ia',
+  'retours-experience',
+]);
+
+/**
+ * Return the section ('ia' | 'localisation') of a category slug.
+ * Used to tag posts in mixed listings (/blog/categorie, /blog/tag).
+ */
+export function getCategorySection(category: string): 'ia' | 'localisation' {
+  return IA_CATEGORIES.has(category) ? 'ia' : 'localisation';
+}

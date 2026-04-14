@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DottedBg from '../components/ui/DottedBg.astro';
+import { CONTACT_EMAIL, BOOKING_URL } from '../config';
+
+const steps = [
+  { n: '01', title: 'Vous réservez un créneau', desc: "Choisissez un horaire qui vous arrange dans notre agenda. 30 minutes suffisent." },
+  { n: '02', title: "Appel de cadrage (30 min)", desc: "On comprend votre contexte, vos enjeux et vos données. Pas de slides, que des questions utiles." },
+  { n: '03', title: "Audit écrit sous 48h", desc: "Vous recevez par email une feuille de route actionnable, que vous travailliez avec nous ou pas." },
+];
+
+const benefits = [
+  "Cartographie de vos 3 cas d'usage IA les plus prometteurs",
+  "Estimation du ROI potentiel pour chaque cas",
+  "Recommandations techniques concrètes (stack, modèles, intégrations)",
+  "Roadmap de démarrage 1-3 mois",
+  "Livré sous 48h après l'appel · 100% gratuit",
+];
+---
+
+<BaseLayout
+  title="Audit IA gratuit — Make It Global"
+  description="Audit IA personnalisé gratuit pour PME et ETI. On identifie vos cas d'usage à plus fort ROI, avec recommandations techniques concrètes. Livré sous 48h."
+>
+  <main id="main-content">
+    <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28">
+      <DottedBg variant="grid" />
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <!-- Left: pitch -->
+        <div data-reveal="fade-up">
+          <span class="badge badge-primary badge-dot">Gratuit · Sans engagement</span>
+          <h1 class="mt-6 text-5xl sm:text-6xl font-bold tracking-tight text-text-primary leading-[1.05]">
+            Votre audit IA<br />
+            <span class="gradient-text">en 48h.</span>
+          </h1>
+          <p class="mt-6 text-lg text-text-muted leading-relaxed">
+            Un appel de 30 minutes. Un audit écrit sous 48h. Vous repartez avec une feuille de route actionnable — que vous travailliez avec nous ou pas.
+          </p>
+
+          <div class="mt-10 space-y-3">
+            {benefits.map((b) => (
+              <div class="flex items-start gap-3">
+                <span class="mt-1 text-accent-500 flex-shrink-0">
+                  <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="text-text-secondary">{b}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 p-5 rounded-xl border border-border-subtle bg-bg-surface/50">
+            <p class="text-xs font-mono uppercase tracking-wider text-text-dim mb-2">Pour qui ?</p>
+            <p class="text-sm text-text-secondary">
+              PME et ETI françaises (10 à 500 employés) qui veulent passer de l'expérimentation IA à des outils qui tournent vraiment en production.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: booking CTA -->
+        <div class="lg:sticky lg:top-24" data-reveal="fade-up" data-reveal-delay="200">
+          <div class="gradient-border">
+            <div class="space-y-6">
+              <div>
+                <span class="badge badge-primary">30 minutes · Avec le CEO</span>
+                <h2 class="mt-4 text-2xl font-bold text-text-primary">Réservez votre appel.</h2>
+                <p class="mt-2 text-sm text-text-muted leading-relaxed">
+                  Choisissez directement un créneau dans notre agenda. Pas de formulaire, pas d'attente — vous parlez au fondateur en personne.
+                </p>
+              </div>
+
+              <div class="space-y-4">
+                {steps.map((s) => (
+                  <div class="flex items-start gap-4">
+                    <div class="font-mono text-xs text-primary-400 mt-0.5 w-6 flex-shrink-0">{s.n}</div>
+                    <div>
+                      <div class="text-sm font-semibold text-text-primary">{s.title}</div>
+                      <p class="mt-1 text-xs text-text-muted leading-relaxed">{s.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary w-full justify-center inline-flex"
+              >
+                Réserver mon créneau
+              </a>
+
+              <p class="text-[11px] text-text-dim text-center leading-relaxed">
+                Audit 100% gratuit et sans engagement. Aucune donnée revendue.<br />
+                Vous préférez l'email ? <a href={`mailto:${CONTACT_EMAIL}`} class="text-primary-400 hover:text-primary-300">{CONTACT_EMAIL}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  href?: string;
+  glow?: boolean;
+  class?: string;
+  as?: 'div' | 'a' | 'article';
+}
+
+const { href, glow = false, class: additionalClass, as } = Astro.props;
+const Tag = as ?? (href ? 'a' : 'div');
+---
+
+<Tag
+  href={href}
+  class={`card ${glow ? 'card-glow' : ''} p-6 sm:p-8 block ${additionalClass || ''}`}
+>
+  <slot />
+</Tag>

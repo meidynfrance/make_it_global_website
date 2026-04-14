@@ -1,0 +1,137 @@
+---
+import { BOOKING_URL } from '../../../config';
+import DottedBg from '../../ui/DottedBg.astro';
+import ParticlesBackground from '../../ui/ParticlesBackground.astro';
+---
+
+<section class="relative overflow-hidden pt-20 pb-28 sm:pt-28 sm:pb-36">
+  <DottedBg variant="grid" />
+  <ParticlesBackground />
+
+  <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex justify-center mb-8" data-reveal="fade-up">
+      <span class="badge badge-primary badge-dot">
+        Agence d'implémentation IA · PME &amp; ETI
+      </span>
+    </div>
+
+    <h1
+      class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.035em] leading-[0.95] text-text-primary"
+      data-reveal="fade-up"
+      data-reveal-delay="100"
+    >
+      L'IA qui fait<br />
+      <span class="gradient-text">vraiment tourner</span><br />
+      votre business.
+    </h1>
+
+    <p
+      class="mt-8 text-lg sm:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed"
+      data-reveal="fade-up"
+      data-reveal-delay="200"
+    >
+      On conçoit et déploie dans votre entreprise : <strong class="text-text-primary font-medium">outils métier sur-mesure</strong>, <strong class="text-text-primary font-medium">agents IA autonomes</strong>, <strong class="text-text-primary font-medium">automatisations</strong> et <strong class="text-text-primary font-medium">SEO programmatique</strong>. De la stratégie au run en production.
+    </p>
+
+    <div
+      class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
+      data-reveal="fade-up"
+      data-reveal-delay="300"
+    >
+      <a href="/audit-ia/" class="btn-primary cta-pulse">
+        Obtenir mon audit IA gratuit
+        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        Réserver un appel découverte
+      </a>
+    </div>
+
+    <p class="mt-6 text-xs text-text-dim font-mono uppercase tracking-wider" data-reveal="fade-up" data-reveal-delay="400">
+      Audit offert · Réponse sous 24h · Sans engagement
+    </p>
+
+    <!-- Terminal mockup animé -->
+    <div class="mt-20 max-w-3xl mx-auto" data-reveal="blur-in" data-reveal-delay="500">
+      <div class="gradient-border">
+        <div class="text-left font-mono text-sm">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-border-subtle">
+            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+            <span class="ml-3 text-xs text-text-dim">agent.makeitglobal.ai</span>
+          </div>
+          <div id="hero-terminal" class="p-5 text-[13px] leading-relaxed min-h-[210px]">
+            <div class="hero-line text-text-dim" data-delay="0">&gt; <span class="text-text-secondary">analyze_process</span>(<span class="text-primary-300">"gestion commerciale"</span>)</div>
+            <div class="hero-line mt-2 text-text-muted" data-delay="600">⏳ Audit du workflow en cours...</div>
+            <div class="hero-line mt-1 text-accent-400" data-delay="1400">✓ 7 points de friction détectés</div>
+            <div class="hero-line mt-1 text-accent-400" data-delay="2000">✓ 3 opportunités d'automatisation (ROI estimé: 34h/mois)</div>
+            <div class="hero-line mt-1 text-accent-400" data-delay="2600">✓ 1 agent IA recommandé : <span class="text-primary-300">LeadQualifier</span></div>
+            <div class="hero-line mt-3 text-text-dim" data-delay="3200">&gt; <span class="text-text-secondary">deploy_agent</span>(<span class="text-primary-300">"LeadQualifier"</span>) <span class="inline-block w-2 h-4 align-middle bg-primary-400 hero-cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .hero-line {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 350ms ease-out, transform 350ms ease-out;
+    }
+    .hero-line.is-typed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-cursor {
+      animation: hero-blink 1s steps(2, end) infinite;
+    }
+    @keyframes hero-blink {
+      50% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-line { opacity: 1; transform: none; transition: none; }
+      .hero-cursor { animation: none; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var terminal = document.getElementById('hero-terminal');
+      if (!terminal) return;
+      var lines = terminal.querySelectorAll('.hero-line');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        lines.forEach(function (el) { el.classList.add('is-typed'); });
+        return;
+      }
+      function play() {
+        lines.forEach(function (el) { el.classList.remove('is-typed'); });
+        lines.forEach(function (el) {
+          var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+          setTimeout(function () { el.classList.add('is-typed'); }, delay);
+        });
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            play();
+            // Loop every 8s while visible
+            var loop = setInterval(function () {
+              if (document.hidden) return;
+              play();
+            }, 8000);
+            terminal.dataset.loopId = String(loop);
+          } else if (terminal.dataset.loopId) {
+            clearInterval(parseInt(terminal.dataset.loopId, 10));
+            delete terminal.dataset.loopId;
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(terminal);
+    })();
+  </script>
+</section>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: additionalClass } = Astro.props;
+---
+
+<div class={`absolute inset-0 overflow-hidden pointer-events-none ${additionalClass || ''}`} aria-hidden="true">
+  <div class="particle particle-primary" style="width: 500px; height: 500px; top: -100px; left: -150px;"></div>
+  <div class="particle particle-primary" style="width: 400px; height: 400px; top: 40%; right: -100px; animation-delay: -4s;"></div>
+  <div class="particle particle-accent" style="width: 300px; height: 300px; bottom: 10%; left: 20%; animation-delay: -8s;"></div>
+</div>

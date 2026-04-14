@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: additionalClass } = Astro.props;
+---
+
+<div class={`gradient-border ${additionalClass || ''}`}>
+  <div class="p-6 sm:p-8">
+    <slot />
+  </div>
+</div>

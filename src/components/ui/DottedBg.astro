@@ -1,0 +1,23 @@
+---
+interface Props {
+  variant?: 'dotted' | 'grid';
+  glow?: boolean;
+  class?: string;
+}
+
+const { variant = 'dotted', glow = true, class: additionalClass } = Astro.props;
+---
+
+<div
+  class={`absolute inset-0 pointer-events-none ${variant === 'grid' ? 'bg-grid' : 'bg-dotted'} ${additionalClass || ''}`}
+  aria-hidden="true"
+>
+  {glow && (
+    <div class="absolute inset-0 bg-radial-glow"></div>
+  )}
+  <!-- Fade edges with a soft mask -->
+  <div
+    class="absolute inset-0"
+    style="background: radial-gradient(ellipse 60% 80% at 50% 0%, transparent 30%, #0A0A0B 100%);"
+  ></div>
+</div>

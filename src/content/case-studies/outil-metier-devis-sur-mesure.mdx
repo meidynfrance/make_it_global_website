@@ -1,0 +1,53 @@
+---
+title: "Outil de devis sur-mesure dopé à l'IA"
+client: "Industriel équipementier (anonyme)"
+sector: "Industrie"
+description: "Application interne qui génère des devis techniques complexes en analysant le cahier des charges client. Vectorisation + LLM."
+publishDate: 2026-02-20
+service: "outils-metier"
+metrics:
+  - value: "4j → 20min"
+    label: "temps de devis"
+  - value: "+35%"
+    label: "taux de closing"
+  - value: "6 sem."
+    label: "build complet"
+  - value: "12"
+    label: "commerciaux formés"
+featured: true
+---
+
+## Le contexte
+
+Un industriel équipementier français, 120 personnes, 35M€ de CA, produisait des devis techniques complexes pour ses clients B2B. Chaque devis demandait en moyenne **4 jours de travail cumulé** : analyse du cahier des charges, consultation du catalogue interne (3 000 références), chiffrage, mise en page, validation technique, validation commerciale.
+
+Conséquence : beaucoup de prospects abandonnaient pendant l'attente. Le taux de réponse aux appels d'offres plafonnait à 40%.
+
+## Ce qu'on a construit
+
+Une application interne sur-mesure (Next.js + Supabase) intégrée au système d'information existant :
+
+1. **Ingestion** : le commercial upload le cahier des charges PDF/Word/email. L'outil extrait automatiquement les exigences techniques structurées.
+2. **Matching catalogue** : l'IA compare les exigences aux 3 000 références via embeddings vectoriels et propose les produits pertinents avec leur compatibilité.
+3. **Chiffrage guidé** : l'outil propose un chiffrage basé sur l'historique, que le commercial peut ajuster en un clic.
+4. **Génération de document** : devis PDF au template de la maison, avec logique conditionnelle sur les clauses techniques.
+5. **Validation rapide** : workflow de validation intégré pour le responsable technique et le DAF.
+
+## Stack technique
+
+- **Frontend** : Next.js 14 + Tailwind + shadcn/ui
+- **Backend** : Supabase (auth, database, storage, edge functions)
+- **IA** : Claude Sonnet pour l'extraction d'exigences et la rédaction, OpenAI embeddings pour le matching catalogue
+- **Vector DB** : pgvector dans Postgres (Supabase natif)
+- **PDF** : React-PDF pour le rendu des devis
+
+## Les résultats après 4 mois en production
+
+- **Temps de devis : de 4 jours à 20 minutes** en moyenne (incluant la validation).
+- **+35% de taux de closing** sur les devis produits via l'outil, vs devis traditionnels — grâce à la rapidité et à la qualité de l'argumentaire.
+- **12 commerciaux formés et utilisateurs quotidiens** de l'outil.
+- **Zéro erreur de compatibilité produit** détectée depuis la mise en production (vs 3-4 par trimestre avec la méthode manuelle).
+
+## Ce qu'on a appris
+
+Le vrai défi n'était pas l'IA mais la modélisation des règles métier et l'accès aux données du catalogue. 60% du projet a été de la "plomberie" : normaliser les références, nettoyer les historiques, interfacer l'ERP legacy. L'IA n'est que le dernier maillon — et elle ne peut bien fonctionner que si le reste est propre.

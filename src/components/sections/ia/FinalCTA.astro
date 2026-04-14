@@ -1,0 +1,44 @@
+---
+import { BOOKING_URL } from '../../../config';
+import DottedBg from '../../ui/DottedBg.astro';
+---
+
+<section class="relative py-28 sm:py-36 overflow-hidden" id="contact">
+  <DottedBg variant="grid" />
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="inline-flex" data-reveal="fade-up">
+      <span class="badge badge-accent badge-dot">On prend 3 nouveaux clients par trimestre</span>
+    </div>
+
+    <h2
+      class="mt-8 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-text-primary leading-[1]"
+      data-reveal="fade-up"
+      data-reveal-delay="100"
+    >
+      Passons à<br />
+      <span class="gradient-text">l'étape production.</span>
+    </h2>
+
+    <p
+      class="mt-8 text-lg text-text-muted max-w-xl mx-auto"
+      data-reveal="fade-up"
+      data-reveal-delay="200"
+    >
+      Audit gratuit de vos process en 30 minutes. Vous repartez avec une feuille de route actionnable, que vous travailliez avec nous ou non.
+    </p>
+
+    <div
+      class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
+      data-reveal="fade-up"
+      data-reveal-delay="300"
+    >
+      <a href="/audit-ia/" class="btn-primary cta-pulse">
+        Obtenir mon audit IA
+      </a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+        Réserver directement un appel
+      </a>
+    </div>
+  </div>
+</section>

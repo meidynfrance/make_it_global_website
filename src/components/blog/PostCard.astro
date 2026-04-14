@@ -1,16 +1,19 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { formatDate, getReadingTime } from '../../utils/blog';
+import { formatDate, getReadingTime, getCategorySection } from '../../utils/blog';
 import { CATEGORY_LABELS } from '../../config';
 import CategoryBadge from './CategoryBadge.astro';
 import BlogImage from './BlogImage.astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  showSectionBadge?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, showSectionBadge = false } = Astro.props;
 const { title, description, publishDate, category, image } = post.data;
+const section = getCategorySection(category);
+const sectionLabel = section === 'ia' ? 'Blog IA' : 'Blog Localisation';
 ---
 
 <article class="group rounded-2xl overflow-hidden bg-surface-white border border-neutral-200 card-hover">
@@ -24,8 +27,13 @@ const { title, description, publishDate, category, image } = post.data;
       />
     </div>
     <div class="p-5">
-      <div class="flex items-center gap-3 mb-3">
+      <div class="flex items-center gap-3 mb-3 flex-wrap">
         <CategoryBadge category={category} />
+        {showSectionBadge && (
+          <span class={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border ${section === 'ia' ? 'text-primary-400 border-primary-500/40' : 'text-text-muted border-border-subtle'}`}>
+            {sectionLabel}
+          </span>
+        )}
         <time datetime={publishDate.toISOString()} class="text-xs text-text-muted">
           {formatDate(publishDate)}
         </time>

@@ -1,0 +1,89 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DottedBg from '../../components/ui/DottedBg.astro';
+import { BOOKING_URL } from '../../config';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const cases = await getCollection('caseStudies');
+  return cases
+    .filter((c) => !c.data.draft)
+    .map((c) => ({ params: { slug: c.slug }, props: { caseStudy: c } }));
+};
+
+interface Props { caseStudy: CollectionEntry<'caseStudies'>; }
+const { caseStudy } = Astro.props;
+const { Content } = await caseStudy.render();
+const { data } = caseStudy;
+
+const formattedDate = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long' }).format(data.publishDate);
+---
+
+<BaseLayout
+  title={`${data.title} — Make It Global`}
+  description={data.description}
+>
+  <main id="main-content">
+    <section class="relative overflow-hidden pt-16 pb-12">
+      <DottedBg variant="grid" />
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/cas-clients/" class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text-primary transition-colors">
+          ← Tous les cas clients
+        </a>
+
+        <div class="mt-8">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge badge-primary">{data.sector}</span>
+            <span class="badge">{formattedDate}</span>
+          </div>
+
+          <h1 class="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-text-primary leading-[1.05]">
+            {data.title}
+          </h1>
+
+          <p class="mt-6 text-lg text-text-muted leading-relaxed max-w-3xl">
+            {data.description}
+          </p>
+
+          <div class="mt-8 text-xs font-mono uppercase tracking-wider text-text-dim">Client · {data.client}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div class="card p-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          {data.metrics.map((m) => (
+            <div class="text-center">
+              <div class="text-3xl sm:text-4xl font-bold gradient-text-accent tracking-tight">{m.value}</div>
+              <div class="mt-2 text-[11px] text-text-muted font-mono uppercase tracking-wider">{m.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+
+    <!-- CTA -->
+    <section class="relative py-24 border-t border-border-subtle mt-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold tracking-tight text-text-primary">Un cas similaire chez vous ?</h2>
+        <p class="mt-6 text-lg text-text-muted">
+          Audit gratuit de 30 minutes pour voir si on peut reproduire ce type de résultat dans votre contexte.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="/audit-ia/" class="btn-primary">Demander mon audit</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-secondary">Réserver un appel</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

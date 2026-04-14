@@ -1,0 +1,105 @@
+---
+title: "Outils métier sur-mesure vs SaaS : quand construire, quand acheter"
+description: "Faut-il acheter un SaaS ou construire un outil interne pour votre cas d'usage IA ? Notre grille de décision basée sur 30+ projets en PME."
+publishDate: 2026-04-14
+section: "ia"
+category: "outils-metier"
+tags: ["outils-metier", "build-vs-buy", "saas", "strategie", "roi"]
+image:
+  src: "/images/blog/outils-metier-build-vs-buy.webp"
+  alt: "Balance entre un logo SaaS générique et un outil interne sur-mesure"
+author:
+  name: "Make It Global"
+  role: "Equipe IA"
+draft: false
+featured: false
+---
+
+*« On a pris un abonnement à l'outil X, mais personne ne l'utilise. »* On entend ça toutes les semaines. L'outil n'est pas en cause — c'est la décision d'achat qui était mal cadrée.
+
+Voici la grille qu'on applique systématiquement pour trancher *build vs buy* sur un cas d'usage IA.
+
+## Les 3 signaux qui disent « achète un SaaS »
+
+### 1. Le cas d'usage est universel
+
+Si 10 000 autres entreprises ont exactement le même besoin que vous, quelqu'un a déjà construit le produit. Et il est probablement meilleur que ce que vous construiriez, pour moins cher. Exemples : transcription audio, traduction de documents, génération de sous-titres, détection de fraude sur paiements, vérification d'identité.
+
+Règle simple : si vous pouvez décrire le besoin en une phrase générique sans citer votre secteur, c'est un SaaS.
+
+### 2. Le process est standard et ne change pas souvent
+
+Un outil de facturation, un outil de signature électronique, un outil de paie — ces process sont stables, cadrés par des normes, et peu différenciants. Vous n'avez aucun intérêt à construire quelque chose de spécifique. Achetez, branchez, oubliez.
+
+### 3. Le volume est faible ou saisonnier
+
+Si vous avez besoin de la fonctionnalité 10 fois par mois, le ROI d'un build sur-mesure est quasi impossible à atteindre. Un SaaS à 50€/mois, même sous-utilisé, reste moins cher qu'un développement interne qu'il faut maintenir.
+
+## Les 4 signaux qui disent « construis sur-mesure »
+
+### 1. Votre process est spécifique et vous différencie
+
+Si votre manière de qualifier un lead, de produire un devis, de valider un dossier client fait partie de votre avantage concurrentiel, un SaaS générique va vous niveler par le bas. Vous allez vous adapter à l'outil au lieu que l'outil s'adapte à vous. Et vous allez perdre votre spécificité.
+
+### 2. Vous avez un gros volume sur une tâche très ciblée
+
+Si vous traitez 500 dossiers par semaine sur un process très précis, chaque pourcent de productivité vaut très cher. Un outil sur-mesure qui économise 20% du temps sur cette tâche a un ROI massif, parfois en moins de 3 mois. Un SaaS généraliste plafonne plus tôt.
+
+### 3. Les données sont sensibles ou réglementées
+
+Santé, juridique, finance, défense : les contraintes de confidentialité, traçabilité et souveraineté rendent beaucoup de SaaS inutilisables. Pas parce qu'ils sont mauvais, mais parce que leur modèle cloud n'est pas compatible avec vos obligations. Un outil interne (même modeste) sur votre infra vous rend éligible à des marchés que les SaaS ne peuvent pas servir.
+
+### 4. Vous avez déjà essayé 2 SaaS et aucun ne colle
+
+C'est le signal le plus fort, et le plus sous-estimé. Si vous avez déjà payé deux abonnements qui n'ont pas été adoptés en interne, le problème n'est pas le prochain SaaS — c'est que votre besoin est trop spécifique pour le marché de masse. Construire devient alors moins cher, même en coût absolu.
+
+## La fausse bonne idée : le SaaS « configurable »
+
+Entre SaaS pur et build pur, il y a la tentation du SaaS ultra-configurable type Airtable, Notion, Retool. Vous achetez une plateforme, et vous la configurez en interne jusqu'à obtenir quelque chose de presque sur-mesure.
+
+C'est une vraie option — mais attention aux 3 pièges :
+
+1. **Le coût de configuration est sous-estimé.** Ce n'est pas parce que c'est no-code que c'est gratuit en temps humain. On voit des projets à 40 jours/homme de configuration, qu'on aurait fait en 15 jours en code pur.
+2. **Le lock-in est réel.** Au bout de 2 ans, vous avez 300 vues Airtable et 50 automations Zapier. Migrer devient un projet en soi.
+3. **Les coûts de licence explosent avec l'usage.** Le modèle à l'utilisateur ou à la requête rend les SaaS flexibles très chers quand on grossit.
+
+Le SaaS configurable est une bonne option pour prototyper, moins bonne pour industrialiser.
+
+## Le vrai calcul de coût (au-delà du prix affiché)
+
+Le coût d'un SaaS ce n'est pas son abonnement mensuel. C'est :
+
+- Abonnement × nombre d'utilisateurs × 36 mois (horizon minimum)
+- Plus coût de paramétrage initial (typiquement 3-10 jours/homme)
+- Plus coût d'intégration avec votre SI existant (souvent sous-estimé : 10-30 jours)
+- Plus coût d'adoption (formation, accompagnement du changement)
+- Plus coût de sortie potentielle si vous migrez plus tard
+
+Le coût d'un build sur-mesure ce n'est pas le développement initial. C'est :
+
+- Développement initial (souvent 15-60 jours)
+- Plus maintenance annuelle (comptez 20% du coût initial par an)
+- Plus coût d'évolution quand les besoins changent
+- Plus risque de dette technique si c'est mal construit
+
+Mettez les deux colonnes en face, sur 3 ans, et le choix devient souvent évident. Parfois dans un sens, parfois dans l'autre.
+
+## La bonne séquence : rarement 100% build, rarement 100% buy
+
+La plupart des entreprises qu'on accompagne finissent avec un mix :
+
+- **SaaS pour les briques commodité** (authentification, facturation, emails, stockage, analytics).
+- **Build pour la logique métier différenciante** (le cœur de ce qui fait que *vous* êtes vous).
+- **Glue code entre les deux** (des automations et petits outils internes qui font la jonction).
+
+C'est cette couche de glue code — souvent bâtie avec de l'IA — qui fait la différence entre une PME qui subit ses outils et une PME qui les fait travailler ensemble.
+
+## En résumé : 3 questions à vous poser
+
+1. **Est-ce que ce process est standard ou différenciant ?** Standard → SaaS. Différenciant → build.
+2. **Est-ce que le volume justifie l'investissement ?** Faible → SaaS. Élevé → build.
+3. **Est-ce que j'ai déjà essayé des SaaS sans succès ?** Oui → build. Non → commencez par un SaaS, vous gagnerez du temps.
+
+Pas de religion *build vs buy*. Juste une décision économique, qu'il faut prendre cas par cas, avec des chiffres sur la table.
+
+Vous hésitez sur un cas d'usage précis ? On cadre ça en 30 minutes d'audit gratuit. [Réserver un audit IA](/audit-ia/).

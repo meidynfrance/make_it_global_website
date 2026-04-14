@@ -1,0 +1,56 @@
+---
+title: "Agent IA de qualification de leads B2B"
+client: "Agence de conseil B2B (anonyme)"
+sector: "Services B2B"
+description: "Un agent IA qui analyse, enrichit, qualifie chaque lead entrant et pré-rédige le premier email, connecté à HubSpot."
+publishDate: 2026-03-12
+service: "saas-agents-ia"
+metrics:
+  - value: "78%"
+    label: "leads qualifiés auto"
+  - value: "-22h"
+    label: "par semaine"
+  - value: "2 sem."
+    label: "temps de déploiement"
+  - value: "94%"
+    label: "précision humain-vs-IA"
+featured: true
+---
+
+## Le contexte
+
+Notre client, une agence de conseil B2B de 45 personnes, recevait entre 60 et 120 leads entrants par semaine via formulaire web, LinkedIn Ads et partenaires. Deux SDR étaient dédiés à la qualification manuelle : recherche de l'entreprise, vérification de la fit, priorisation, premier contact personnalisé.
+
+Résultat : 20 à 25 heures par semaine par SDR consacrées uniquement à de la recherche et de la rédaction répétitive. Les leads chauds attendaient 4 à 48 heures avant d'être contactés.
+
+## Ce qu'on a construit
+
+Un agent IA autonome qui intercepte chaque lead dès sa création dans HubSpot et exécute une séquence d'actions :
+
+1. **Enrichissement** : l'agent cherche l'entreprise sur Clearbit, LinkedIn, site web, Crunchbase via des appels API. Il extrait taille, secteur, stack technique, signaux récents (levée de fonds, recrutements).
+2. **Scoring** : à partir des critères de fit définis avec le client (ICP), l'agent attribue un score 0-100 et une priorité A/B/C/Disqualifié.
+3. **Research personnalisée** : pour les leads prioritaires, il synthétise 3-5 accroches personnalisées basées sur l'actualité de l'entreprise.
+4. **Pré-rédaction** : il génère un premier email adapté au secteur, au rôle et au contexte du lead.
+5. **Routage** : le lead est assigné au bon SDR dans HubSpot avec tout le contexte en note.
+
+L'humain reste dans la boucle : chaque email est revu et envoyé manuellement par le SDR, qui conserve le contrôle sur la voix et les nuances.
+
+## Stack technique
+
+- **Orchestrateur** : LangChain avec Claude Sonnet 4.6 comme modèle principal
+- **Enrichissement** : Clearbit API, LinkedIn Sales Navigator via Phantombuster, scraping éthique
+- **Vector DB** : Pinecone pour les embeddings d'ICP et l'historique des bons leads
+- **Intégration HubSpot** : webhooks entrants + HubSpot API pour les updates
+- **Monitoring** : LangSmith pour les traces, Slack pour les alertes
+
+## Les résultats après 3 mois
+
+- **78% des leads sont qualifiés automatiquement** (score + priorité + enrichissement complet), ne nécessitant qu'une validation rapide du SDR.
+- **22 heures libérées par semaine et par SDR**, qui se concentrent désormais sur le closing et les conversations chaudes.
+- **Délai de premier contact : moins de 15 minutes** pour les leads prioritaires (contre 4-48h avant).
+- **94% de précision** mesurée sur un échantillon où l'humain a re-qualifié a posteriori.
+- **ROI : le coût mensuel de l'agent (API + maintenance) représente moins de 5% du temps humain économisé.**
+
+## Ce qu'on a appris
+
+Un agent n'est utile que si on investit autant dans les guardrails que dans le prompting. Les 3 premières semaines ont été dédiées à tracer, mesurer, ajuster. Sans cet investissement, l'agent aurait produit 80% de bon et 20% de gênant — ce qui est inacceptable pour du sales.

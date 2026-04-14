@@ -1,0 +1,38 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const deliverables = [
+  { title: "Stratégie SEO data-driven", desc: "Analyse concurrentielle, identification des clusters de mots-clés, priorisation par potentiel vs difficulté." },
+  { title: "Pages programmatiques", desc: "Génération pipeline de centaines ou milliers de pages ciblées sur des long tails, basées sur vos données." },
+  { title: "Content IA supervisé", desc: "Rédaction assistée par LLM avec guardrails qualité, unicité, E-E-A-T. Jamais de content slop." },
+  { title: "Schema.org & structured data", desc: "Markup sémantique optimisé pour les LLM (GEO) et les moteurs de recherche classiques." },
+  { title: "Sitemap dynamique & monitoring", desc: "Indexation automatique, tracking positions, alertes sur régression, dashboard GSC." },
+  { title: "Maillage interne auto", desc: "Liens internes générés par embeddings, pour distribuer le jus SEO de manière intelligente." },
+];
+
+const process = [
+  { n: '01', title: 'Audit SEO', desc: "Diagnostic technique, analyse concurrentielle, opportunités de mots-clés." },
+  { n: '02', title: 'Architecture', desc: "Templates de pages, data model, règles de génération, guardrails qualité." },
+  { n: '03', title: 'Production', desc: "Génération + contrôle qualité + déploiement. Ramp-up progressif." },
+  { n: '04', title: 'Itération', desc: "Analyse performance, A/B testing de templates, optimisation continue." },
+];
+
+const faqs = [
+  { q: "C'est pas du spam, ça ?", a: "Non, si c'est fait correctement. On génère uniquement des pages qui répondent à une vraie intention de recherche, avec du contenu unique, utile, et sourcé. Google sanctionne le slop, pas le programmatique légitime." },
+  { q: "Combien de temps avant de voir des résultats ?", a: "Premiers rankings : 2-3 mois. Ramp-up significatif : 4-6 mois. Plateau : 9-12 mois. Le SEO reste un jeu long, même automatisé." },
+  { q: "Et le GEO (Generative Engine Optimization) ?", a: "Oui, on optimise pour ChatGPT, Perplexity, Claude, Google AI Overviews. Markup sémantique, structure claire, citations vérifiables, contenu factuel. C'est complémentaire au SEO classique, pas un remplaçant." },
+  { q: "Ça coûte combien ?", a: "Setup d'un pipeline complet : 15-30k€. Production de contenu : selon volume (à partir de 2€/page générée avec contrôle qualité). Maintenance et itération : 1-3k€/mois." },
+];
+---
+
+<ServiceLayout
+  title="SEO automatisé & programmatique — Make It Global"
+  description="SEO programmatique, content IA supervisé, optimisation GEO (ChatGPT, Perplexity). On génère à l'échelle sans faire de slop."
+  kicker="Service 05 · SEO automatisé"
+  headline="Scaler le SEO sans faire du slop."
+  subheadline="On construit des pipelines SEO programmatiques avec IA : pages ciblées à l'échelle, contrôle qualité humain + IA, optimisation pour Google et pour les LLMs (GEO)."
+  deliverables={deliverables}
+  process={process}
+  faqs={faqs}
+  relatedCase={{ slug: 'seo-programmatique-saas', title: "SEO programmatique 12 000 pages — +218% de trafic organique", metric: '+218%' }}
+/>
