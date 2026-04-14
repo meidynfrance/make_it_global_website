@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import DottedBg from '../../components/ui/DottedBg.astro';
 import { BOOKING_URL, CONTACT_EMAIL } from '../../config';
 
 const problems = [
@@ -98,7 +97,6 @@ const testimonials = [
   <main id="main-content">
     <!-- Hero -->
     <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-24">
-      <DottedBg variant="grid" />
       <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="inline-flex" data-reveal="fade-up">
           <span class="badge badge-primary">Branche historique · Traduction & International</span>
@@ -161,7 +159,7 @@ const testimonials = [
     </section>
 
     <!-- Notre solution -->
-    <section class="relative py-24 sm:py-32 border-y border-border-subtle bg-bg-surface/30" id="services">
+    <section class="relative py-24 sm:py-32 border-y border-border-subtle bg-white/50" id="services">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl mb-16" data-reveal="fade-up">
           <span class="badge">Notre solution</span>
@@ -234,7 +232,7 @@ const testimonials = [
           {testimonials.map((t) => (
             <figure class="card p-8" data-reveal="fade-up">
               <div class="mb-5">
-                <div class="text-3xl font-bold text-accent-400 tracking-tight">{t.metric}</div>
+                <div class="text-3xl font-bold text-[#FF4F4F] tracking-tight">{t.metric}</div>
                 <div class="text-xs text-text-dim mt-1">{t.metricLabel}</div>
               </div>
 
@@ -254,7 +252,6 @@ const testimonials = [
 
     <!-- CTA Final -->
     <section class="relative py-24 sm:py-32 border-t border-border-subtle">
-      <DottedBg variant="grid" />
       <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2
           class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-text-primary leading-[1]"
