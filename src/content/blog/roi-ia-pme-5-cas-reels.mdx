@@ -1,0 +1,130 @@
+---
+title: "ROI de l'IA en PME : 5 cas concrets et chiffrés"
+description: "5 projets IA déployés en PME : temps gagné, coût réel, ROI mesuré. Ce qui a marché, ce qui a failli rater, les leçons à retenir."
+publishDate: 2026-04-17
+section: "ia"
+category: "retours-experience"
+tags: ["retours-experience", "roi", "pme", "cas-usage", "implementation-ia"]
+image:
+  src: "/images/blog/roi-ia-pme-5-cas-reels.webp"
+  alt: "Tableau de bord mesurant le ROI de projets IA déployés en PME"
+author:
+  name: "Make It Global"
+  role: "Equipe IA"
+draft: false
+featured: false
+---
+
+L'IA en entreprise, ça ne se mesure pas en slides de présentation. Ça se mesure en heures gagnées, en leads qualifiés, en coûts évités. Voici 5 projets qu'on a livrés — avec les chiffres réels, les surprises et les erreurs qu'on n'a pas le droit de répéter.
+
+## Pourquoi ce retour d'expérience ?
+
+On reçoit régulièrement la même question de dirigeants de PME : *"Vous pouvez me montrer des cas concrets avec des chiffres ?"* Pas des études de cas marketing lisses. Des vrais chiffres, y compris quand le démarrage a été chaotique.
+
+Ces 5 projets ont été livrés entre mi-2024 et début 2026. Tous les clients ont accepté qu'on partage les données — anonymisées pour les plus sensibles. Les périmètres varient : de 8 000 EUR pour le plus petit PoC à 62 000 EUR pour le déploiement le plus complet.
+
+## Cas 1 — Cabinet de conseil : qualification automatique des leads entrants
+
+**Le problème** : Une consultante passait 2h30 par jour à lire les formulaires de contact, appeler les mauvais prospects, faire des devis qui n'aboutissaient jamais. Le ratio temps/CA était catastrophique.
+
+**Ce qu'on a construit** : Un agent IA connecté au formulaire de contact, au CRM et à une base de règles métier. L'agent lit chaque demande, croise avec les critères de qualification (secteur, taille, budget, urgence), attribue un score, envoie un résumé d'une page à la commerciale avec une recommandation — contacter / attendre / refuser.
+
+**Budget** : 12 000 EUR (PoC + mise en production sur 5 semaines).
+
+**Résultat à 3 mois** :
+- Temps de traitement des leads : 2h30/jour → 25 min/jour
+- Taux de transformation des leads qualifiés : +34%
+- Leads "fantômes" traités (avant : jamais) : 100% notifiés automatiquement
+
+**Ce qui a failli rater** : Le modèle confondait régulièrement les demandes de "conseil en RH" (cœur de métier) avec les demandes de "formation RH" (hors périmètre). On a ajouté 18 exemples annotés à mano dans les 3 premiers jours. Depuis, le taux d'erreur est sous 2%.
+
+## Cas 2 — Fabricant industriel : extraction de données dans les bons de commande fournisseurs
+
+**Le problème** : Un responsable achats recevait 40 à 70 bons de commande par jour, dans 9 formats différents (PDF, Excel, Word, email en texte libre). La saisie dans l'ERP prenait 3h/jour à deux personnes.
+
+**Ce qu'on a construit** : Un pipeline d'extraction automatique. Chaque document entrant est traité par un LLM fine-tuné pour identifier les champs clés (référence, quantité, prix unitaire, délai, incoterm). Les données sont injectées dans l'ERP via API. Les cas ambigus (score de confiance < 90%) remontent à un humain pour validation en un clic.
+
+**Budget** : 18 500 EUR (ingestion pipeline + connecteur ERP + interface validation).
+
+**Résultat à 6 mois** :
+- Documents traités automatiquement sans intervention humaine : 87%
+- Temps de traitement humain restant : 35 min/jour (vs 3h avant)
+- Erreurs de saisie ERP : -91%
+- ROI calculé par le client : remboursé en 4,5 mois sur le seul poste RH
+
+**Ce qui a failli rater** : Un fournisseur asiatique envoyait ses BCs en japonais avec des caractères mixtes. On n'avait pas anticipé. Correction sous 48h, mais c'est le genre de chose qu'un bon cadrage aurait détectée.
+
+## Cas 3 — Cabinet d'avocats : préparation de dossiers clients
+
+**Le problème** : Les collaborateurs passaient en moyenne 1h45 à préparer chaque rendez-vous client : lire les pièces, retrouver les précédents pertinents, rédiger le résumé de contexte.
+
+**Ce qu'on a construit** : Un assistant RAG (Retrieval-Augmented Generation) indexant les 4 000 dossiers clients des 8 dernières années. Avant chaque RDV, le collaborateur tape le nom du client et la thématique. L'assistant génère une fiche de contexte en 90 secondes : historique client, jurisprudence pertinente, points de vigilance, questions à poser.
+
+**Budget** : 22 000 EUR (indexation + interface + connecteur DMS existant).
+
+**Résultat à 4 mois** :
+- Temps de préparation par dossier : 1h45 → 20 min
+- Satisfaction des collaborateurs (auto-déclarée) : très élevée — c'est devenu l'outil le plus utilisé du cabinet
+- Dossiers traités par jour par collaborateur : +28%
+
+**Ce qui a failli rater** : La confidentialité. Le cabinet avait des clients qui ne voulaient pas que leurs données soient "mélangées" avec celles des autres, même côté serveur. On a dû monter une architecture multi-tenant avec isolation stricte, ce qui a ajouté 8 jours de développement. C'est désormais notre point de cadrage numéro 1 pour les cabinets.
+
+## Cas 4 — E-commerçant B2B : génération automatique de devis
+
+**Le problème** : Les commerciaux recevaient des demandes de devis complexes (produits configurables, remises volume, délais spéciaux). Chaque devis prenait 45 à 90 min à construire manuellement. Avec 12 demandes par jour, c'était ingérable.
+
+**Ce qu'on a construit** : Un [outil métier sur-mesure](/blog/outils-metier-sur-mesure-vs-saas) : une interface web où le commercial colle la demande client (texte libre ou structuré), et l'IA propose un devis complet en 40 secondes — lignes produits, quantités, tarifs, remises applicables, mention des délais contraints. Le commercial valide ou ajuste avant envoi.
+
+**Budget** : 28 000 EUR (interface + connecteur catalogue + connecteur ERP + règles de gestion).
+
+**Résultat à 2 mois** :
+- Temps de production d'un devis : 60 min (médiane) → 8 min
+- Volume de devis émis par mois : +67%
+- Taux d'erreur sur les prix : -83% (les remises manuelles étaient une source de litiges fréquents)
+
+**Ce qui a failli rater** : Les règles de remises étaient partiellement dans des fichiers Excel non maintenus. On a dû passer 3 jours à interviewer les commerciaux pour reconstruire la logique réelle vs la logique documentée. Ce travail de fond aurait dû faire partie du cadrage initial.
+
+## Cas 5 — Société de services informatiques : triage et réponse aux tickets support niveau 1
+
+**Le problème** : Le support recevait 150 à 200 tickets par jour. 60% étaient des questions standard avec des réponses dans la base de connaissances. Les 40% restants nécessitaient une intervention technique. Tout était mélangé, les techniciens noyaient le bon grain dans l'ivraie.
+
+**Ce qu'on a construit** : Un [agent IA](/blog/agents-ia-ce-qui-marche-vraiment) branché sur le système de ticketing. Il lit chaque ticket à l'arrivée, classe (FAQ / technique / urgence), répond automatiquement aux tickets FAQ en citant les sources, et escalade les autres avec un résumé du problème et des informations déjà collectées.
+
+**Budget** : 15 000 EUR (agent + connecteur ticketing + base de connaissances vectorisée).
+
+**Résultat à 3 mois** :
+- Tickets traités entièrement en automatique : 57%
+- Temps moyen de première réponse : 4h → 6 minutes
+- NPS support : +22 points (les clients recevaient enfin une réponse le jour même)
+- Techniciens humains : recentrés sur les vrais problèmes, productivité subjective en forte hausse
+
+**Ce qui a failli rater** : Les clients avaient pris l'habitude d'envoyer des tickets vagues ("ça marche pas"). L'agent avait du mal à classifier. On a ajouté une étape de clarification automatique — l'agent répond "Pouvez-vous préciser le message d'erreur ?" avant de classifier. Cela a amélioré la précision de 18 points.
+
+## Ce qu'on a appris en transverse
+
+Après ces 5 projets (et beaucoup d'autres), quelques constantes :
+
+**La qualité des données d'entrée est le premier facteur de succès, avant le choix du modèle.** Dans 4 projets sur 5, on a passé plus de temps à nettoyer les données qu'à coder l'IA.
+
+**Un PoC de 2 semaines est réellement suffisant pour valider un cas d'usage.** Tous ces projets ont commencé par un [PoC de 2 semaines](/blog/poc-ia-deux-semaines-standard) avec des données réelles. Aucun client n'a signé un projet full sans avoir vu tourner le prototype.
+
+**Le ROI se calcule en heures évitées, pas en CA généré.** C'est le ROI le plus facile à défendre en board : "on a libéré 2 ETP sur des tâches sans valeur ajoutée" est concret et incontestable.
+
+**Les projets qui échouent échouent rarement sur la techno.** Ils échouent sur le périmètre flou, les données mal anticipées, ou l'absence de sponsor interne. Si votre projet ne démarre pas avec un [audit IA structuré](/audit-ia), les risques sont nettement plus élevés.
+
+## Questions fréquentes
+
+**Combien de temps faut-il pour voir un ROI sur un projet IA ?**
+Dans les 5 cas présentés, le retour sur investissement s'est matérialisé entre 1 et 5 mois après la mise en production. Les projets de moins de 20 000 EUR se remboursent généralement en moins de 6 mois sur le seul poste de temps humain économisé.
+
+**Faut-il avoir une équipe technique en interne pour maintenir ces outils ?**
+Non, mais il faut a minima un référent interne qui connaît les processus métier. La maintenance technique est assurée par notre équipe. Ce référent sert surtout à alimenter les retours terrain : "l'agent se trompe souvent sur ce type de cas, voici des exemples."
+
+**Est-ce que ces projets fonctionnent pour des PME de moins de 50 personnes ?**
+Oui — deux des cinq projets ci-dessus concernaient des structures de moins de 30 personnes. La taille n'est pas le critère. Le critère, c'est d'avoir un process répétitif, des données accessibles, et un problème douloureux. Avec ça, un PoC est justifiable même pour une équipe de 10.
+
+**Quel est le budget minimum pour un premier projet IA ?**
+Le seuil qu'on observe en pratique est autour de 8 000 à 12 000 EUR pour un PoC fonctionnel. En dessous, le risque est de faire quelque chose de trop limité pour être utilisé en production. Au-dessus de 50 000 EUR, vous devriez exiger une preuve de concept avant de signer.
+
+**Comment savoir si mon cas d'usage est réaliste ?**
+Posez-vous trois questions : est-ce qu'une personne compétente pourrait faire cette tâche en suivant des règles écrites ? Est-ce que les données d'entrée sont disponibles numériquement ? Est-ce que la tâche se répète au moins 20 fois par semaine ? Si vous répondez oui aux trois, c'est faisable. [Notre audit IA gratuit](/audit-ia) vous dira si c'est prioritaire.
