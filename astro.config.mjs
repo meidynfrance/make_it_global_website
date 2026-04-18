@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://makeitglobal-agency.com',
+  site: 'https://www.makeitglobal-agency.com',
 
   integrations: [mdx(), sitemap()],
 

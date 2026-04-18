@@ -34,8 +34,8 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Make It Global',
-  url: 'https://makeitglobal-agency.com',
-  logo: 'https://makeitglobal-agency.com/favicon.svg',
+  url: 'https://www.makeitglobal-agency.com',
+  logo: 'https://www.makeitglobal-agency.com/favicon.svg',
   description: "Agence d'implémentation IA pour PME et ETI : outils métier, agents IA, automatisations, SEO automatisé.",
   sameAs: [
     'https://www.linkedin.com/company/make-it-global',
@@ -44,7 +44,7 @@ const orgSchema = {
 const extraSchemas = extraSchema ? (Array.isArray(extraSchema) ? extraSchema : [extraSchema]) : [];
 
 // Use Astro.site for production URL (falls back to localhost in dev)
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://makeitglobal-agency.com';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://www.makeitglobal-agency.com';
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 const canonical = canonicalUrl || Astro.url.href;
 
