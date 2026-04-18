@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { CONTACT_EMAIL, BOOKING_URL } from '../config';
+import { generateFAQPageJsonLd, generateBreadcrumbObject } from '../utils/seo';
 
 const steps = [
   { n: '01', title: 'Vous réservez un créneau', desc: "Choisissez un horaire qui vous arrange dans notre agenda. 30 minutes suffisent." },
@@ -15,11 +16,41 @@ const benefits = [
   "Roadmap de démarrage 1-3 mois",
   "Livré sous 48h après l'appel · 100% gratuit",
 ];
+
+const faqs = [
+  {
+    question: "L'audit IA est-il vraiment gratuit ?",
+    answer: "Oui, totalement gratuit et sans engagement. On y consacre 2 à 3 heures de travail réel : un appel de cadrage de 30 minutes avec vous, puis un document écrit sous 48h. Notre intérêt : si l'audit vous est utile et qu'on matche, on peut travailler ensemble ensuite. Sinon, vous repartez avec une feuille de route qui vous sert même si vous choisissez une autre agence.",
+  },
+  {
+    question: "Qu'est-ce qu'on reçoit concrètement à l'issue de l'audit ?",
+    answer: "Un document structuré de 5 à 8 pages avec : les 3 cas d'usage IA les plus pertinents pour votre contexte, une estimation du ROI pour chacun (temps gagné, volume impacté, économies), une recommandation de stack technique (modèles, infrastructure, intégrations), et une roadmap de démarrage sur 1 à 3 mois avec les prochaines étapes concrètes.",
+  },
+  {
+    question: "À quels profils d'entreprises s'adresse cet audit ?",
+    answer: "PME et ETI de 10 à 500 salariés, plutôt B2B. Pas besoin d'avoir déjà une équipe tech interne — on adapte nos recommandations à vos ressources disponibles. Les secteurs qu'on accompagne le plus : services B2B, industrie, santé, e-commerce, cabinets conseil. Les projets vont de l'automatisation d'une tâche commerciale à la refonte d'un outil métier complet.",
+  },
+  {
+    question: "Combien de temps dure le processus complet ?",
+    answer: "Entre 3 et 5 jours au total : vous réservez un créneau (5 minutes), on fait l'appel de cadrage (30 minutes), puis on livre le document écrit sous 48h ouvrées. Pas de relance, pas de multiples rendez-vous commerciaux — c'est un flux direct qui respecte votre temps.",
+  },
+  {
+    question: "Que se passe-t-il si on ne veut pas travailler avec vous après l'audit ?",
+    answer: "Rien. C'est sans engagement. Le document d'audit est le vôtre, vous pouvez l'utiliser pour travailler avec une autre agence, recruter en interne, ou simplement comme référence. Environ 30% des entreprises qu'on audite ne deviennent pas clientes dans les 6 mois qui suivent — et c'est très bien ainsi. La qualité de l'audit est notre vraie carte de visite.",
+  },
+];
+
+const faqSchema = generateFAQPageJsonLd(faqs);
+const breadcrumbSchema = generateBreadcrumbObject([
+  { name: 'Accueil', url: '/' },
+  { name: 'Audit IA gratuit', url: '/audit-ia/' },
+]);
 ---
 
 <BaseLayout
   title="Audit IA gratuit — Make It Global"
   description="Audit IA personnalisé gratuit pour PME et ETI. On identifie vos cas d'usage à plus fort ROI, avec recommandations techniques concrètes. Livré sous 48h."
+  extraSchema={[faqSchema, breadcrumbSchema]}
 >
   <main id="main-content">
     <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28">

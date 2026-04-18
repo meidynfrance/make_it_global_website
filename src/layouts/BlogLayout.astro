@@ -5,7 +5,7 @@ import TableOfContents from '../components/blog/TableOfContents.astro';
 import AuthorBio from '../components/blog/AuthorBio.astro';
 import ShareButtons from '../components/blog/ShareButtons.astro';
 import RelatedPosts from '../components/blog/RelatedPosts.astro';
-import { generateArticleJsonLd } from '../utils/seo';
+import { generateArticleJsonLd, generateBreadcrumbObject } from '../utils/seo';
 import type { CollectionEntry } from 'astro:content';
 import { CATEGORY_LABELS, SITE_URL } from '../config';
 
@@ -17,10 +17,10 @@ interface Props {
 }
 
 const { post, headings, readingTime, relatedPosts } = Astro.props;
-const { title, description, publishDate, updatedDate, category, image, author, tags } = post.data;
+const { title, description, publishDate, updatedDate, category, image, author, tags, section } = post.data;
 
 const articleUrl = `${SITE_URL}/blog/${post.slug}/`;
-const articleJsonLd = generateArticleJsonLd({
+const articleJsonLd = JSON.parse(generateArticleJsonLd({
   title,
   description,
   publishDate,
@@ -28,7 +28,16 @@ const articleJsonLd = generateArticleJsonLd({
   image: image.src,
   url: articleUrl,
   authorName: author.name,
-});
+}));
+
+const blogLabel = section === 'localisation' ? 'Blog Localisation' : 'Blog IA';
+const blogUrl = section === 'localisation' ? '/blog/localisation/' : '/blog/';
+const breadcrumbJsonLd = generateBreadcrumbObject([
+  { name: 'Accueil', url: '/' },
+  { name: blogLabel, url: blogUrl },
+  { name: CATEGORY_LABELS[category] || category, url: `/blog/categorie/${category}/` },
+  { name: title, url: `/blog/${post.slug}/` },
+]);
 ---
 
 <BaseLayout
@@ -42,8 +51,8 @@ const articleJsonLd = generateArticleJsonLd({
     section: CATEGORY_LABELS[category],
     tags,
   }}
+  extraSchema={[articleJsonLd, breadcrumbJsonLd]}
 >
-  <script type="application/ld+json" set:html={articleJsonLd} />
 
   <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     <div class="lg:grid lg:grid-cols-[1fr_220px] lg:gap-12">

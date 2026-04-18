@@ -54,3 +54,62 @@ export function generateBreadcrumbJsonLd(items: BreadcrumbItem[]): string {
   };
   return JSON.stringify(data);
 }
+
+interface CollectionPageJsonLdParams {
+  name: string;
+  description: string;
+  url: string;
+}
+
+export function generateCollectionPageJsonLd(params: CollectionPageJsonLdParams): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: params.name,
+    description: params.description,
+    url: params.url.startsWith('http') ? params.url : `${SITE_URL}${params.url}`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export function generateFAQPageJsonLd(items: FAQItem[]): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+export function generateBreadcrumbObject(items: BreadcrumbItem[]): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith('http') ? item.url : `${SITE_URL}${item.url}`,
+    })),
+  };
+}

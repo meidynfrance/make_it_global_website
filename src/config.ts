@@ -13,7 +13,7 @@ export const CONTACT_EMAIL = 'contact@makeitglobal-agency.com';
 export const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL || 'https://calendar.app.google/TKgeUJnmeS56BdrC6';
 
 // Site Metadata
-export const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://www.makeitglobal-agency.com';
+export const SITE_URL = import.meta.env.PUBLIC_SITE_URL || 'https://makeitglobal-agency.com';
 export const SITE_NAME = import.meta.env.PUBLIC_SITE_NAME || 'Make It Global';
 export const SITE_TAGLINE = "Agence d'implémentation IA pour entreprises";
 export const SITE_DESCRIPTION = "Nous concevons et déployons des outils métier, agents IA, automatisations et SEO automatisé pour les PME et ETI. De la stratégie à la production.";
